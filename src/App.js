@@ -5,12 +5,14 @@ import { Route, Routes } from 'react-router-dom';
 import Dashboard from './components/User/Dashboard';
 import Login from './components/login/Login.js';
 import Home from './pages/Home'
+import Polices from './pages/Polices';
 function App() {
   return (
    <>
       <Routes>   
         <Route path='/login' element={<Login/>}/>
         <Route path='/' element={<Home/>}/>
+        <Route path='/policies' element={<Polices/>}/>
       </Routes>
    </>
   );

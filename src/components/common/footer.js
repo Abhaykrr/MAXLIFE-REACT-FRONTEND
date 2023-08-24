@@ -1,104 +1,129 @@
-// import 'style.css'
+
 function footer() {
     return (
       <>
       
-      <footer class="footer-section">
-			<div class="container relative">
+      {/* <!-- Footer --> */}
+<footer class="text-center text-lg-start bg-white text-muted">
+  {/* <!-- Section: Social media --> */}
+  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+    {/* <!-- Left --> */}
+    <div class="me-5 d-none d-lg-block">
+      <span>Get connected with us on social networks:</span>
+    </div>
+    {/* <!-- Left --> */}
 
-				<div class="sofa-img">
-					<img src="images/image1.jpg" alt="Image" class="img-fluid rounded-5 opacity-75"/>
-				</div>
+    {/* <!-- Right --> */}
+    <div>
+      <a href="" class="me-4 link-secondary">
+        <i class="fab fa-facebook-f"></i>
+      </a>
+      <a href="" class="me-4 link-secondary">
+        <i class="fab fa-twitter"></i>
+      </a>
+      <a href="" class="me-4 link-secondary">
+        <i class="fab fa-google"></i>
+      </a>
+      <a href="" class="me-4 link-secondary">
+        <i class="fab fa-instagram"></i>
+      </a>
+      <a href="" class="me-4 link-secondary">
+        <i class="fab fa-linkedin"></i>
+      </a>
+      <a href="" class="me-4 link-secondary">
+        <i class="fab fa-github"></i>
+      </a>
+    </div>
+    {/* <!-- Right --> */}
+  </section>
+  {/* <!-- Section: Social media --> */}
 
-				<div class="row">
-					<div class="col-lg-8">
-						<div class="subscription-form">
-							<h3 class="d-flex align-items-center"><span class="me-1"><img src="images/envelope-outline.svg" alt="Image" class="img-fluid"/></span><span>Subscribe to Newsletter</span></h3>
+  {/* <!-- Section: Links  --> */}
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      {/* <!-- Grid row --> */}
+      <div class="row mt-3">
+        {/* <!-- Grid column --> */}
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          {/* <!-- Content --> */}
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3 text-secondary"></i>Max Life
+          </h6>
+          <p>
+           Insurance Company
+          </p>
+        </div>
+        {/* <!-- Grid column --> */}
 
-							<form action="#" class="row g-3">
-								<div class="col-auto">
-									<input type="text" class="form-control" placeholder="Enter your name"/>
-								</div>
-								<div class="col-auto">
-									<input type="email" class="form-control" placeholder="Enter your email"/>
-								</div>
-								<div class="col-auto">
-									<button class="btn btn-primary">
-										<span class="fa fa-paper-plane"></span>
-									</button>
-								</div>
-							</form>
+        {/* <!-- Grid column --> */}
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          {/* <!-- Links --> */}
+          <h6 class="text-uppercase fw-bold mb-4">
+            Products
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Angular</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">React</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Vue</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Laravel</a>
+          </p>
+        </div>
+        {/* <!-- Grid column --> */}
 
-						</div>
-					</div>
-				</div>
+        {/* <!-- Grid column --> */}
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          {/* <!-- Links --> */}
+          <h6 class="text-uppercase fw-bold mb-4">
+            Useful links
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">Pricing</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Dashboard</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Polices</a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">Help</a>
+          </p>
+        </div>
+        {/* <!-- Grid column --> */}
 
-				<div class="row g-5 mb-5">
-					<div class="col-lg-4">
-						<div class="mb-4 footer-logo-wrap"><a href="#" class="footer-logo">Max Life<span>.</span></a></div>
-						<p class="mb-4">Donec facilisis quam ut purus rutrum lobortis. Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique. Pellentesque habitant</p>
+        {/* <!-- Grid column --> */}
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          {/* <!-- Links --> */}
+          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
+          <p><i class="fas fa-home me-3 text-secondary"></i>Bihar, IN</p>
+          <p>
+            <i class="fas fa-envelope me-3 text-secondary"></i>
+            contactus@maxlife.com
+          </p>
+          <p><i class="fas fa-phone me-3 text-secondary"></i> + 01 234 567 88</p>
+          <p><i class="fas fa-print me-3 text-secondary"></i> + 01 234 567 89</p>
+        </div>
+        {/* <!-- Grid column --> */}
+      </div>
+      {/* <!-- Grid row --> */}
+    </div>
+  </section>
+  {/* <!-- Section: Links  --> */}
 
-						<ul class="list-unstyled custom-social">
-							<li><a href="#"><span class="fa fa-brands fa-facebook-f"></span></a></li>
-							<li><a href="#"><span class="fa fa-brands fa-twitter"></span></a></li>
-							<li><a href="#"><span class="fa fa-brands fa-instagram"></span></a></li>
-							<li><a href="#"><span class="fa fa-brands fa-linkedin"></span></a></li>
-						</ul>
-					</div>
-
-					<div class="col-lg-8">
-						<div class="row links-wrap">
-							<div class="col-6 col-sm-6 col-md-3">
-								<ul class="list-unstyled">
-									<li><a href="#">About us</a></li>
-									<li><a href="#">Services</a></li>
-									<li><a href="#">Blog</a></li>
-									<li><a href="#">Contact us</a></li>
-								</ul>
-							</div>
-
-							<div class="col-6 col-sm-6 col-md-3">
-								<ul class="list-unstyled">
-									<li><a href="#">Support</a></li>
-									<li><a href="#">Knowledge base</a></li>
-									<li><a href="#">Live chat</a></li>
-								</ul>
-							</div>
-
-							<div class="col-6 col-sm-6 col-md-3">
-								<ul class="list-unstyled">
-									<li><a href="#">Jobs</a></li>
-									<li><a href="#">Our team</a></li>
-									<li><a href="#">Leadership</a></li>
-									<li><a href="#">Privacy Policy</a></li>
-								</ul>
-							</div>
-
-							
-						</div>
-					</div>
-
-				</div>
-
-				<div class="border-top copyright">
-					<div class="row pt-4">
-						<div class="col-lg-6">
-							{/* <p class="mb-2 text-center text-lg-start">Copyright &copy;<script>document.write(new Date().getFullYear());</script>. All Rights Reserved. &mdash; Designed with love by <a href="https://untree.co">Untree.co</a> Distributed By <a hreff="https://themewagon.com">ThemeWagon</a>  <!-- License information: https://untree.co/license/ --> */}
-            {/* </p> */}
-						</div>
-
-						<div class="col-lg-6 text-center text-lg-end">
-							<ul class="list-unstyled d-inline-flex ms-auto">
-								<li class="me-4"><a href="#">Terms &amp; Conditions</a></li>
-								<li><a href="#">Privacy Policy</a></li>
-							</ul>
-						</div>
-
-					</div>
-				</div>
-
-			</div>
-		</footer>
+  {/* <!-- Copyright --> */}
+  <div class="text-center p-4" style={{backgroundcolor: 'rgba(0, 0, 0, 0.025)'}}>
+    © 2021 Copyright:
+    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MaxLife.com</a>
+  </div>
+  {/* <!-- Copyright --> */}
+</footer>
+{/* <!-- Footer --> */}
       </>
     );
   }

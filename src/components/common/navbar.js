@@ -25,7 +25,7 @@ function Navbar() {
       </li>
       <li><a class="nav-link" href="#why_us">More</a></li>
       <li><a class="nav-link" href="#team">Team</a></li>
-      <li ><a class="nav-link" href="#policies">Explore policies</a></li>
+      <li ><a class="nav-link" href="/policies">Explore policies</a></li>
       <li><a class="nav-link" href="#testimonials">Testimonials</a></li>
       <li>
       
