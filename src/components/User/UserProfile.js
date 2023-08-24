@@ -47,14 +47,28 @@ const UserProfile = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="fullName">Full Name</label>
+                        <label for="fullName">First Name</label>
                         <input
                           type="text"
                           className="form-control"
                           id="fullName"
-                          placeholder="Enter full name"
+                          placeholder="Enter First name"
                         />
                       </div>
+
+                    </div>
+
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label for="fullName">Last Name</label>
+                        <input
+                          type="text"
+                          className="form-control"
+                          id="fullName"
+                          placeholder="Enter Last name"
+                        />
+                      </div>
+
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
@@ -63,7 +77,7 @@ const UserProfile = () => {
                           type="email"
                           className="form-control"
                           id="eMail"
-                          placeholder="Enter email ID"
+                          placeholder="Enter Email ID"
                         />
                       </div>
                     </div>
@@ -74,21 +88,11 @@ const UserProfile = () => {
                           type="text"
                           className="form-control"
                           id="phone"
-                          placeholder="Enter phone number"
+                          placeholder="Enter Phone number"
                         />
                       </div>
                     </div>
-                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
-                      <div className="form-group">
-                        <label for="website">Website URL</label>
-                        <input
-                          type="url"
-                          className="form-control"
-                          id="website"
-                          placeholder="Website url"
-                        />
-                      </div>
-                    </div>
+                   
                   </div>
                   <div className="row gutters">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -139,17 +143,41 @@ const UserProfile = () => {
                       </div>
                     </div>
                   </div>
+
+                  <div className="row gutters">
+                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                      <h6 className="mt-3 mb-2 text-primary">Nominee </h6>
+                    </div>
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label for="Street">Name</label>
+                        <input
+                          type="name"
+                          className="form-control"
+                          id="Street"
+                          placeholder="Enter Name"
+                        />
+                      </div>
+                    </div>
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label for="ciTy">Relation</label>
+                        <input
+                          type="name"
+                          className="form-control"
+                          id="ciTy"
+                          placeholder="Enter Relation"
+                        />
+                      </div>
+                    </div>
+                  
+                  
+                  </div>
+
                   <div className="row gutters">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                       <div className="text-right">
-                        <button
-                          type="button"
-                          id="submit"
-                          name="submit"
-                          className="btn btn-secondary"
-                        >
-                          Cancel
-                        </button>
+                       
                         <button
                           type="button"
                           id="submit"
