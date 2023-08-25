@@ -9,6 +9,7 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.1",
+<<<<<<< HEAD
     "mdb-react-ui-kit": "^6.2.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
@@ -17,6 +18,16 @@
     "react-router-dom": "^6.15.0",
     "react-scripts": "5.0.1",
     "reactjs-popup": "^2.0.5",
+=======
+    "react": "^18.2.0",
+    "react-bootstrap": "^2.8.0",
+    "react-dom": "^18.2.0",
+    "react-helmet": "^6.1.0",
+    "react-router-dom": "^6.15.0",
+    "react-scripts": "5.0.1",
+    "reactjs-popup": "^2.0.5",
+    "sweetalert": "^2.1.2",
+>>>>>>> b5523a14151fe0a22ba07f098fc5b00cf3e5b5f7
     "web-vitals": "^2.1.4"
   },
   "scripts": {

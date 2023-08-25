@@ -7,7 +7,7 @@ const DashboardRoutes = () => {
   return (
     <Routes>
       <Route path='/user' element={<Dashboard/>}/>  
-      <Route path="/profile" element={<UserProfile />} />
+      <Route path="/user/profile" element={<UserProfile />} />
     </Routes>
   )
 }

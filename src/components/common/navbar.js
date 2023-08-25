@@ -1,14 +1,71 @@
-import { useState,useRef } from "react";
+import { useState,useRef, useEffect } from "react";
 import 'reactjs-popup/dist/index.css';
 import Login from "./login";
 import Signup from "./signup";
+import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 function Navbar() {
+
+  const navigate = useNavigate()
+
+  const [isLoggedIn,setIsLoggedIn] = useState(false)
+  const [username,setusername] = useState()
+  const [roleName,setRoleName] = useState()
+
+  const checkLoggedIn = ()=>{
+    try {
+      setusername( localStorage.getItem('username'))
+      setRoleName(localStorage.getItem('roleName').split('_')[1])
+    } catch (error) {
+      console.log("Local Storage Data Not Found")
+    }
+   
+
+    // alert(roleName)
+
+    if(username == null || username == undefined || username === undefined){
+        setIsLoggedIn(false)
+    }else{
+      setIsLoggedIn(true)
+    }
+  }
+
+  const doLogout = ()=>{
+    localStorage.clear()
+    navigate("/")
+    return
+  }
+
+  useEffect(()=>{
+    checkLoggedIn()
+  })
+
+
+  const divertToPortfolio = ()=>{
+    const roleId = localStorage.getItem('roleId')
+    
+    if(roleId === undefined || roleId === null)
+      alert("Please Login")
+
+      if(roleId === "1")
+        navigate("/user")
+
+        if(roleId === "2")
+        navigate("/admin/dashboard")
+
+    
+
+  }
+
   const [loginopen,setloginopen]=useState(false);
   const [signupopen,setsignupopen]=useState(false);
   const target = useRef(null);
   
     return (
       <>
+      {/* <Helmet>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"/>
+      </Helmet> */}
       <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
 <div class="container">
@@ -27,16 +84,40 @@ function Navbar() {
       <li><a class="nav-link" href="#team">Team</a></li>
       <li ><a class="nav-link" href="/policies">Explore policies</a></li>
       <li><a class="nav-link" href="#testimonials">Testimonials</a></li>
+      <li ><a class="nav-link"  href="" onClick={divertToPortfolio}> Portfolio</a></li>
       <li>
-      
+
+
+      <div>
+      {isLoggedIn ? (
+        
+          <li style={{color:"white"}}>Welcome, {roleName} {username} &nbsp; &nbsp;<button type="button" class="btn btn-danger" onClick={doLogout}>Logout</button>
+           
+          </li>
+          
+      ) : (
+        <div>
+        <button class="btn"
+        ref={target}
+        onClick={()=>{
+          setloginopen(!loginopen)
+        }}
+        data-bs-toggle="modal"
+        data-bs-target="#openloginpopup"
+        >Login</button> &nbsp;&nbsp;
+  
       <button class="btn"
-      ref={target}
-      onClick={()=>{
-        setloginopen(!loginopen)
-      }}
-      data-bs-toggle="modal"
-      data-bs-target="#openloginpopup"
-      >Login</button>
+        onClick={()=>{setsignupopen(!signupopen)}}
+        data-bs-toggle="modal"
+        data-bs-target="#opensignupopup"
+        >Sign up</button>
+        </div>
+      )}
+    </div>
+
+    
+      
+      
       
 
 
@@ -62,11 +143,9 @@ function Navbar() {
   
         
         </li>
-      <li><button class="btn"
-      onClick={()=>{setsignupopen(!signupopen)}}
-      data-bs-toggle="modal"
-      data-bs-target="#opensignupopup"
-      >Sign up</button>
+      <li>
+        
+     
       
       <div
             class="modal fade"
