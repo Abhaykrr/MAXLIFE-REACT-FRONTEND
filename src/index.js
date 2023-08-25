@@ -5,11 +5,13 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import DashboardRoutes from './components/User/DashboardRoutes';
+import AdminDashboardRoutes from './components/Admin/AdminDashboardRoutes';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
   <App/>
+  <AdminDashboardRoutes/>
    <DashboardRoutes/>
  </BrowserRouter>
 );

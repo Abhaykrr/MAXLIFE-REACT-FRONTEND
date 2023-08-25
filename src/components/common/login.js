@@ -1,10 +1,47 @@
+import axios from 'axios';
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router-dom';
+import swal from 'sweetalert';
 
 const Login = () => {
     const [userdata,setuserdata]=useState({email:"",password:""})
-    function handlesubmit(){
-        console.log(userdata);
+
+    const navigate = useNavigate()
+
+    async function handlesubmit (e){
+        e.preventDefault()
+        console.log(userdata.email);
+        console.log(userdata.password);
+
+        try {
+          let response = await axios.post('http://localhost:8080/maxlife/api/auth/login',{
+            username:userdata.email,
+            password:userdata.password
+          })
+  
+          localStorage.setItem('auth',response.data.accessToken)
+          localStorage.setItem('roleId',response.data.roleId)
+          localStorage.setItem('genericId',response.data.genericId)
+          localStorage.setItem('username',response.data.username)
+          localStorage.setItem('roleName',response.data.roleName)
+          console.log(response)
+
+          swal("Good job!", "Login Successfull...!", "success")
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+          
+        } catch (error) {
+          // alert(error.message)
+          swal("OOPS!", "Login Failed...!", "warning")
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+        }
+
+       
     }
+
   return (
     <>
     {/* <!-- Default form login --> */}
@@ -13,7 +50,7 @@ const Login = () => {
     <p class="h4 mb-4">Sign in</p>
 
     {/* <!-- Email --> */}
-    <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail"
+    <input type="text" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail"
     onChange={(e)=>{setuserdata({...userdata,email:e.target.value})}}
     />
 
