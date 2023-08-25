@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 let allpolicies=[
 {
     imageurl:"https://mdbcdn.b-cdn.net/img/new/standard/city/041.webp",
@@ -38,30 +38,40 @@ let allpolicies=[
 
 ]
 function Card(props){
-
+    const [openknow,setopenknow]=useState(false);
     return (
         <>
-       <div class="row row-cols-1 row-cols-md-4 bg-secondary">
-        {allpolicies.map((policy,index)=>{
-            return(
-                <div class="card m-5 shadow p-3 mb-5 bg-body-tertiary rounded">
-  <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-    <img src={policy.imageurl} class="img-fluid"/>
-    <a href="#!">
-      {/* <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div> */}
-    </a>
-  </div>
-  <div class="card-body">
-    <h5 class="card-title">{policy.policiyname}</h5>
-    <p class="card-text">{policy.about}</p>
-    <a href="#!" class="btn btn-primary">Know more</a>
-  </div>
-</div>
-            )
-            
-        })}
+         
+                        <div class="carousel-item active">
+                            <div class="row">
+                                {
+                                    props.policy.map((policy,index)=>{
+                                    return (
+                                        <div class="col-md-4 mb-3">
+                                    <div class="card">
+                                        <img class="img-fluid" alt="100%x280" src="https://images.unsplash.com/photo-1532781914607-2031eca2f00d?ixlib=rb-0.3.5&amp;q=80&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=1080&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjMyMDc0fQ&amp;s=7c625ea379640da3ef2e24f20df7ce8d"/>
+                                        <div class="card-body">
+                                            <h4 class="card-title">Special title treatment</h4>
+                                            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                    );
+                                    })
+                                }
+                                
+                                
+
+                           
+                        
+                        
+                            </div>
+                        </div>
+                    
   
-  </div>
   
         </>
 

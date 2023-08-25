@@ -6,10 +6,6 @@ import Explainone from "../components/home/explainone";
 import Team from "../components/home/team";
 import Testimonials from "../components/home/testimonal";
 
-
-
-
-import { useState,useRef } from "react";
 function Home() {
 
 
