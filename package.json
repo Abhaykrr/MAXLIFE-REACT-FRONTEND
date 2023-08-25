@@ -9,16 +9,6 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.4.0",
     "bootstrap": "^5.3.1",
-<<<<<<< HEAD
-    "mdb-react-ui-kit": "^6.2.0",
-    "react": "^18.2.0",
-    "react-bootstrap": "^2.8.0",
-    "react-dom": "^18.2.0",
-    "react-multi-carousel": "^2.8.4",
-    "react-router-dom": "^6.15.0",
-    "react-scripts": "5.0.1",
-    "reactjs-popup": "^2.0.5",
-=======
     "react": "^18.2.0",
     "react-bootstrap": "^2.8.0",
     "react-dom": "^18.2.0",
@@ -27,8 +17,8 @@
     "react-scripts": "5.0.1",
     "reactjs-popup": "^2.0.5",
     "sweetalert": "^2.1.2",
->>>>>>> b5523a14151fe0a22ba07f098fc5b00cf3e5b5f7
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "react-multi-carousel": "^2.8.4"
   },
   "scripts": {
     "start": "react-scripts start",
