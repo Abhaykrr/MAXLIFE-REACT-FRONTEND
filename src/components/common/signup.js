@@ -1,9 +1,35 @@
+import axios from 'axios';
 import React, { useState } from 'react'
+import swal from 'sweetalert';
 
 const Signup = () => {
     const [userdata,setuserdata]=useState({email:"",password:"",firstname:"",lastname:""})
     function handlesubmit(){
         console.log(userdata);
+
+        try {
+
+          let response = axios.post('http://localhost:8080/maxlife/api/auth/register',{
+            username:userdata.email,
+            password:userdata.password,
+
+            role:"ROLE_CUSTOMER",
+            customer:{
+              firstname:userdata.firstname,
+              lastname:userdata.lastname
+            }
+
+          })
+          console.log(response.data)
+
+          swal("Good job!", "Register Successfull...!", "success")
+          setTimeout(() => {
+            window.location.reload();
+          }, 1000);
+          
+        } catch (error) {
+          alert(error.message)
+        }
     }
   return (
     <>
@@ -20,7 +46,7 @@ const Signup = () => {
     onChange={(e)=>{setuserdata({...userdata,lastname:e.target.value})}}
     />
     {/* <!-- Email --> */}
-    <input type="email"  class="form-control mb-4" placeholder="E-mail"
+    <input type="text"  class="form-control mb-4" placeholder="Username"
     required
     onChange={(e)=>{setuserdata({...userdata,email:e.target.value})}}
     />
