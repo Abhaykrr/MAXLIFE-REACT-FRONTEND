@@ -20,7 +20,7 @@ let data=[
             profitratio:"27%",
             registrationcommsion:'3%',
             installmentcommison:'2%',
-            about:"here is about the scheme"
+            about:"Be sure to add aria-expanded to the control element. This attribute explicitly conveys the current state of the collapsible element tied to the control to screen readers and similar assistive technologies. If the collapsible element is closed by default, the attribute on the control element should have a value of aria-expanded=false. If you’ve set the collapsible element to be open by default using the show class, set aria-expanded=true on the control instead. The plugin will automatically toggle this attribute on the control based on whether or not the collapsible element has been opened or closed (via JavaScript, or because the user triggered another control element also tied to the same collapsible element)"
 
 
         },
@@ -80,7 +80,7 @@ const responsive = {
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 3
+      items: 4
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -109,25 +109,37 @@ function Carouselapp(){
     
     return(
 
-<div class="mh-100">
-<Carousel responsive={responsive}>
+<div class="mh-100"  >
+    <div >
+        <br/>
+        <br/>
+        
+    <Carousel responsive={responsive} >
+
 {data.map((policy,index)=>{
         return(
-            <div class="card shadow-lg p-3 mb-5 bg-body-tertiary rounded" style={{width:'70%',margin:'10px'}}>
-            <img src={policy.imageurl} class="card-img-top" alt="Fissure in Sandstone"/>
-            <div class="card-body">
-              <h5 class="card-title">{policy.name}</h5>
-              <p class="card-text">{policy.about}</p>
-              <a  class="btn btn-primary" href="#scheme" onClick={()=>handlepolicyabout(policy)}>Know More</a>
-            </div>
-          </div>
+        <div class="card" style={{width: "18rem",marginLeft:"10%"}}>
+  <div class="card-body">
+    <h5 class="card-title">{policy.name}</h5>
+    <p class="card-text">{policy.about}</p>
+    <a href="#" onClick={()=>handlepolicyabout(policy)} class="btn btn-primary">Know More</a>
+  </div>
+</div>
         )
             
         
         
 
     })}
-</Carousel>;
+
+</Carousel>
+        
+        
+        
+        
+        
+        </div>
+
 
 
 
@@ -135,26 +147,37 @@ function Carouselapp(){
 <div id="schemes">
 
 </div>
-{showpolicydetails?<>
+{showpolicy?.scheme?<>
 <div  style={{height:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
 
 Explore Schemes
 
 </div>
-<div >
-{
+
+
+<div class="accordion accordion-flush" id="accordionExample">
+{   
+    
     showpolicy?.scheme?.map((scheme,index)=>{
         return(
             <div>
-            <div style={{height:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+            <div style={{height:'100%',display:'flex',justifyContent:'center',alignItems:'center' ,marginTop:"30px", marginBottom:"10px"}}>
             
-  <a class="btn btn-secondary " data-bs-toggle="collapse" style={{width:'80%',marginTop:'20px'}} type="button" href="#demo1111" >
-    {scheme.name}
-  </a>
-   </div>
-            <div id="demo1111" class="collapse" style={{height:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+            <div class="accordion-item w-75">
+      <div class="accordion-header" id="headingOne" >
+        <button class="accordion-button shadow-lg p-3 mb-5 bg-body rounded" type="button" data-bs-toggle="collapse" data-bs-target={"#collapse"+scheme.schemeid} aria-expanded="true" aria-controls="collapseOne">
+          {scheme.name}
+        </button>
+      </div>
+      <div id={"collapse"+scheme.schemeid} class="accordion-collapse collapse " aria-labelledby="headingOne"  data-bs-parent="#accordionExample">
+        <div class="accordion-body" style={{height:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+        
     <Table scheme={scheme}/>
     
+
+        </div>
+      </div>
+    </div>
     </div>
  
  
@@ -165,9 +188,10 @@ Explore Schemes
         
     })
 }
+    
 </div>
-
-
+    
+    
 
 </>:<></>}
 
