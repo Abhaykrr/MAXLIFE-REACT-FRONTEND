@@ -172,9 +172,9 @@ const UserProfile = () => {
                     </div>
                   
                   
-                  </div>
+                  </div><br />
 
-                  <div className="row gutters">
+                  <div className="row gutters text-center ">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                       <div className="text-right">
                        

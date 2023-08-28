@@ -43,6 +43,14 @@ const Navbar = () => {
 
     </div>
     <ul className="nav-list">
+
+    <li>
+         <a href="/" >
+           <i className="bx bx-home"></i>
+           <span id="db" className="links_name">Home</span>
+         </a>
+         <span className="tooltip">Home</span>
+       </li>
       
       <li>
         <a href="#" >
@@ -51,12 +59,13 @@ const Navbar = () => {
         </a>
         <span className="tooltip">Dashboard</span>
       </li>
+
       <li>
         <a href="#" >
           <i className="bx bx-user"></i>
-          <span className="links_name">User</span>
+          <span className="links_name">Accounts</span>
         </a>
-        <span className="tooltip">User</span>
+        <span className="tooltip">Accounts</span>
       </li>
       <li>
         <a href="#">
@@ -72,27 +81,7 @@ const Navbar = () => {
         </a>
         <span className="tooltip">Analytics</span>
       </li>
-      <li>
-        <a href="#">
-          <i className="bx bx-folder"></i>
-          <span className="links_name">File Manager</span>
-        </a>
-        <span className="tooltip">Files</span>
-      </li>
-      <li>
-        <a href="#">
-          <i className="bx bx-cart-alt"></i>
-          <span className="links_name">Order</span>
-        </a>
-        <span className="tooltip">Order</span>
-      </li>
-      <li>
-        <a href="#">
-          <i className="bx bx-heart"></i>
-          <span className="links_name">Saved</span>
-        </a>
-        <span className="tooltip">Saved</span>
-      </li>
+      
       <li>
         <a href="/user/profile">
           <i className="bx bx-cog"></i>
@@ -108,7 +97,7 @@ const Navbar = () => {
             <div className="job">{roleName}</div>
           </div>
         </div>
-        <i className="bx bx-log-out" id="log_out"></i>
+        <i className="bx bx-log-out" id="log_out" onClick={doLogout}></i>
       </li>
     </ul>
 
