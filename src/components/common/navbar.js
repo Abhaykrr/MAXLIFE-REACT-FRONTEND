@@ -66,7 +66,7 @@ function Navbar() {
       {/* <Helmet>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"/>
       </Helmet> */}
-      <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+      <nav class="custom-navbar sticky-top navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
 <div class="container">
   <a class="navbar-brand" href="index.html">Max Life<span>.</span></a>
@@ -80,10 +80,10 @@ function Navbar() {
       <li class="nav-item ">
         <a class="nav-link" href="/">Home</a>
       </li>
-      <li><a class="nav-link" href="#why_us">More</a></li>
-      <li><a class="nav-link" href="#team">Team</a></li>
+      <li><a class="nav-link" href="/#why_us">More</a></li>
+      <li><a class="nav-link" href="/#team">Team</a></li>
       <li ><a class="nav-link" href="/policies">Explore policies</a></li>
-      <li><a class="nav-link" href="#testimonials">Testimonials</a></li>
+      <li><a class="nav-link" href="/#testimonials">Testimonials</a></li>
       <li ><a class="nav-link"  href="" onClick={divertToPortfolio}> Portfolio</a></li>
       <li>
 
@@ -130,12 +130,17 @@ function Navbar() {
           >
             <div class="modal-dialog">
               <div class="modal-content">
-              <button
+              <div class="modal-header text-center">
+                  <h5 class="modal-title text-center" id="exampleModalLabel">
+                    Login
+                  </h5>
+                  <button
                     type="button"
-                    class="btn-close text-left"
+                    class="btn-close"
                     data-bs-dismiss="modal"
                     aria-label="Close"
                   ></button>
+                </div>
                    <Login/>
               </div>
               </div>
@@ -156,12 +161,17 @@ function Navbar() {
           >
             <div class="modal-dialog">
               <div class="modal-content">
-              <button
+              <div class="modal-header text-center">
+                  <h5 class="modal-title text-center" id="exampleModalLabel">
+                    Signup
+                  </h5>
+                  <button
                     type="button"
-                    class="btn-close text-left"
+                    class="btn-close"
                     data-bs-dismiss="modal"
                     aria-label="Close"
                   ></button>
+                </div>
                    <Signup/>
               </div>
               </div>

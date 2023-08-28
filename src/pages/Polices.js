@@ -5,15 +5,14 @@ import Footer from "../components/common/footer";
 import Carousel from "../components/policies/carousel";
 import { Helmet } from "react-helmet";
 import Policy from "./Policy";
+import Extra from "../components/common/extra"
 function Polices(){
 
     return(
         <>
         <Navbar/>
        <Policy/>    
-      
-        {/* <Card/> */}
-        {/* <Carousel/> */}
+      <Extra/>
         <Footer/>
         
         </>
