@@ -1,8 +1,89 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../Navbar/Navbar'
 import "../CSS/userprofile.css"
+import axios from 'axios'
+import swal from 'sweetalert'
 
 const UserProfile = () => {
+
+  const [customerData,setCustomerData] = useState({})
+    
+  const [customerFormData,setCustomerFormData] = useState({
+    age:"",
+    city:"",
+    customerid:"",
+    email:"",
+    firstname:"",
+    lastname:"",
+    mobile:"",
+    nominee:"",
+    nomineerelation:"",
+    state:"",
+    street:"",
+    zipcode:""
+  })
+
+  const updateCustomerBackend = async()=>{
+    const customerId = localStorage.getItem('genericId')
+    console.log(customerFormData)
+
+    try {
+
+      let response = await axios.post(`http://localhost:8080/maxlife/updatecustomer/${customerId}`,{
+        age: customerFormData.age,
+        city: customerFormData.city,
+        email: customerFormData.email,
+        firstname: customerFormData.firstname,
+        lastname:customerFormData.lastname,
+        mobile: customerFormData.mobile,
+        nominee:customerFormData.nominee,
+        nomineerelation: customerFormData.nomineerelation,
+        state: customerFormData.state,
+        street: customerFormData.street,
+        zipcode:customerFormData.zipcode
+      })
+
+      swal("Good job!", response.data, "success")
+      
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+
+  const getCustomerDetails = async()=>{
+
+    const customerId = localStorage.getItem('genericId')
+    try {
+      
+      let response = await axios.get(`http://localhost:8080/maxlife/getcustomer/${customerId}`)
+      console.log(response.data)
+      
+
+      const newData = {
+        age: response.data.age,
+        city: response.data.city,
+        email: response.data.email,
+        firstname: response.data.firstname,
+        lastname:response.data.lastname,
+        mobile: response.data.mobile,
+        nominee: response.data.nominee,
+        nomineerelation: response.data.nomineerelation,
+        state: response.data.state,
+        street: response.data.street,
+        zipcode:response.data.zipcode
+      };
+      setCustomerFormData(newData)  
+
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  useEffect(()=>{
+    getCustomerDetails()
+  },[])
+
   return (
     <div>
       <Navbar />
@@ -22,16 +103,16 @@ const UserProfile = () => {
                           alt="Maxwell Admin"
                         />
                       </div>
-                      <h5 className="user-name">Abhay Kumar</h5>
+                      <h5 className="user-name">{customerFormData.firstname} {customerFormData.lastname}</h5>
                       <h6 className="user-email">
-                        <a href="">abhay80413@gmail.com</a>
+                        <a href="">{customerFormData.email}</a>
                       </h6>
                     </div>
                     <div className="about">
-                      <h5>About</h5>
+                      <h5>Privacy & Policy </h5>
                       <p>
-                        I'm Yuki. Full Stack Designer I enjoy creating
-                        user-centric, delightful and human experiences.
+                      We may collect personal information that you provide voluntarily when you interact with our website. This may include your name, email address, and any other information you choose to provide.
+
                       </p>
                     </div>
                   </div>
@@ -53,6 +134,8 @@ const UserProfile = () => {
                           className="form-control"
                           id="fullName"
                           placeholder="Enter First name"
+                          value={customerFormData.firstname}
+                          onChange={(e)=>{setCustomerFormData({...customerFormData,firstname:e.target.value})}}
                         />
                       </div>
 
@@ -66,6 +149,8 @@ const UserProfile = () => {
                           className="form-control"
                           id="fullName"
                           placeholder="Enter Last name"
+                          value={customerFormData.lastname}
+                          onChange={(e)=>{setCustomerFormData({...customerFormData,lastname:e.target.value})}}
                         />
                       </div>
 
@@ -78,6 +163,8 @@ const UserProfile = () => {
                           className="form-control"
                           id="eMail"
                           placeholder="Enter Email ID"
+                           value={customerFormData.email}
+                          onChange={(e)=>{setCustomerFormData({...customerFormData,email:e.target.value})}}
                         />
                       </div>
                     </div>
@@ -89,6 +176,8 @@ const UserProfile = () => {
                           className="form-control"
                           id="phone"
                           placeholder="Enter Phone number"
+                          value={customerFormData.mobile}
+                          onChange={(e)=>{setCustomerFormData({...customerFormData,mobile:e.target.value})}}
                         />
                       </div>
                     </div>
@@ -106,6 +195,8 @@ const UserProfile = () => {
                           className="form-control"
                           id="Street"
                           placeholder="Enter Street"
+                          value={customerFormData.street}
+                          onChange={(e)=>{setCustomerFormData({...customerFormData,street:e.target.value})}}
                         />
                       </div>
                     </div>
@@ -117,6 +208,8 @@ const UserProfile = () => {
                           className="form-control"
                           id="ciTy"
                           placeholder="Enter City"
+                          value={customerFormData.city}
+                          onChange={(e)=>{setCustomerFormData({...customerFormData,city:e.target.value})}}
                         />
                       </div>
                     </div>
@@ -128,6 +221,8 @@ const UserProfile = () => {
                           className="form-control"
                           id="sTate"
                           placeholder="Enter State"
+                          value={customerFormData.state}
+                          onChange={(e)=>{setCustomerFormData({...customerFormData,state:e.target.value})}}
                         />
                       </div>
                     </div>
@@ -139,6 +234,8 @@ const UserProfile = () => {
                           className="form-control"
                           id="zIp"
                           placeholder="Zip Code"
+                          value={customerFormData.zipcode}
+                          onChange={(e)=>{setCustomerFormData({...customerFormData,zipcode:e.target.value})}}
                         />
                       </div>
                     </div>
@@ -156,6 +253,8 @@ const UserProfile = () => {
                           className="form-control"
                           id="Street"
                           placeholder="Enter Name"
+                          value={customerFormData.nominee}
+                          onChange={(e)=>{setCustomerFormData({...customerFormData,nominee:e.target.value})}}
                         />
                       </div>
                     </div>
@@ -167,6 +266,8 @@ const UserProfile = () => {
                           className="form-control"
                           id="ciTy"
                           placeholder="Enter Relation"
+                          value={customerFormData.nomineerelation}
+                          onChange={(e)=>{setCustomerFormData({...customerFormData,nomineerelation:e.target.value})}}
                         />
                       </div>
                     </div>
@@ -183,6 +284,7 @@ const UserProfile = () => {
                           id="submit"
                           name="submit"
                           className="btn btn-primary"
+                          onClick={updateCustomerBackend}
                         >
                           Update
                         </button>

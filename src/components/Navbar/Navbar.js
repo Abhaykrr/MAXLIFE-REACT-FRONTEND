@@ -53,7 +53,7 @@ const Navbar = () => {
        </li>
       
       <li>
-        <a href="#" >
+        <a href="/user/dashboard" >
           <i className="bx bx-grid-alt"></i>
           <span id="db" className="links_name">Dashboard</span>
         </a>
@@ -61,7 +61,7 @@ const Navbar = () => {
       </li>
 
       <li>
-        <a href="#" >
+        <a href="/user/accounts" >
           <i className="bx bx-user"></i>
           <span className="links_name">Accounts</span>
         </a>

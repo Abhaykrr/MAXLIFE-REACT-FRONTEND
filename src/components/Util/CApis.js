@@ -9,3 +9,14 @@ export async function getAllPlansUtil (){
         alert(error.message)
     }
 }
+
+
+export async function getAllSchemesUtil (){
+    
+    try {
+        let response = await axios.get('http://localhost:8080/maxlife/allschemes')
+        return response
+    } catch (error) {
+        alert(error.message)
+    }
+}
