@@ -66,7 +66,7 @@ function Navbar() {
       {/* <Helmet>
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous"/>
       </Helmet> */}
-      <nav class="custom-navbar sticky-top navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
+      <nav class="custom-navbar navbar navbar navbar-expand-md navbar-dark bg-dark" arial-label="Furni navigation bar">
 
 <div class="container">
   <a class="navbar-brand" href="index.html">Max Life<span>.</span></a>
@@ -131,9 +131,7 @@ function Navbar() {
             <div class="modal-dialog">
               <div class="modal-content">
               <div class="modal-header text-center">
-                  <h5 class="modal-title text-center" id="exampleModalLabel">
-                    Login
-                  </h5>
+                 
                   <button
                     type="button"
                     class="btn-close"
@@ -162,9 +160,7 @@ function Navbar() {
             <div class="modal-dialog">
               <div class="modal-content">
               <div class="modal-header text-center">
-                  <h5 class="modal-title text-center" id="exampleModalLabel">
-                    Signup
-                  </h5>
+                  
                   <button
                     type="button"
                     class="btn-close"
