@@ -10,7 +10,7 @@ function team(){
 					</div>
 				</div>
 
-				<div class="row">
+				<div class="row" style={{height:'100%',display:'flex',justifyContent:'center',alignItems:'center' ,marginTop:"30px", marginBottom:"10px"}}>
 
 					{/* <!-- Start Column 1 --> */}
 					<div class="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
@@ -48,17 +48,7 @@ function team(){
 					{/* <!-- End Column 3 --> */}
 
 					{/* <!-- Start Column 4 --> */}
-					<div class="col-12 col-md-6 col-lg-3 mb-5 mb-md-0">
-						<img src="images/person_4.jpg" class="img-fluid mb-5"/>
-
-						<h3 clas><a href="#"><span class="">Kathryn</span> Ryan</a></h3>
-            <span class="d-block position mb-4">CEO, Founder, Atty.</span>
-            <p>Separated they live in.
-            Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-            <p class="mb-0"><a href="#" class="more dark">Learn More <span class="icon-arrow_forward"></span></a></p>
-
-          
-					</div> 
+					
 					{/* <!-- End Column 4 --> */}
 
 					

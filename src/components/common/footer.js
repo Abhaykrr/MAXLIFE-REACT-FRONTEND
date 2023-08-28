@@ -2,128 +2,56 @@
 function footer() {
     return (
       <>
-      
-      {/* <!-- Footer --> */}
-<footer class="text-center text-lg-start bg-white text-muted">
-  {/* <!-- Section: Social media --> */}
-  <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
-    {/* <!-- Left --> */}
-    <div class="me-5 d-none d-lg-block">
-      <span>Get connected with us on social networks:</span>
-    </div>
-    {/* <!-- Left --> */}
+      <hr/>
+      <footer class="bg-light text-center">
+  {/* <!-- Grid container --> */}
+  <div class="container p-4 pb-0">
+    {/* <!-- Section: Form --> */}
+    <section class="">
+      <form action="">
+        {/* <!--Grid row--> */}
+        <div class="row d-flex justify-content-center">
+          {/* <!--Grid column--> */}
+          <div class="col-auto">
+            <p class="pt-2">
+              <strong>Sign up for our newsletter</strong>
+            </p>
+          </div>
+          {/* <!--Grid column--> */}
 
-    {/* <!-- Right --> */}
-    <div>
-      <a href="" class="me-4 link-secondary">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="" class="me-4 link-secondary">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="" class="me-4 link-secondary">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="" class="me-4 link-secondary">
-        <i class="fab fa-instagram"></i>
-      </a>
-      <a href="" class="me-4 link-secondary">
-        <i class="fab fa-linkedin"></i>
-      </a>
-      <a href="" class="me-4 link-secondary">
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    {/* <!-- Right --> */}
-  </section>
-  {/* <!-- Section: Social media --> */}
+          {/* <!--Grid column--> */}
+          <div class="col-md-5 col-12">
+            {/* <!-- Email input --> */}
+            <div class="form-outline mb-4">
+              <input type="email" id="form5Example27" class="form-control" />
+              <label class="form-label" for="form5Example27">Email address</label>
+            </div>
+          </div>
+          {/* <!--Grid column--> */}
 
-  {/* <!-- Section: Links  --> */}
-  <section class="">
-    <div class="container text-center text-md-start mt-5">
-      {/* <!-- Grid row --> */}
-      <div class="row mt-3">
-        {/* <!-- Grid column --> */}
-        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
-          {/* <!-- Content --> */}
-          <h6 class="text-uppercase fw-bold mb-4">
-            <i class="fas fa-gem me-3 text-secondary"></i>Max Life
-          </h6>
-          <p>
-           Insurance Company
-          </p>
+          {/* <!--Grid column--> */}
+          <div class="col-auto">
+            {/* <!-- Submit button --> */}
+            <button type="submit" class="btn btn-primary mb-4">
+              Subscribe
+            </button>
+          </div>
+          {/* <!--Grid column--> */}
         </div>
-        {/* <!-- Grid column --> */}
-
-        {/* <!-- Grid column --> */}
-        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
-          {/* <!-- Links --> */}
-          <h6 class="text-uppercase fw-bold mb-4">
-            Products
-          </h6>
-          <p>
-            <a href="#!" class="text-reset">Angular</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">React</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Vue</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Laravel</a>
-          </p>
-        </div>
-        {/* <!-- Grid column --> */}
-
-        {/* <!-- Grid column --> */}
-        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
-          {/* <!-- Links --> */}
-          <h6 class="text-uppercase fw-bold mb-4">
-            Useful links
-          </h6>
-          <p>
-            <a href="#!" class="text-reset">Pricing</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Dashboard</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Polices</a>
-          </p>
-          <p>
-            <a href="#!" class="text-reset">Help</a>
-          </p>
-        </div>
-        {/* <!-- Grid column --> */}
-
-        {/* <!-- Grid column --> */}
-        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
-          {/* <!-- Links --> */}
-          <h6 class="text-uppercase fw-bold mb-4">Contact</h6>
-          <p><i class="fas fa-home me-3 text-secondary"></i>Bihar, IN</p>
-          <p>
-            <i class="fas fa-envelope me-3 text-secondary"></i>
-            contactus@maxlife.com
-          </p>
-          <p><i class="fas fa-phone me-3 text-secondary"></i> + 01 234 567 88</p>
-          <p><i class="fas fa-print me-3 text-secondary"></i> + 01 234 567 89</p>
-        </div>
-        {/* <!-- Grid column --> */}
-      </div>
-      {/* <!-- Grid row --> */}
-    </div>
-  </section>
-  {/* <!-- Section: Links  --> */}
+        {/* <!--Grid row--> */}
+      </form>
+    </section>
+    {/* <!-- Section: Form --> */}
+  </div>
+  {/* <!-- Grid container --> */}
 
   {/* <!-- Copyright --> */}
-  <div class="text-center p-4" style={{backgroundcolor: 'rgba(0, 0, 0, 0.025)'}}>
-    © 2021 Copyright:
-    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MaxLife.com</a>
+  <div class="text-center p-3" style={{backgroundcolor: "rgba(0, 0, 0, 0.2)"}}>
+    © 2020 Copyright:
+    <a class="text-dark" href="https://mdbootstrap.com/">Max Life</a>
   </div>
   {/* <!-- Copyright --> */}
 </footer>
-{/* <!-- Footer --> */}
       </>
     );
   }
