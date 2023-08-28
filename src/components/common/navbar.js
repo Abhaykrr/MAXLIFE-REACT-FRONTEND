@@ -48,7 +48,7 @@ function Navbar() {
       alert("Please Login")
 
       if(roleId === "1")
-        navigate("/user")
+        navigate("/user/dashboard")
 
         if(roleId === "2")
         navigate("/admin/dashboard")

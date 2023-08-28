@@ -1,12 +1,35 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../Navbar/Navbar'
 import "../CSS/card.css"
 import { Helmet } from 'react-helmet'
 import { useNavigate } from 'react-router-dom'
+import { getAllPlansUtil, getAllSchemesUtil } from '../Util/CApis'
 
 const AdminDashboard = () => {
 
   const navigate = useNavigate()
+
+  const [totalPlans,setTotalPlans] = useState()
+  const [toatlSchemes,setTotalSchemes] = useState()
+
+  const updateCards = async ()=>{
+    try {
+        
+        let r1 = await getAllPlansUtil()
+        let r2 = await getAllSchemesUtil()
+
+        setTotalPlans(r1.data.length)
+        setTotalSchemes(r2.data.length)
+
+
+    } catch (error) {
+        alert(error.message)
+    }
+  }
+
+  useEffect(()=>{
+    updateCards()
+  },[])
 
 
 
@@ -32,12 +55,12 @@ const AdminDashboard = () => {
                     </div>
                     <div className="row align-items-center mb-2 d-flex">
                         <div className="col-8">
-                            <h2 className="d-flex align-items-center mb-0">
-                                3,243
-                            </h2>
+                            <h5 className="d-flex align-items-center mb-0">
+                                {totalPlans} Plans
+                            </h5>
                         </div>
                         <div className="col-4 text-right">
-                            <span>12.5% <i className="fa fa-arrow-up"></i></span>
+                            {/* <span>12.5% <i className="fa fa-arrow-up"></i></span> */}
                         </div>
                     </div>
                     <div className="progress mt-1 " data-height="8" style={{height: '8px'}}>
@@ -58,12 +81,12 @@ const AdminDashboard = () => {
                     </div>
                     <div className="row align-items-center mb-2 d-flex">
                         <div className="col-8">
-                            <h2 className="d-flex align-items-center mb-0">
-                                15.07k
-                            </h2>
+                            <h5 className="d-flex align-items-center mb-0">
+                                {toatlSchemes} Schemes
+                            </h5>
                         </div>
                         <div className="col-4 text-right">
-                            <span>9.23% <i className="fa fa-arrow-up"></i></span>
+                            {/* <span>9.23% <i className="fa fa-arrow-up"></i></span> */}
                         </div>
                     </div>
                     <div className="progress mt-1 " data-height="8" style={{height: '8px'}}>
@@ -85,12 +108,12 @@ const AdminDashboard = () => {
                     </div>
                     <div className="row align-items-center mb-2 d-flex">
                         <div className="col-8">
-                            <h2 className="d-flex align-items-center mb-0">
-                                578
-                            </h2>
+                            <h5 className="d-flex align-items-center mb-0">
+                            {totalPlans} Plans
+                            </h5>
                         </div>
                         <div className="col-4 text-right">
-                            <span>10% <i className="fa fa-arrow-up"></i></span>
+                            {/* <span>10% <i className="fa fa-arrow-up"></i></span> */}
                         </div>
                     </div>
                     <div className="progress mt-1 " data-height="8" style={{height: '8px'}}>
@@ -111,12 +134,12 @@ const AdminDashboard = () => {
                       </div>
                       <div className="row align-items-center mb-2 d-flex">
                           <div className="col-8">
-                              <h2 className="d-flex align-items-center mb-0">
-                                  578
-                              </h2>
+                              <h5 className="d-flex align-items-center mb-0">
+                                {toatlSchemes} Schemes
+                              </h5>
                           </div>
                           <div className="col-4 text-right">
-                              <span>10% <i className="fa fa-arrow-up"></i></span>
+                              {/* <span>10% <i className="fa fa-arrow-up"></i></span> */}
                           </div>
                       </div>
                       <div className="progress mt-1 " data-height="8" style={{height: '8px'}}>
