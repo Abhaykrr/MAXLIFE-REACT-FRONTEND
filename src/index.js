@@ -6,13 +6,15 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import DashboardRoutes from './components/User/DashboardRoutes';
 import AdminDashboardRoutes from './components/Admin/AdminDashboardRoutes';
+import EmployeeRoutes from './components/Employee/EmployeeRoutes';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
   <App/>
-  <AdminDashboardRoutes/>
+   <AdminDashboardRoutes/>
    <DashboardRoutes/>
+   <EmployeeRoutes/>
  </BrowserRouter>
 );
 

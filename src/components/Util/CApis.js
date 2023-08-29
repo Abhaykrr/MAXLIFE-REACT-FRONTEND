@@ -20,3 +20,16 @@ export async function getAllSchemesUtil (){
         alert(error.message)
     }
 }
+
+
+export async function getCustomerAllAccountsUtil (customerId){
+
+    try {
+
+        let response = await axios.get(`http://localhost:8080/maxlife/account/${customerId}`)
+        return response
+        
+    } catch (error) {
+        alert(error.message)
+    }
+}

@@ -150,7 +150,7 @@ const Policy = () => {
          </div> 
 
         {/* Drop Down */}
-                <div style={{backgroundColor:'white',display:'flex',justifyContent:'center',alignItems:'center',marginTop:'100px'}}>
+                <div style={{backgroundColor:'white',display:'flex',justifyContent:'center',alignItems:'center',marginTop:'100px',paddingBottom:'300px'}}>
                     <div className="accordion">
                         {/* <AccordLine/>
                         <AccordLine/> */}
