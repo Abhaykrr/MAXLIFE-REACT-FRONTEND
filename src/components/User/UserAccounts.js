@@ -40,7 +40,7 @@ const UserAccounts = () => {
     if(accountData.length>0){
   
       for(let i = 0 ; i <accountData.length ;i++){
-        personalAccount.push(<AccountAccord policy={accountData[i]}/>)
+        personalAccount.push(<AccountAccord policy={accountData[i]} referesh = {getAccounts}/>)
       }
   
       console.log(personalAccount)
@@ -55,7 +55,7 @@ const UserAccounts = () => {
         <Navbar/>
       <section className="home-section" id="userContent" >
             <h4>My Accounts</h4>
-            <div className="card h-100" style={{ width: '100%', height: '100%' }}>
+            <div className="card" style={{ width: '100%' }}>
                 <div className="card-body">
                    {/* <AccountAccord/> */}
                    {personalAccord}

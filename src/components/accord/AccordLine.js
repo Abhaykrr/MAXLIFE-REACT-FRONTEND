@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState } from 'react' 
+import Swal from 'sweetalert2'
 
 const AccordLine = ({scheme}) => {
 
@@ -8,7 +9,8 @@ const AccordLine = ({scheme}) => {
   const [month,setMonth] = useState()
   const [report,setReport] = useState()
 
-  const addPolicyBackend = async (totalNoOfInstallments,installmentAmount,intrestAmount)=>{
+
+  const paymentModule = async (totalNoOfInstallments,installmentAmount,intrestAmount)=>{
     const roleName = localStorage.getItem('roleName')
     if(roleName==null || roleName == undefined || roleName ===null){
       alert("Please Login")
@@ -18,6 +20,44 @@ const AccordLine = ({scheme}) => {
       alert("You should be a customer to buy policy")
       return
     }
+
+    Swal.fire({
+      title: 'Enter Payment Details',
+      html:
+        ` 
+        <input type="text" id="card-number" placeholder="Card Number" required>
+        <input type="text" id="expiry" placeholder="Expiry Date (MM/YY)" required>
+        <input type="text" id="cvv" placeholder="CVV" required>`,
+      showCancelButton: true,
+      confirmButtonText: 'Submit',
+      cancelButtonText: 'Cancel',
+      focusConfirm: false,
+      preConfirm: async () => {
+        const cardNumber = document.getElementById('card-number').value;
+        const expiry = document.getElementById('expiry').value;
+        const cvv = document.getElementById('cvv').value;
+        
+        await addPolicyBackend(totalNoOfInstallments,installmentAmount,intrestAmount)
+        Swal.fire({
+          title: 'Payment Successful!',
+          text: 'Your payment has been processed.',
+          icon: 'success'
+        });
+      }
+    });
+  }
+
+
+  const addPolicyBackend = async (totalNoOfInstallments,installmentAmount,intrestAmount)=>{
+    // const roleName = localStorage.getItem('roleName')
+    // if(roleName==null || roleName == undefined || roleName ===null){
+    //   alert("Please Login")
+    //   return
+    // }
+    // if(roleName!='ROLE_CUSTOMER'){
+    //   alert("You should be a customer to buy policy")
+    //   return
+    // }
 
     const customerId = localStorage.getItem('genericId')
     const schemeId = scheme.schemeid
@@ -69,7 +109,7 @@ const AccordLine = ({scheme}) => {
         <td>{installmentAmount}</td>
         <td>{intrestAmount}</td>
         <td>{netAmount}</td>
-        <td><button onClick={()=>addPolicyBackend(totalNoOfInstallments,installmentAmount,intrestAmount)} style={{borderRadius:'0px',backgroundColor:'#3b5d50'}} type="button" class="btn btn-success">Buy</button></td>
+        <td><button onClick={()=>paymentModule(totalNoOfInstallments,installmentAmount,intrestAmount)} style={{borderRadius:'0px',backgroundColor:'#3b5d50'}} type="button" class="btn btn-success">Buy</button></td>
       </tr>
     );
 

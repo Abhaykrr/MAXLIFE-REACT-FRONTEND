@@ -3,11 +3,11 @@ import "../CSS/accord.css"
 import { getCustomerAllAccountsUtil } from '../Util/CApis'
 import PaymentAccord from './PaymentAccord'
 
-const AccountAccord = ({policy}) => {
+const AccountAccord = ({policy,referesh}) => {
 
 
   return (
-    <div className="accordion-tab"  >
+    <div className="accordion-tab" style={{margin:'10px'}}  >
     <input id={policy.policyno} type="checkbox" className="accordion-toggle" name="toggle" />
     <label for={policy.policyno} className='l-bg-blue-dark' style={{backgroundColor:'#11101D'}} >Policy Account No : #{policy.policyno} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;   Status:{policy.status}</label>
 
@@ -47,8 +47,8 @@ const AccountAccord = ({policy}) => {
                     </tbody>
         </table>
 
-          <div style={{display:'flex',justifyContent:'center',alignItems:'center'}}>
-               <PaymentAccord record ={policy.policyrecords}/>
+          <div style={{display:'flex',justifyContent:'center',alignItems:'center',overflow:'auto'}}>
+               <PaymentAccord record ={policy.policyrecords} referesh = {referesh}/>
           </div>
 
         </div>

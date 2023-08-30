@@ -1,8 +1,57 @@
 import React from 'react'
 import "../CSS/accord.css"
+import Swal from 'sweetalert2';
+import axios from 'axios';
 
 
-const PaymentAccord = ({record}) => {
+const PaymentAccord = ({record,referesh}) => {
+
+
+    const paymentModule = async (referenceId)=>{
+      
+    
+        Swal.fire({
+          title: 'Enter Payment Details',
+          html:
+            ` 
+            <input type="text" id="card-number" placeholder="Card Number" required>
+            <input type="text" id="expiry" placeholder="Expiry Date (MM/YY)" required>
+            <input type="text" id="cvv" placeholder="CVV" required>`,
+          showCancelButton: true,
+          confirmButtonText: 'Submit',
+          cancelButtonText: 'Cancel',
+          focusConfirm: false,
+          preConfirm: async () => {
+            const cardNumber = document.getElementById('card-number').value;
+            const expiry = document.getElementById('expiry').value;
+            const cvv = document.getElementById('cvv').value;
+
+             await updateRecordBackend(referenceId)
+            
+            
+          }
+        });
+      }
+
+      const updateRecordBackend = async (referenceId)=>{
+            try {
+
+                let response = await axios.post(`http://localhost:8080/maxlife/updaterecord/${referenceId}`)
+                Swal.fire({
+                    title: 'Payment Successful!',
+                    text: 'Your payment has been processed.',
+                    icon: 'success'
+                });
+                Swal.fire(
+                    'Good job!',
+                    response.data,
+                    'success'
+                  )
+                  referesh()
+            } catch (error) {
+                alert(error.message)
+            }
+      }
 
     let payData
     if(record.length>0){
@@ -14,11 +63,14 @@ const PaymentAccord = ({record}) => {
                     <td>{e.duedate}</td>
                    
                     <td>{e.paiddate ? (e.paiddate) : (
-                            <button type="button" className="btn btn-danger">Pay</button>
+                            <button disabled='' type="button" className="btn btn-danger"
+                            onClick={()=>paymentModule(e.referenceid)}>Pay</button>
                         )}
                     </td>
                     <td>{e.paymentstatus}</td>
-                    <td><a href="">Download</a></td>
+                    <td>{e.paiddate ? (<a href="">Download</a>) : (
+                            <p/>
+                        )}</td>
                      
                 </tr>
             )

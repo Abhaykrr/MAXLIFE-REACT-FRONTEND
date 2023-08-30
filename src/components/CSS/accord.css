@@ -42,6 +42,7 @@ h1{
 }
 
 .accordion-tab > .accordion-content{
+    display: block; 
     max-height: 0;
     transition: all .40s;
     overflow: hidden;
@@ -62,7 +63,7 @@ h1{
 }
 
 .accordion-tab > .accordion-toggle:checked ~ .accordion-content{
-    max-height: 100vh;
+    max-height: 200vh;
 }
 
 .accordion-tab > .accordion-content p {
