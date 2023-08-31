@@ -1,16 +1,23 @@
 import { useEffect,useState } from "react";
-import { getallAgents } from "../Util/CApis";
+import { getallAgents,getpageAgents } from "../Util/CApis";
 import { Helmet } from "react-helmet";
 import Navbar from "../Navbar/Navbar";
 function AdminAgent(){
     const [agents,setagents]=useState();
+    const [pageno,setpageno]=useState(0);
     async function getagent(){
-      let response=await getallAgents();
-      setagents(response.data);
+     
+      if(pageno>=0){
+        let response=await getpageAgents(pageno);
+      setagents(response.data.content);
+      }else{
+        setpageno(0);
+      }
+      
     }
     useEffect(()=>{
       getagent();
-    },[])
+    },[pageno])
     
 
 
@@ -73,6 +80,14 @@ return (
        
         </div>
         </div>
+        <button
+        onClick={()=>{setpageno(pageno-1)}}
+        > previous</button>
+        <button 
+        onClick={()=>{setpageno(pageno+1)}}
+        >
+          Next
+        </button>
       </section>
 
       

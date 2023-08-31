@@ -3,17 +3,24 @@ import Navbar from '../Navbar/Navbar'
 
 import { Helmet } from 'react-helmet'
 import { useNavigate } from 'react-router-dom'
-import { getallEmployes } from '../Util/CApis'
+import { getpageEmployee } from '../Util/CApis'
 
 
 
 function AdminEmployes(){
     const [employes,setEmployes]=useState();
+    const [pageno,setPageno]=useState(0);
     const allemploye = async()=>{
         try {
-            let response = await getallEmployes()
-            console.log(response.data)
-            setEmployes(response.data)
+          setPageno(Math.max(0,pageno))
+          if(pageno>=0){
+            let response = await getpageEmployee(pageno);
+            // console.log(response.data)
+            setEmployes(response?.data.content)
+          }else{
+        setPageno(0);
+      }
+           
         } catch (error) {
             alert(error.message)
         }
@@ -22,7 +29,7 @@ function AdminEmployes(){
     useEffect(()=>{
         allemploye()
         
-    },[])
+    },[pageno])
 
 
 return (
@@ -82,6 +89,14 @@ return (
        
         </div>
         </div>
+        <button
+        onClick={()=>{setPageno(pageno-1)}}
+        > previous</button>
+        <button 
+        onClick={()=>{setPageno(pageno+1)}}
+        >
+          Next
+        </button>
       </section>
 
       

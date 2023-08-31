@@ -3,26 +3,33 @@ import Navbar from '../Navbar/Navbar'
 
 import { Helmet } from 'react-helmet'
 import { useNavigate } from 'react-router-dom'
-import { getAllCustomer } from '../Util/CApis'
+import { getPageCustomer } from '../Util/CApis'
 
 
 
 function Adminusers(){
     const [customers,setCustomers]=useState();
+    const [pageno,setPageno]=useState(0);
     const allusers = async()=>{
         try {
-            let response = await getAllCustomer()
-            console.log(response.data)
-            setCustomers(response.data)
+          if(pageno>=0){
+            let response = await getPageCustomer(pageno);
+            // console.log(response.data)
+            setCustomers(response.data.content);
+          }else{
+        setPageno(0);
+      }
+          
+            
         } catch (error) {
-            alert(error.message)
+            alert(error.message);
         }
     }
 
     useEffect(()=>{
         allusers();
         
-    },[])
+    },[pageno])
 
 
 return (
@@ -83,6 +90,14 @@ return (
        
         </div>
         </div>
+        <button
+        onClick={()=>{setPageno(pageno-1)}}
+        > previous</button>
+        <button 
+        onClick={()=>{setPageno(pageno+1)}}
+        >
+          Next
+        </button>
       </section>
 
       

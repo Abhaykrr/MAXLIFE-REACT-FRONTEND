@@ -55,3 +55,36 @@ export async function getCustomerAllAccountsUtil (customerId){
         alert(error.message)
     }
 }
+
+export async function getpageEmployee (pageno){
+
+    try {
+        
+        let response = await axios.get(`http://localhost:8080/maxlife/getemploye/${pageno}/3`)
+        return response;
+        
+    } catch (error) {
+        alert(error.message)
+    }
+}
+
+export async function getpageAgents (pageno){
+
+    try {
+        
+        let response = await axios.get(`http://localhost:8080/maxlife/getagent/${pageno}/1`)
+        return response
+        
+    } catch (error) {
+        alert(error.message)
+    }
+}
+export async function getPageCustomer(pageno){
+    try {
+        
+        let response = await axios.get(`http://localhost:8080/maxlife/getpagecustomer/${pageno}/2`)
+        return response;
+    } catch (error) {
+        alert(error.message)
+    }
+}

@@ -13,8 +13,8 @@ const Signup = () => {
             username:userdata.email,
             password:userdata.password,
 
-            role:"ROLE_ADMIN",
-            admin:{
+            role:"ROLE_CUSTOMER",
+            customer:{
               firstname:userdata.firstname,
               lastname:userdata.lastname
             }
