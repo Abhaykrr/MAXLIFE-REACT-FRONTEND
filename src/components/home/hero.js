@@ -11,9 +11,9 @@ function hero() {
 						<div class="col-lg-5">
 							<div class="intro-excerpt">
 								<h1>About Us</h1>
-								<p class="mb-4">Donec vitae odio quis nisl dapibus malesuada. Nullam ac aliquet velit. Aliquam vulputate velit imperdiet dolor tempor tristique.</p>
-								<p><a href="" class="btn btn-secondary me-2">View policies</a>
-                                <a href="#" class="btn btn-white-outline">Explore</a></p>
+								<p class="mb-4">At Max Life, we believe that life is full of uncertainties, but your financial security shouldn't be one of them. As a dedicated and experienced insurance provider, we're here to offer you peace of mind, protection, and a helping hand when you need it the most.</p>
+								<p><a href="/policies" class="btn btn-secondary me-2">View policies</a>
+                                <a href="#why_us" class="btn btn-white-outline">Explore</a></p>
 							</div>
 						</div>
 						<div class="col-lg-7">

@@ -12,7 +12,7 @@ function Polices(){
         <>
         <Navbar/>
        <Policy/>    
-      <Extra/>
+      {/* <Extra/> */}
         <Footer/>
         
         </>

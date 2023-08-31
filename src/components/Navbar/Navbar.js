@@ -137,7 +137,7 @@ const Navbar = () => {
          <span className="tooltip">Dashboard</span>
        </li>
        <li>
-         <a href="#" >
+         <a href="/admin/dashboard/allusers" >
            <i className="bx bx-user"></i>
            <span className="links_name">Users</span>
          </a>
@@ -145,7 +145,7 @@ const Navbar = () => {
        </li>
 
        <li>
-         <a href="#" >
+         <a href="/admin/dashboard/allagent" >
          <i class='bx bx-run'></i>  
            <span className="links_name">Agents</span>
          </a>
@@ -153,7 +153,7 @@ const Navbar = () => {
        </li>
 
        <li>
-         <a href="#" >
+         <a href="/admin/dashboard/allemployes" >
          <i className='bx bxs-group'></i>
 
            <span className="links_name">Employees</span>

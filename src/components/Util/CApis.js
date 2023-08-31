@@ -20,3 +20,28 @@ export async function getAllSchemesUtil (){
         alert(error.message)
     }
 }
+
+export async function getAllCustomer(){
+    try {
+        let response = await axios.get('http://localhost:8080/maxlife/getallcustomer')
+        return response;
+    } catch (error) {
+        alert(error.message)
+    }
+}
+export async function getallEmployes(){
+    try {
+        let response = await axios.get('http://localhost:8080/maxlife/getallemploye')
+        return response;
+    } catch (error) {
+        alert(error.message)
+    }
+}
+export async function getallAgents(){
+    try {
+        let response = await axios.get('http://localhost:8080/maxlife/getallagent')
+        return response;
+    } catch (error) {
+        alert(error.message)
+    }
+}
