@@ -21,10 +21,8 @@ export async function getAllSchemesUtil (){
     }
 }
 
-<<<<<<< HEAD
 
-export async function getCustomerAllAccountsUtil (customerId,currpage,pagesize){
-=======
+// export async function getCustomerAllAccountsUtil (customerId,currpage,pagesize){
 export async function getAllCustomer(){
     try {
         let response = await axios.get('http://localhost:8080/maxlife/getallcustomer')
@@ -48,15 +46,14 @@ export async function getallAgents(){
             alert(error.message)
         }
     }
-export async function getCustomerAllAccountsUtil (customerId){
->>>>>>> a72990a2adab242c465c34ba7d83bd1adaf003ed
+// export async function getCustomerAllAccountsUtil (customerId){
 
-    try {
+//     try {
 
-        let response = await axios.get(`http://localhost:8080/maxlife/account/${customerId}/${currpage}/${pagesize}`)
-        return response
+//         let response = await axios.get(`http://localhost:8080/maxlife/account/${customerId}/${currpage}/${pagesize}`)
+//         return response
         
-    } catch (error) {
-        alert(error.message)
-    }
-}
+//     } catch (error) {
+//         alert(error.message)
+//     }
+// }
