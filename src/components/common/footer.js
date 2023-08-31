@@ -1,4 +1,4 @@
-
+import swal from 'sweetalert';
 function footer() {
     return (
       <>
@@ -32,7 +32,9 @@ function footer() {
           {/* <!--Grid column--> */}
           <div class="col-auto">
             {/* <!-- Submit button --> */}
-            <button type="submit" class="btn btn-primary mb-4">
+            <button type="submit" class="btn btn-primary mb-4"
+            onClick={()=>swal("Thankyou","You Subscribed for newsletter", "success")}
+            >
               Subscribe
             </button>
           </div>
