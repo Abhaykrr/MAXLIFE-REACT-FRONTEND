@@ -40,7 +40,17 @@ export async function getallEmployes(){
 export async function getallAgents(){
     try {
         let response = await axios.get('http://localhost:8080/maxlife/getallagent')
-        return response;
+        return response;} catch (error) {
+            alert(error.message)
+        }
+    }
+export async function getCustomerAllAccountsUtil (customerId){
+
+    try {
+
+        let response = await axios.get(`http://localhost:8080/maxlife/account/${customerId}`)
+        return response
+        
     } catch (error) {
         alert(error.message)
     }
