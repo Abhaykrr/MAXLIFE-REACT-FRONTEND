@@ -2,22 +2,23 @@ import { useEffect,useState } from "react";
 import { getallAgents,getpageAgents } from "../Util/CApis";
 import { Helmet } from "react-helmet";
 import Navbar from "../Navbar/Navbar";
+import Pagination from "../Page/Pagination";
 function AdminAgent(){
     const [agents,setagents]=useState();
-    const [pageno,setpageno]=useState(0);
+    const [pages,setPages] = useState()
+    const [currpage,setCurrpage] =useState(0)
+    const pagesize = 8;
     async function getagent(){
      
-      if(pageno>=0){
-        let response=await getpageAgents(pageno);
+      
+        let response=await getpageAgents(currpage);
+        setPages(response.data.totalPages-1)
       setagents(response.data.content);
-      }else{
-        setpageno(0);
-      }
       
     }
     useEffect(()=>{
       getagent();
-    },[pageno])
+    },[currpage])
     
 
 
@@ -77,17 +78,12 @@ return (
   
         
 
-       
+     <div style={{display:'flex',justifyContent:'center'}}>
+                  <h1><Pagination pages={pages} currpage={currpage} setCurrpage={setCurrpage}/></h1>
+                </div>
         </div>
         </div>
-        <button
-        onClick={()=>{setpageno(pageno-1)}}
-        > previous</button>
-        <button 
-        onClick={()=>{setpageno(pageno+1)}}
-        >
-          Next
-        </button>
+        
       </section>
 
       

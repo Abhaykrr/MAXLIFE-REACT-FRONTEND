@@ -21,6 +21,8 @@ export async function getAllSchemesUtil (){
     }
 }
 
+
+// export async function getCustomerAllAccountsUtil (customerId,currpage,pagesize){
 export async function getAllCustomer(){
     try {
         let response = await axios.get('http://localhost:8080/maxlife/getallcustomer')
@@ -44,23 +46,23 @@ export async function getallAgents(){
             alert(error.message)
         }
     }
-export async function getCustomerAllAccountsUtil (customerId){
+// export async function getCustomerAllAccountsUtil (customerId){
 
-    try {
+//     try {
 
-        let response = await axios.get(`http://localhost:8080/maxlife/account/${customerId}`)
-        return response
+//         let response = await axios.get(`http://localhost:8080/maxlife/account/${customerId}/${currpage}/${pagesize}`)
+//         return response
         
-    } catch (error) {
-        alert(error.message)
-    }
-}
+//     } catch (error) {
+//         alert(error.message)
+//     }
+// }
 
 export async function getpageEmployee (pageno){
 
     try {
         
-        let response = await axios.get(`http://localhost:8080/maxlife/getemploye/${pageno}/3`)
+        let response = await axios.get(`http://localhost:8080/maxlife/getemploye/${pageno}/8`)
         return response;
         
     } catch (error) {
@@ -72,7 +74,7 @@ export async function getpageAgents (pageno){
 
     try {
         
-        let response = await axios.get(`http://localhost:8080/maxlife/getagent/${pageno}/1`)
+        let response = await axios.get(`http://localhost:8080/maxlife/getagent/${pageno}/8`)
         return response
         
     } catch (error) {
@@ -82,7 +84,7 @@ export async function getpageAgents (pageno){
 export async function getPageCustomer(pageno){
     try {
         
-        let response = await axios.get(`http://localhost:8080/maxlife/getpagecustomer/${pageno}/2`)
+        let response = await axios.get(`http://localhost:8080/maxlife/getpagecustomer/${pageno}/8`)
         return response;
     } catch (error) {
         alert(error.message)

@@ -4,22 +4,22 @@ import Navbar from '../Navbar/Navbar'
 import { Helmet } from 'react-helmet'
 import { useNavigate } from 'react-router-dom'
 import { getpageEmployee } from '../Util/CApis'
-
+import Pagination from '../Page/Pagination'
 
 
 function AdminEmployes(){
     const [employes,setEmployes]=useState();
-    const [pageno,setPageno]=useState(0);
+    const [pages,setPages] = useState()
+    const [currpage,setCurrpage] =useState(0)
+    const pagesize = 8;
     const allemploye = async()=>{
         try {
-          setPageno(Math.max(0,pageno))
-          if(pageno>=0){
-            let response = await getpageEmployee(pageno);
+         
+            let response = await getpageEmployee(currpage);
             // console.log(response.data)
             setEmployes(response?.data.content)
-          }else{
-        setPageno(0);
-      }
+            setPages(response.data.totalPages-1)
+          
            
         } catch (error) {
             alert(error.message)
@@ -29,7 +29,7 @@ function AdminEmployes(){
     useEffect(()=>{
         allemploye()
         
-    },[pageno])
+    },[currpage])
 
 
 return (
@@ -89,14 +89,10 @@ return (
        
         </div>
         </div>
-        <button
-        onClick={()=>{setPageno(pageno-1)}}
-        > previous</button>
-        <button 
-        onClick={()=>{setPageno(pageno+1)}}
-        >
-          Next
-        </button>
+        <div style={{display:'flex',justifyContent:'center'}}>
+                  <h1><Pagination pages={pages} currpage={currpage} setCurrpage={setCurrpage}/></h1>
+                </div>
+        
       </section>
 
       

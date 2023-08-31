@@ -109,6 +109,7 @@ const AccordLine = ({scheme}) => {
         <td>{installmentAmount}</td>
         <td>{intrestAmount}</td>
         <td>{netAmount}</td>
+        <td>Agent</td>
         <td><button onClick={()=>paymentModule(totalNoOfInstallments,installmentAmount,intrestAmount)} style={{borderRadius:'0px',backgroundColor:'#3b5d50'}} type="button" class="btn btn-success">Buy</button></td>
       </tr>
     );
@@ -192,6 +193,7 @@ status
                     <th scope="col">Installment Amount</th>
                     <th scope="col">Interest Amtount</th>
                     <th scope="col">Total Amount</th>
+                    <th scope="col">Agent ?</th>
                     <th scope="col">Buy Policy</th>
                 </tr>
                 </thead>

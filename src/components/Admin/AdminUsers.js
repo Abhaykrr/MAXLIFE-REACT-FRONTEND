@@ -4,21 +4,21 @@ import Navbar from '../Navbar/Navbar'
 import { Helmet } from 'react-helmet'
 import { useNavigate } from 'react-router-dom'
 import { getPageCustomer } from '../Util/CApis'
-
+import Pagination from '../Page/Pagination'
 
 
 function Adminusers(){
     const [customers,setCustomers]=useState();
-    const [pageno,setPageno]=useState(0);
+    const [pages,setPages] = useState()
+    const [currpage,setCurrpage] =useState(0)
+    const pagesize = 8;
     const allusers = async()=>{
         try {
-          if(pageno>=0){
-            let response = await getPageCustomer(pageno);
+         
+            let response = await getPageCustomer(currpage);
             // console.log(response.data)
             setCustomers(response.data.content);
-          }else{
-        setPageno(0);
-      }
+            setPages(response.data.totalPages-1)
           
             
         } catch (error) {
@@ -29,7 +29,7 @@ function Adminusers(){
     useEffect(()=>{
         allusers();
         
-    },[pageno])
+    },[currpage])
 
 
 return (
@@ -90,14 +90,9 @@ return (
        
         </div>
         </div>
-        <button
-        onClick={()=>{setPageno(pageno-1)}}
-        > previous</button>
-        <button 
-        onClick={()=>{setPageno(pageno+1)}}
-        >
-          Next
-        </button>
+        <div style={{display:'flex',justifyContent:'center'}}>
+                  <h1><Pagination pages={pages} currpage={currpage} setCurrpage={setCurrpage}/></h1>
+                </div>
       </section>
 
       
