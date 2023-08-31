@@ -22,11 +22,11 @@ export async function getAllSchemesUtil (){
 }
 
 
-export async function getCustomerAllAccountsUtil (customerId){
+export async function getCustomerAllAccountsUtil (customerId,currpage,pagesize){
 
     try {
 
-        let response = await axios.get(`http://localhost:8080/maxlife/account/${customerId}`)
+        let response = await axios.get(`http://localhost:8080/maxlife/account/${customerId}/${currpage}/${pagesize}`)
         return response
         
     } catch (error) {

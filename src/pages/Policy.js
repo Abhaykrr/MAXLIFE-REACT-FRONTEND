@@ -9,6 +9,8 @@ const Policy = () => {
     const [planDataDb,setPlanDataDb] = useState({})
     const [currPlanId,setCurrPlanId] = useState()
 
+    const [headLine,setHeadLine] = useState()
+
     const allPlans = async()=>{
         try {
             let response = await getAllPlansUtil()
@@ -41,6 +43,7 @@ const Policy = () => {
                             >
                                 <div className="card-body" onClick={()=>{
                                     setCurrPlanId(plan.planid)
+                                    setHeadLine(plan.planname)
                                     console.log(plan.planid)
                                     updateDropDown(plan.insuranceschemes)
                                 }}> Exclusively {status = plan.status} &nbsp;
@@ -154,7 +157,10 @@ const Policy = () => {
                     <div className="accordion">
                         {/* <AccordLine/>
                         <AccordLine/> */}
-                        {dropAccord}
+                        <h1 className='text-center'>{headLine} Schemes</h1>
+                        {dropAccord.length>0 ? dropAccord : <h1 className='text-center'>Oops No Active Schemes</h1>}
+                        {/* {dropAccord} */}
+
                     </div>
                 
                 </div>

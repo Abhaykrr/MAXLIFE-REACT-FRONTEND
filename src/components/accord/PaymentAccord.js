@@ -37,11 +37,11 @@ const PaymentAccord = ({record,referesh}) => {
             try {
 
                 let response = await axios.post(`http://localhost:8080/maxlife/updaterecord/${referenceId}`)
-                Swal.fire({
-                    title: 'Payment Successful!',
-                    text: 'Your payment has been processed.',
-                    icon: 'success'
-                });
+                Swal.fire(
+                  'Payment Successfull..!',
+                  'Your payment has been processed',
+                  'success'
+                )
                 Swal.fire(
                     'Good job!',
                     response.data,
