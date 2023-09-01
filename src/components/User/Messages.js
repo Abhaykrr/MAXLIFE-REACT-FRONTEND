@@ -2,12 +2,18 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../Navbar/Navbar';
 import MessageAccord from '../accord/MessageAccord'; 
 import axios from 'axios';
+import Pagination from '../Page/Pagination'
+
 
 const Messages = () => {
   const customerId = localStorage.getItem('genericId');
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [messageComponents, setMessageComponents] = useState([]);
+
+  const [pages,setPages] = useState()
+  const [currpage, setcurrpage] = useState(0);
+  const pageSize = 2;
 
   const fetchCustomerMessages = async (customerId) => {
     try {
@@ -22,9 +28,26 @@ const Messages = () => {
     }
   };
 
+  const fetchCustomerMessagesByPage = async () => {
+    try {
+  
+      const response = await axios.get(
+        `http://localhost:8080/maxlife/messages/customermessagespage/${customerId}/${currpage}/${pageSize}`
+      );
+      console.log(response.data);
+      setMessages(response.data.content);
+      setPages(response.data.totalPages - 1);
+    } catch (error) {
+      console.error(error.message);
+    }
+  };
+
+  
+  
+
   useEffect(() => {
-    fetchCustomerMessages(customerId); 
-  }, [customerId]);
+    fetchCustomerMessagesByPage(); 
+  }, [currpage]);
 
   useEffect(() => {
     generateMessageComponents(); 
@@ -51,8 +74,9 @@ const Messages = () => {
         { question: message }
       );
       alert("Question Sent Successfully");
-      fetchCustomerMessages(customerId);
+      fetchCustomerMessages(customerId, currpage);
       setMessage('');
+      fetchCustomerMessagesByPage()
     } catch (error) {
       alert(error.message);
     }
@@ -87,6 +111,10 @@ const Messages = () => {
                 </button>
               </div>
             </div>
+
+            <div style={{display:'flex',justifyContent:'center'}}>
+                  <h1><Pagination pages={pages} currpage={currpage} setCurrpage={setcurrpage}/></h1>
+                </div>
           </div>
         </div>
       </section>

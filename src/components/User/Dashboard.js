@@ -1,14 +1,38 @@
-    import React from 'react'
+import React, { useEffect, useState } from 'react'
     import Navbar from '../Navbar/Navbar'
   
     import "../CSS/card.css"
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate} from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import { getCustomerMessagesUtil } from '../Util/CApis'
 
     const Dashboard = () => {
 
+        const customerId=localStorage.getItem('genericId')
+
         const navigate = useNavigate()
+
+        const [totalMessages, setTotalMessages] = useState();
+
+        const updateCards = async ()=>{
+            try {
+                
+               
+                let r1=  await getCustomerMessagesUtil(customerId);
+                
+                setTotalMessages(r1?.data?.length)
+        
+        
+            } catch (error) {
+                alert(error.message)
+            }
+          }
+        
+          useEffect(()=>{
+            updateCards()
+          },[])
+        
 
     return (
         <div>
@@ -114,7 +138,7 @@ import { Helmet } from 'react-helmet';
                   <div className="row align-items-center mb-2 d-flex">
                     <div className="col-8">
                       <h5 className="d-flex align-items-center mb-0">
-                        FaQ
+                      {totalMessages} Messages
                       </h5>
                     </div>
                     <div className="col-4 text-right">
