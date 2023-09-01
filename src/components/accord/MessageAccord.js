@@ -12,12 +12,18 @@ const MessageAccord = ({ message }) => {
         name="toggle"
       />
       <label
-        htmlFor={`messageToggle-${message.id}`} 
-        className="l-bg-blue-dark"
-        style={{ backgroundColor: '#11101D' }}
-      >
-        Question: {message.question} 
-      </label>
+  htmlFor={`messageToggle-${message.id}`} 
+  className="l-bg-blue-dark"
+  style={{
+    display: 'flex',
+    flexDirection: 'row', // Horizontal alignment
+    alignItems: 'center', // Vertical alignment
+    backgroundColor: '#11101D'
+  }}
+>
+  Question: {message.question}
+  <span style={{ marginLeft: 'auto' }}>Status: {status}</span>
+</label>
 
       <div className="accordion-content">
         <p>Answer: {message.answer}</p>

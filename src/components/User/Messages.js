@@ -13,7 +13,7 @@ const Messages = () => {
 
   const [pages,setPages] = useState()
   const [currpage, setcurrpage] = useState(0);
-  const pageSize = 2;
+  const pageSize = 4;
 
   const fetchCustomerMessages = async (customerId) => {
     try {
@@ -115,6 +115,9 @@ const Messages = () => {
                 </button>
               </div>
             </div>
+            <div style={{display:'flex',justifyContent:'center'}}>
+                  <h1><Pagination pages={pages} currpage={currpage} setCurrpage={setcurrpage}/></h1>
+                </div>
             </form>
           </div>
         </div>

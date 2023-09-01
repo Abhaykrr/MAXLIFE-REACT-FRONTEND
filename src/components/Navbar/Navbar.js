@@ -256,7 +256,7 @@ const Navbar = () => {
            <span className="tooltip">Employees</span>
          </li>
          <li>
-           <a href="#">
+           <a href="/employee/dashboard//messages">
              <i className="bx bx-chat"></i>
              <span className="links_name">Messages</span>
            </a>

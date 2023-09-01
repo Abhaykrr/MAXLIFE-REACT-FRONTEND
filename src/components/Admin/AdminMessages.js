@@ -10,7 +10,7 @@ const AdminMessages = () => {
 
   const [pages,setPages] = useState()
   const [currpage, setcurrpage] = useState(0);
-  const pageSize = 2;
+  const pageSize = 4;
 
 
   const fetchCustomerQueries = async () => {

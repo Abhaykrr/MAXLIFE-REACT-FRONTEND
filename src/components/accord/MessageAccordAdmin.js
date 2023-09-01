@@ -35,13 +35,20 @@ const MessageAccordAdmin = ({ message, onSaveAdminResponse }) => {
         className="accordion-toggle"
         name="toggle"
       />
-      <label
-        htmlFor={`messageToggle-${message.id}`}
-        className="l-bg-blue-dark"
-        style={{ backgroundColor: '#11101D' }}
-      >
-        Question: {message.question}
-      </label>
+    <label
+  htmlFor={`messageToggle-${message.id}`}
+  className="l-bg-blue-dark"
+  style={{
+    display: 'flex',
+    flexDirection: 'row', // Horizontal alignment
+    justifyContent: 'space-between', // Space between children
+    alignItems: 'center', // Vertical alignment
+    backgroundColor: '#11101D'
+  }}
+>
+  Question: {message.question}
+  <span>Status: {status}</span>
+</label>
 
       <div className="accordion-content">
       <p>Answer: {message.answer}</p>
