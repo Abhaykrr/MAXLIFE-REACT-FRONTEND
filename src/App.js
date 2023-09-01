@@ -6,9 +6,11 @@ import Dashboard from './components/User/Dashboard';
 import Login from './components/login/Login.js';
 import Home from './pages/Home'
 import Polices from './pages/Polices';
+import Adminusers from './components/Admin/AdminUsers'
 import Rough from './components/rough/Rough';
 
 
+import Inovice from './pages/Inovice';
 function App() {
   return (
    <>
@@ -17,8 +19,9 @@ function App() {
         <Route path='/' element={<Home/>}/>
         <Route path='/policies' element={<Polices/>}/>
         <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/rough' element={<Rough/>}/>
-       
+        <Route path='/rough' element={<Rough/>}/>      
+        <Route path="/invoice" element={<Inovice/>} />
+
       </Routes>
    </>
   );
