@@ -26,8 +26,9 @@ function EditAgents(){
             )
         })
     }
-    async function updatedata(){
+    async function updatedata(e){
         try {
+          e.preventDefault();
             let response = await axios.post(`http://localhost:8080/maxlife/updateagent/${agent.agentid}`,agent)
             swal("Good job!", response.data, "success")
             getAgents()
@@ -42,6 +43,9 @@ return(
     <div>
     <Navbar/>
     <section className="home-section" id="userContent" >
+    <form class="needs-validation" novalidate
+               onSubmit={(e)=>updatedata(e)}
+               >
     <div className="container">
       <div className="row gutters">
        
@@ -56,6 +60,7 @@ return(
                         <div className="form-group">
                             <label for="salary">Select Agent</label>
                             <select className="form-control" id="planStatus"
+                            required
                         onChange={(e)=>{
                            setAgent(allagents[e.target.value]);
                            console.log(agent);
@@ -74,6 +79,7 @@ return(
                           className="form-control"
                           id="firstname"
                           placeholder="Enter First name"
+                          required
                           value={agent.firstname}
                           onChange={(e)=>{setAgent({...agent,firstname:e.target.value})}}
 
@@ -90,6 +96,7 @@ return(
                           className="form-control"
                           id="lastname"
                           placeholder="Enter last name"
+                          required
                           value={agent.lastname}
                           onChange={(e)=>{setAgent({...agent,lastname:e.target.value})}}
 
@@ -105,6 +112,7 @@ return(
                           id="qualification"
                           value={agent.qualification}
                           placeholder="Enter Agent qualification"
+                          required
                           onChange={(e)=>{setAgent({...agent,qualification:e.target.value})}}
 
                         />
@@ -115,6 +123,7 @@ return(
                                 <label for="fullName">Agent Status</label>
                                 <select className="form-control" id="planStatus"
                                 value={agent.status}
+                                required
                                 onChange={(e)=>{setAgent({...agent,status:e.target.value})}}
                                 >
                                     <option value="Active">Active</option>
@@ -132,11 +141,11 @@ return(
                   <div className="text-right">
                    
                     <button
-                      type="button"
+                      type="submit"
                       id="submit"
                       name="submit"
                       className="btn btn-primary"
-                      onClick={updatedata}
+                      // onClick={updatedata}
                     >
                       Update Agent
                     </button>
@@ -148,6 +157,7 @@ return(
         </div>
       </div>
     </div>
+    </form>
     </section>
   
 </div>

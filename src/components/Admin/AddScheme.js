@@ -48,11 +48,12 @@ const AddScheme = () => {
         status:"Active"
     })
 
-    const addSchemeBackend = async ()=>{
+    const addSchemeBackend = async (e)=>{
 
       console.log(schemeFormData)
 
       try {
+        e.preventDefault();
         let response = await axios.post(`http://localhost:8080/maxlife/addscheme/${schemeFormData.planid}`,{
         // planid : schemeFormData.planid,
         schemename : schemeFormData.schemename,
@@ -83,10 +84,15 @@ const AddScheme = () => {
         <Navbar/>
 
         <section className="home-section" id="userContent">
+        <form class="needs-validation" novalidate
+               onSubmit={(e)=>addSchemeBackend(e)}
+               >
+
         <div className="container">
           <div className="row gutters">
             <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
               <div className="card h-100">
+                
                 <div className="card-body">
                   <div className="account-settings">
                     <div className="user-profile">
@@ -126,6 +132,7 @@ const AddScheme = () => {
                       <div className="form-group">
                         <label for="phone">Choose Plan</label>
                         <select className="form-control" id="planStatus"
+                        required
                         onChange={(e)=>{setSchemeFormData({...schemeFormData,planid:e.target.value})}}>
                                    {planDropDownData}
                                 </select>
@@ -141,6 +148,7 @@ const AddScheme = () => {
                           id="ciTy"
                           value={schemeFormData.profitratio}
                           placeholder="Enter Profit"
+                          required
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,profitratio:e.target.value})}}
                         />
                       </div>
@@ -160,6 +168,7 @@ const AddScheme = () => {
                           className="form-control"
                           id="fullName"
                           placeholder="Enter Scheme Name"
+                          required
                           value={schemeFormData.schemename}
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,schemename:e.target.value})}}
                         />
@@ -175,6 +184,7 @@ const AddScheme = () => {
                           className="form-control"
                           id="fullName"
                           placeholder="Enter Url"
+                        
                           value={schemeFormData.schemeimageurl}
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,schemeimageurl:e.target.value})}}
                         />
@@ -185,7 +195,8 @@ const AddScheme = () => {
                       <div className="form-group">
                         <label for="eMail">Description</label>
                         <input
-                          type="email"
+                          type="text"
+                          required
                           className="form-control"
                           id="eMail"
                           placeholder="Enter Description"
@@ -198,6 +209,7 @@ const AddScheme = () => {
                       <div className="form-group">
                         <label for="phone">Status</label>
                         <select className="form-control" id="planStatus" 
+                        required
                          onChange={(e)=>{setSchemeFormData({...schemeFormData,status:e.target.value})}}>
                                     <option value="Active">Active</option>
                                     <option value="InActive">InActive</option>
@@ -214,9 +226,10 @@ const AddScheme = () => {
                       <div className="form-group">
                         <label for="Street">Min Amount</label>
                         <input
-                          type="name"
+                          type="number"
                           className="form-control"
                           id="Street"
+                          required
                           value={schemeFormData.minamount}
                           placeholder="Enter Amount"
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,minamount:e.target.value})}}
@@ -227,9 +240,10 @@ const AddScheme = () => {
                       <div className="form-group">
                         <label for="ciTy">Max Amount</label>
                         <input
-                          type="name"
+                          type="number"
                           className="form-control"
                           id="ciTy"
+                          required
                           value={schemeFormData.maxamount}
                           placeholder="Enter Amount"
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,maxamount:e.target.value})}}
@@ -242,9 +256,10 @@ const AddScheme = () => {
                       <div className="form-group">
                         <label for="sTate">Min Invest Time</label>
                         <input
-                          type="text"
+                          type="number"
                           className="form-control"
                           id="sTate"
+                          required
                           placeholder="Enter Year"
                           value={schemeFormData.mininvestmenttime}
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,mininvestmenttime:e.target.value})}}
@@ -255,9 +270,10 @@ const AddScheme = () => {
                       <div className="form-group">
                         <label for="zIp">Max Invest Time</label>
                         <input
-                          type="text"
+                          type="number"
                           className="form-control"
                           id="zIp"
+                          required
                           placeholder="Enter Year"
                           value={schemeFormData.maxinvestmenttime}
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,maxinvestmenttime:e.target.value})}}
@@ -269,8 +285,9 @@ const AddScheme = () => {
                       <div className="form-group">
                         <label for="zIp">Min Age</label>
                         <input
-                          type="text"
+                          type="number"
                           className="form-control"
+                          required
                           id="zIp"
                           placeholder="Enter Age"
                           value={schemeFormData.minage}
@@ -283,10 +300,11 @@ const AddScheme = () => {
                       <div className="form-group">
                         <label for="zIp">Max Age</label>
                         <input
-                          type="text"
+                          type="number"
                           className="form-control"
                           id="zIp"
                           placeholder="Enter Age"
+                          required
                           value={schemeFormData.maxage}
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,maxage:e.target.value})}}
                         />
@@ -302,9 +320,10 @@ const AddScheme = () => {
                       <div className="form-group">
                         <label for="Street">Registration Commision</label>
                         <input
-                          type="name"
+                          type="number"
                           className="form-control"
                           id="Street"
+                          required
                           placeholder="Enter Commision"
                           value={schemeFormData.registrationcommision}
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,registrationcommision:e.target.value})}}
@@ -315,9 +334,10 @@ const AddScheme = () => {
                       <div className="form-group">
                         <label for="ciTy">Installment Commision</label>
                         <input
-                          type="name"
+                          type="number"
                           className="form-control"
                           id="ciTy"
+                          required
                           placeholder="Enter Commision"
                           value={schemeFormData.installmentcommision}
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,installmentcommision:e.target.value})}}
@@ -333,11 +353,11 @@ const AddScheme = () => {
                       <div className="text-right">
                        
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                           name="submit"
                           className="btn btn-primary"
-                          onClick={addSchemeBackend}
+                          // onClick={addSchemeBackend}
                         >
                           Add Scheme
                         </button>
@@ -349,6 +369,7 @@ const AddScheme = () => {
             </div>
           </div>
         </div>
+        </form>
         </section>
       
     </div>

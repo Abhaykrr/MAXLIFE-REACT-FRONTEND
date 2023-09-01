@@ -23,7 +23,8 @@ const UserProfile = () => {
     zipcode:""
   })
 
-  const updateCustomerBackend = async()=>{
+  const updateCustomerBackend = async(e)=>{
+    e.preventDefault();
     const customerId = localStorage.getItem('genericId')
     console.log(customerFormData)
 
@@ -88,6 +89,9 @@ const UserProfile = () => {
     <div>
       <Navbar />
       <section className="home-section" id="userContent">
+      <form class="needs-validation" novalidate
+               onSubmit={(e)=>updateCustomerBackend(e)}
+               >
         <div className="text">Settings</div>
 
         <div className="container">
@@ -133,6 +137,7 @@ const UserProfile = () => {
                           type="text"
                           className="form-control"
                           id="fullName"
+                          required
                           placeholder="Enter First name"
                           value={customerFormData.firstname}
                           onChange={(e)=>{setCustomerFormData({...customerFormData,firstname:e.target.value})}}
@@ -148,6 +153,7 @@ const UserProfile = () => {
                           type="text"
                           className="form-control"
                           id="fullName"
+                          required
                           placeholder="Enter Last name"
                           value={customerFormData.lastname}
                           onChange={(e)=>{setCustomerFormData({...customerFormData,lastname:e.target.value})}}
@@ -162,6 +168,7 @@ const UserProfile = () => {
                           type="email"
                           className="form-control"
                           id="eMail"
+                          required
                           placeholder="Enter Email ID"
                            value={customerFormData.email}
                           onChange={(e)=>{setCustomerFormData({...customerFormData,email:e.target.value})}}
@@ -172,9 +179,10 @@ const UserProfile = () => {
                       <div className="form-group">
                         <label for="phone">Phone</label>
                         <input
-                          type="text"
+                          type="number"
                           className="form-control"
                           id="phone"
+                          required
                           placeholder="Enter Phone number"
                           value={customerFormData.mobile}
                           onChange={(e)=>{setCustomerFormData({...customerFormData,mobile:e.target.value})}}
@@ -194,6 +202,7 @@ const UserProfile = () => {
                           type="name"
                           className="form-control"
                           id="Street"
+                          required
                           placeholder="Enter Street"
                           value={customerFormData.street}
                           onChange={(e)=>{setCustomerFormData({...customerFormData,street:e.target.value})}}
@@ -207,6 +216,7 @@ const UserProfile = () => {
                           type="name"
                           className="form-control"
                           id="ciTy"
+                          required
                           placeholder="Enter City"
                           value={customerFormData.city}
                           onChange={(e)=>{setCustomerFormData({...customerFormData,city:e.target.value})}}
@@ -220,6 +230,7 @@ const UserProfile = () => {
                           type="text"
                           className="form-control"
                           id="sTate"
+                          required
                           placeholder="Enter State"
                           value={customerFormData.state}
                           onChange={(e)=>{setCustomerFormData({...customerFormData,state:e.target.value})}}
@@ -233,6 +244,7 @@ const UserProfile = () => {
                           type="text"
                           className="form-control"
                           id="zIp"
+                          required
                           placeholder="Zip Code"
                           value={customerFormData.zipcode}
                           onChange={(e)=>{setCustomerFormData({...customerFormData,zipcode:e.target.value})}}
@@ -252,6 +264,7 @@ const UserProfile = () => {
                           type="name"
                           className="form-control"
                           id="Street"
+                          required
                           placeholder="Enter Name"
                           value={customerFormData.nominee}
                           onChange={(e)=>{setCustomerFormData({...customerFormData,nominee:e.target.value})}}
@@ -265,6 +278,7 @@ const UserProfile = () => {
                           type="name"
                           className="form-control"
                           id="ciTy"
+                          required
                           placeholder="Enter Relation"
                           value={customerFormData.nomineerelation}
                           onChange={(e)=>{setCustomerFormData({...customerFormData,nomineerelation:e.target.value})}}
@@ -280,11 +294,11 @@ const UserProfile = () => {
                       <div className="text-right">
                        
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                           name="submit"
                           className="btn btn-primary"
-                          onClick={updateCustomerBackend}
+                          // onClick={updateCustomerBackend}
                         >
                           Update
                         </button>
@@ -296,6 +310,7 @@ const UserProfile = () => {
             </div>
           </div>
         </div>
+        </form>
       </section>
     </div>
   );
