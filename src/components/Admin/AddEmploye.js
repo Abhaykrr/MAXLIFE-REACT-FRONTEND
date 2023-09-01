@@ -7,11 +7,12 @@ import swal from "sweetalert";
 function Addemploye(){
     const [employe,setEmploye]=useState({firstname:"",lastname:"",salary:0,status:"Active"});
     const [userdata,setuserdata]=useState({username:"",password:""});
-    async function addEmployeBackend(){
+    async function addEmployeBackend(e){
+      
         
       try {
-
-          
+        e.preventDefault();
+          // e.preventdefault();
         let response =await axios.post('http://localhost:8080/maxlife/api/auth/register',{
           username:userdata.username,
           password:userdata.password,
@@ -38,6 +39,9 @@ function Addemploye(){
            
             <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
               <div className="card h-100">
+              <form class="needs-validation" novalidate
+               onSubmit={(e)=>addEmployeBackend(e)}
+               >
                 <div className="card-body">
                   <div className="row gutters">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -51,6 +55,7 @@ function Addemploye(){
                           className="form-control"
                           id="firstname"
                           placeholder="Enter First name"
+                          required
                           onChange={(e)=>{setEmploye({...employe,firstname:e.target.value})}}
 
                         />
@@ -66,6 +71,7 @@ function Addemploye(){
                           className="form-control"
                           id="lastname"
                           placeholder="Enter last name"
+                          required
                           onChange={(e)=>{setEmploye({...employe,lastname:e.target.value})}}
 
                         />
@@ -75,10 +81,11 @@ function Addemploye(){
                             <div className="form-group">
                                 <label for="salary">Employe Salary</label>
                                 <input
-                          type="text"
+                          type="number"
                           className="form-control"
                           id="salary"
                           placeholder="Enter Employe Salary"
+                          required
                           onChange={(e)=>{setEmploye({...employe,salary:e.target.value})}}
 
                         />
@@ -88,6 +95,7 @@ function Addemploye(){
                             <div className="form-group">
                                 <label for="fullName">Employe Status</label>
                                 <select className="form-control" id="planStatus"
+                                required
                                 onChange={(e)=>{setEmploye({...employe,status:e.target.value})}}
                                 >
                                     <option value="Active">Active</option>
@@ -107,6 +115,7 @@ function Addemploye(){
                           type="text"
                           className="form-control"
                           id="username"
+                          required
                           placeholder="Enter Employee Username"
                           onChange={(e)=>{setuserdata({...userdata,username:e.target.value})}}
 
@@ -117,6 +126,7 @@ function Addemploye(){
                             <div className="form-group">
                                 <label for="password">Password</label>
                                 <input
+                                required
                           type="text"
                           className="form-control"
                           id="password"
@@ -137,11 +147,11 @@ function Addemploye(){
                       <div className="text-right">
                        
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                           name="submit"
                           className="btn btn-primary"
-                          onClick={addEmployeBackend}
+                          // onClick={addEmployeBackend}
                         >
                           Add Employee
                         </button>
@@ -149,6 +159,7 @@ function Addemploye(){
                     </div>
                   </div>
                 </div>
+                </form>
               </div>
             </div>
           </div>

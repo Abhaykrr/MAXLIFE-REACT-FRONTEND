@@ -44,8 +44,9 @@ const Messages = () => {
   }
   };
 
-  const handleSendMessage = async () => {
+  const handleSendMessage = async (e) => {
     try {
+      e.preventDefault();
       const response = await axios.post(
         `http://localhost:8080/maxlife/messages/addmessage/${customerId}`,
         { question: message }
@@ -67,26 +68,30 @@ const Messages = () => {
           <div className="card-body">
             {messageComponents}
 
-          
+            <form class="needs-validation" novalidate
+               onSubmit={(e)=>handleSendMessage(e)}
+               >
             <div className="message-box">
               <textarea
                 className="form-control"
                 rows="4"
                 value={message}
+                required
                 onChange={(e) => setMessage(e.target.value)}
                 placeholder="Type your Query here..."
               ></textarea>
               <div className="text-center">
                 <button
-                  type="button"
+                  type="submit"
                   className="btn btn-primary mt-2"
-                  onClick={handleSendMessage}
-                  disabled={message.trim() === ''}
+                  // onClick={handleSendMessage}
+                  // disabled={message.trim() === ''}
                 >
                   Send
                 </button>
               </div>
             </div>
+            </form>
           </div>
         </div>
       </section>

@@ -28,6 +28,7 @@ const MessageAccordAdmin = ({ message, onSaveAdminResponse }) => {
 
   return (
     <div className="accordion-tab">
+      
       <input
         id={`messageToggle-${message.id}`}
         type="checkbox"
@@ -45,22 +46,28 @@ const MessageAccordAdmin = ({ message, onSaveAdminResponse }) => {
       <div className="accordion-content">
       <p>Answer: {message.answer}</p>
         <p>Status: {status}</p>
+        <form class="needs-validation" novalidate
+               onSubmit={(e)=>handleSendResponse(e)}
+               >
         <textarea
           className="form-control"
           rows="4"
+          required
           placeholder="Type your response here..."
           value={response}
           onChange={handleResponseChange}
         ></textarea>
         <button
-          type="button"
+          type="submit"
           className="btn btn-primary mt-2"
-          onClick={handleSendResponse}
-          disabled={!response.trim()}
+          // onClick={handleSendResponse}
+          // disabled={!response.trim()}
         >
           Send
         </button>
+        </form>
       </div>
+      
     </div>
   );
 };

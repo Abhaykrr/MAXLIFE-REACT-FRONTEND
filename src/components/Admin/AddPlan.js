@@ -7,11 +7,12 @@ const AddPlan = () => {
 
     const [planData,setPlanData] = useState({planName:"",planStatus:"Active"})
 
-    const addPlanBackend = async()=>{
+    const addPlanBackend = async(e)=>{
         console.log(planData.planName)
         console.log(planData.planStatus)
 
         try {
+          e.preventDefault();
             let response = await axios.post('http://localhost:8080/maxlife/addplan',{
                 planname:planData.planName,
                 status:planData.planStatus
@@ -59,6 +60,9 @@ const AddPlan = () => {
             </div> */}
             <div className="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
               <div className="card h-100">
+              <form class="needs-validation" novalidate
+               onSubmit={(e)=>addPlanBackend(e)}
+               >
                 <div className="card-body">
                   <div className="row gutters">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -71,6 +75,7 @@ const AddPlan = () => {
                           type="text"
                           className="form-control"
                           id="fullName"
+                          required
                           placeholder="Enter Plan name"
                           onChange={(e)=>{setPlanData({...planData,planName:e.target.value})}}
 
@@ -83,6 +88,7 @@ const AddPlan = () => {
                             <div className="form-group">
                                 <label for="fullName">Plan Status</label>
                                 <select className="form-control" id="planStatus"
+                                required
                                 onChange={(e)=>{setPlanData({...planData,planStatus:e.target.value})}}>
                                     <option value="Active">Active</option>
                                     <option value="Inactive">InActive</option>
@@ -100,11 +106,11 @@ const AddPlan = () => {
                       <div className="text-right">
                        
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                           name="submit"
                           className="btn btn-primary"
-                          onClick={addPlanBackend}
+                          // onClick={addPlanBackend}
                         >
                           Add Plan
                         </button>
@@ -112,6 +118,7 @@ const AddPlan = () => {
                     </div>
                   </div>
                 </div>
+                </form>
               </div>
             </div>
           </div>

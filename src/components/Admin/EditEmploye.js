@@ -26,8 +26,9 @@ function EditEmploye(){
             )
         })
     }
-    async function updatedata(){
+    async function updatedata(e){
         try {
+          e.preventDefault();
             let response = await axios.post(`http://localhost:8080/maxlife/updateemploye/${employe.employeeid}`,employe)
             swal("Good job!", response.data, "success")
             getemploye()
@@ -42,6 +43,9 @@ return(
     <div>
     <Navbar/>
     <section className="home-section" id="userContent" >
+    <form class="needs-validation" novalidate
+               onSubmit={(e)=>updatedata(e)}
+               >
     <div className="container">
       <div className="row gutters">
        
@@ -56,6 +60,7 @@ return(
                         <div className="form-group">
                             <label for="salary">Select Employe</label>
                             <select className="form-control" id="planStatus"
+                            required
                         onChange={(e)=>{
                            setEmploye(allemploye[e.target.value]);
                            console.log(employe);
@@ -72,6 +77,7 @@ return(
                     <input
                       type="text"
                       className="form-control"
+                      required
                       id="firstname"
                       value={employe.firstname}
                       placeholder="Enter First name"
@@ -89,6 +95,7 @@ return(
                       type="text"
                       className="form-control"
                       id="lastname"
+                      required
                       placeholder="Enter last name"
                       value={employe.lastname}
                       onChange={(e)=>{setEmploye({...employe,lastname:e.target.value})}}
@@ -100,9 +107,10 @@ return(
                         <div className="form-group">
                             <label for="salary">Employe Salary</label>
                             <input
-                      type="text"
+                      type="number"
                       className="form-control"
                       id="salary"
+                      required
                       value={employe.salary}
                       placeholder="Enter Employe Salary"
                       onChange={(e)=>{setEmploye({...employe,salary:e.target.value})}}
@@ -114,6 +122,7 @@ return(
                         <div className="form-group">
                             <label for="fullName">Employe Status</label>
                             <select className="form-control" id="planStatus"
+                            required
                             onChange={(e)=>{setEmploye({...employe,status:e.target.value})}}
                             value={employe.status}
                             >
@@ -134,11 +143,11 @@ return(
                   <div className="text-right">
                    
                     <button
-                      type="button"
+                      type="submit"
                       id="submit"
                       name="submit"
                       className="btn btn-primary"
-                      onClick={updatedata}
+                      // onClick={updatedata}
                     >
                       Update Employee
                     </button>
@@ -150,6 +159,7 @@ return(
         </div>
       </div>
     </div>
+    </form>
     </section>
   
 </div>

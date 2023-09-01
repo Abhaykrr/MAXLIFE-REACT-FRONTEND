@@ -2,6 +2,7 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react' 
 import Swal from 'sweetalert2'
 import { getallAgents } from '../Util/CApis'
+import swal from 'sweetalert'
 
 const AccordLine = ({scheme}) => {
 
@@ -121,12 +122,16 @@ const AccordLine = ({scheme}) => {
   }
 
 
-  const generateDetails = async ()=>{
+  const generateDetails = async (e)=>{
+    e.preventDefault();
     console.log(noOfYear)
     console.log(investmentAmount)
     console.log(month)
     console.log(scheme.profitratio)
-
+    if(month==undefined||month==0){
+      swal("Invalid Installment Months","Select months from dropdown" , "error");
+      return;
+    }
     const interestRate = scheme.profitratio; // Assuming scheme.profitratio holds the interest rate
 
 
@@ -157,9 +162,13 @@ const AccordLine = ({scheme}) => {
 
   return (
     <div className="accordion-tab">
+
     <input id={scheme.schemeid} type="checkbox" className="accordion-toggle" name="toggle" />
     <label for={scheme.schemeid}>{scheme.schemename} </label>
     <div className="accordion-content">
+    <form class="needs-validation" novalidate
+               onSubmit={(e)=>generateDetails(e)}
+               >
 
         <p>{scheme.schemename}</p>
         <p>{scheme.description}</p>
@@ -208,27 +217,32 @@ status
                     <th scope="col">Calculate</th>
                 </tr>
                 </thead>
+                {/*  */}
                     <tbody>
                     <tr>
-                        <td><input  className="form-control text-center" onChange={(e)=>{setNoOfYear(e.target.value)}} style={{height:'50px',width:'100%'}} type="number" placeholder='  Enter Duration' /></td>
-                        <td><input  className="form-control text-center"  onChange={(e)=>{setInvestmentAmount(e.target.value)}} style={{height:'50px',width:'100%'}} type="number" placeholder='  Enter Investment Amount'  /></td>
-                        <td> <select className="form-control text-center" id="planStatus" onChange={(e)=>setMonth(e.target.value)}>
-                                    <option value="3">Select Month</option>
+                    
+                        <td><input  className="form-control text-center" min={scheme.mininvestmenttime} max={scheme.maxinvestmenttime} required onChange={(e)=>{setNoOfYear(e.target.value)}} style={{height:'50px',width:'100%'}} type="number" placeholder='  Enter Duration' /></td>
+                        <td><input  className="form-control text-center" required min={scheme.minamount} max={scheme.maxamount} onChange={(e)=>{setInvestmentAmount(e.target.value)}} style={{height:'50px',width:'100%'}} type="number" placeholder='  Enter Investment Amount'  /></td>
+                        <td> <select className="form-control text-center" required min={1}  id="planStatus" onChange={(e)=>setMonth(e.target.value)}>
+                                    <option value="0">Select Month</option>
                                     <option value="3">3 Month</option>
                                     <option value="6">6 Month</option>
                                     <option value="12">12 Month</option>
                                 </select></td>
 
-                         <td> <select className="form-control text-center" id="planStatus" onChange={(e)=>{
+                         <td> <select className="form-control text-center" required id="planStatus" onChange={(e)=>{
                           // console.log(e.target.value)
+                          
                           setAgentId(e.target.value)}}>
                                                     <option value="69">Self</option>
                                                     {agentsDropdown}
                               </select>
                         </td>
-                        <td className='text-center'><button type="button" style={{borderRadius:'0px',backgroundColor:'#3b5d50'}} class="btn btn-success" onClick={generateDetails}>Calculate</button></td>
+                        <td className='text-center'><button type="submit" style={{borderRadius:'0px',backgroundColor:'#3b5d50'}} class="btn btn-success" >Calculate</button></td>
+                     
                       </tr>
                     </tbody>
+                    {/* */}
         </table>
 
         <table className="table  table-bordered  table-striped text-center">
@@ -251,7 +265,7 @@ status
                         </tr> */}
                     </tbody>
         </table>
-
+        </form> 
     </div>
 </div>
   )
