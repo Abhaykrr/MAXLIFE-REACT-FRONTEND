@@ -51,11 +51,12 @@ const EditPlan = () => {
     }
 
 
-    const updateDataBackend = async()=>{
+    const updateDataBackend = async(e)=>{
         console.log(planID)
         console.log(formPlanData)
 
         try {
+          e.preventDefault();
             let response = await axios.post(`http://localhost:8080/maxlife/updateplan/${planID}`,{
                 planname:formPlanData.planName,
                 status:formPlanData.planStatus
@@ -73,6 +74,9 @@ const EditPlan = () => {
     <div>
         <Navbar/>
         <section className="home-section" id="userContent" >
+        <form class="needs-validation" novalidate
+               onSubmit={(e)=>updateDataBackend(e)}
+               >
         <div className="container">
           <div className="row gutters">
             {/* <div className="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
@@ -114,6 +118,7 @@ const EditPlan = () => {
                       <div className="form-group">
                         <label for="fullName">Select Plan *</label>
                         <select className="form-control" id="planStatus"
+                        required
                         onChange={(e)=>{
                             setPlanId(e.target.value)
                             changeFormData(e.target.value)
@@ -137,6 +142,7 @@ const EditPlan = () => {
                         <label for="fullName">Plan Name</label>
                         <input
                           type="text"
+                          required
                           className="form-control"
                           id="fullName"
                           placeholder="Enter Plan name"
@@ -152,6 +158,7 @@ const EditPlan = () => {
                                 <label for="fullName">Plan Status</label>
                                 <select className="form-control" id="planStatus"
                                  value={formPlanData.planStatus}
+                                 required
                           onChange={(e)=>{setFormPlanData({...formPlanData,planStatus:e.target.value})}}
                           >
                                     <option value="Active">Active</option>
@@ -170,11 +177,11 @@ const EditPlan = () => {
                       <div className="text-right">
                        
                         <button
-                          type="button"
+                          type="submit"
                           id="submit"
                           name="submit"
                           className="btn btn-primary"
-                          onClick={updateDataBackend}
+                          // onClick={updateDataBackend}
                         >
                           Update Plan
                         </button>
@@ -186,6 +193,7 @@ const EditPlan = () => {
             </div>
           </div>
         </div>
+        </form>
         </section>
       
     </div>

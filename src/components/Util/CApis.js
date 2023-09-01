@@ -45,6 +45,19 @@ export async function getCustomerMessagesUtil(customerId) {
     }
   }
 
+  export async function getCustomerMessagesPageUtil(customerId, currentPage, pageSize) {
+    try {
+      const response = await axios.get(
+        `http://localhost:8080/maxlife/messages/customermessagespage/${customerId}/${currentPage}/${pageSize}`
+      );
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+
+
 export async function addMessageUtil(customerId, message) {
     try {
       let response = await axios.post(
@@ -60,9 +73,20 @@ export async function addMessageUtil(customerId, message) {
   export async function fetchAllMessagesUtil() {
     try {
       const response = await axios.get('http://localhost:8080/maxlife/messages/allmessages');
-      return response.data;
+      return response;
     } catch (error) {
       throw error; 
+  }
+}
+
+export async function getAllMessagesPageUtil(currentPage, pageSize) {
+  try {
+    const response = await axios.get(
+      `http://localhost:8080/maxlife/messages/allmessagespage/${currentPage}/${pageSize}`
+    );
+    return response.data;
+  } catch (error) {
+    throw error;
   }
 }
 

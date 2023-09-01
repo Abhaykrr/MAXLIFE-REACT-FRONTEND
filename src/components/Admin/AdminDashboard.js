@@ -3,7 +3,7 @@ import Navbar from '../Navbar/Navbar'
 import "../CSS/card.css"
 import { Helmet } from 'react-helmet'
 import { useNavigate } from 'react-router-dom'
-import { getAllPlansUtil, getAllSchemesUtil, getallAgents, getallEmployes } from '../Util/CApis'
+import { getAllPlansUtil, getAllSchemesUtil, getallAgents, getallEmployes, fetchAllMessagesUtil } from '../Util/CApis'
 
 const AdminDashboard = () => {
 
@@ -13,6 +13,7 @@ const AdminDashboard = () => {
   const [toatlSchemes,setTotalSchemes] = useState()
   const [totalEmployes,setTotalEmployes]=useState();
   const [totalAgents,setTotalAgents]=useState();
+  const [totalMessages, setTotalMessages] = useState();
   const updateCards = async ()=>{
     try {
         
@@ -20,10 +21,12 @@ const AdminDashboard = () => {
         let r2 = await getAllSchemesUtil()
         let r3=  await getallEmployes();
         let r4=  await getallAgents();
-        setTotalPlans(r1.data.length)
-        setTotalSchemes(r2.data.length)
-        setTotalEmployes(r3.data.length);
-        setTotalAgents(r4.data.length);
+        let r5=  await fetchAllMessagesUtil();
+        setTotalPlans(r1.data?.length)
+        setTotalSchemes(r2.data?.length)
+        setTotalEmployes(r3.data?.length);
+        setTotalAgents(r4.data?.length);
+        setTotalMessages(r5.data.length)
 
 
     } catch (error) {
@@ -176,7 +179,7 @@ const AdminDashboard = () => {
                   <div className="row align-items-center mb-2 d-flex">
                     <div className="col-8">
                       <h5 className="d-flex align-items-center mb-0">
-                        FaQ
+                      {totalMessages} Messages
                       </h5>
                     </div>
                     <div className="col-4 text-right">
