@@ -12,19 +12,21 @@ const [currpage,setCurrpage] =useState(0)
 const pagesize = 4;
 
   
-  const customerId = localStorage.getItem('genericId')
-  if(customerId == null || customerId == undefined || customerId === null || customerId === undefined || customerId == '' || customerId === '')
-  customerId = custId
+  let customerId = localStorage.getItem('genericId')
+ 
+
+  console.log(customerId,"UserAccounts")
   const [accountData,setAccountData] = useState({})
 
   const getAccounts = async()=>{
 
     try {
-        console.log(currpage ,"See")
+        if(custId !=null)
+        customerId = custId
         let response = await axios.get(`http://localhost:8080/maxlife/account/${customerId}/${currpage}/${pagesize}`)
 
       // let response = await getCustomerAllAccountsUtil(customerId,currpage,pagesize)
-      // console.log(response.data)
+      console.log(response.data)
       setPages(response.data.totalPages-1)
       setAccountData(response.data.content)
       generateData()
@@ -46,6 +48,7 @@ const pagesize = 4;
   const [personalAccord,setPersonalAccord] = useState([])
 
   const generateData = ()=>{
+    console.log("generating...")
     let personalAccount = []
     if(accountData.length>0){
   
@@ -64,7 +67,7 @@ const pagesize = 4;
     <div>
         <Navbar/>
       <section className="home-section" id="userContent" >
-            <h4>My Accounts Page No : {currpage}</h4>
+            <h4>My Accounts</h4>
             <div className="card" style={{ width: '100%' }}>
                 <div className="card-body">
                    {/* <AccountAccord/> */}

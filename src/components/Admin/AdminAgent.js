@@ -3,11 +3,17 @@ import { getallAgents,getpageAgents } from "../Util/CApis";
 import { Helmet } from "react-helmet";
 import Navbar from "../Navbar/Navbar";
 import Pagination from "../Page/Pagination";
+import AgentCustomers from "../Agent/AgentCustomers"
+
 function AdminAgent(){
     const [agents,setagents]=useState();
     const [pages,setPages] = useState()
     const [currpage,setCurrpage] =useState(0)
     const pagesize = 8;
+
+  const [particularAgentId,setParticularAgentId] = useState()
+
+
     async function getagent(){
      
       
@@ -38,7 +44,7 @@ return (
                 return(
 <div class="col">
 <div style={{width:"16rem"}}>
-<div class="card card-cascade wider">
+<div class="card card-cascade wider" onClick={()=>setParticularAgentId(agent.agentid)}>
 
   {/* <!-- Card image --> */}
   <div class="view view-cascade overlay text-center">
@@ -85,6 +91,10 @@ return (
         </div>
         
       </section>
+
+      <div style={{display:'flex',alignItems:'center',justifyContent:'center' }} >
+                    {particularAgentId && <AgentCustomers agId={particularAgentId}/>}
+                  </div>
 
       
     </div>

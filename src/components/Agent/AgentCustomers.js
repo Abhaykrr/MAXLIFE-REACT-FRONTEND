@@ -4,7 +4,7 @@ import AccountAccord from '../accord/AccountAccord'
 import axios from 'axios'
 import Pagination from '../Page/Pagination'
 
-const AgentCustomers = () => {
+const AgentCustomers = ({agId}) => {
 
 const [pages,setPages] = useState()
 const [currpage,setCurrpage] =useState(0)
@@ -13,17 +13,19 @@ const pagesize = 4;
 
 const [accountData,setAccountData] = useState({})
 
-const agentId = localStorage.getItem('genericId')
+let agentId = localStorage.getItem('genericId')
 
 
 const getAccounts = async()=>{
 
   try {
+    if(agId!=null)
+    agentId = agId
       console.log(currpage ,"See")
       let response = await axios.get(`http://localhost:8080/maxlife/agentaccount/${agentId}/${currpage}/${pagesize}`)
 
     // let response = await getCustomerAllAccountsUtil(customerId,currpage,pagesize)
-    // console.log(response.data)
+    console.log(response.data.content)
     setPages(response.data.totalPages-1)
     setAccountData(response.data.content)
     generateData()

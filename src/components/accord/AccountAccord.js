@@ -49,7 +49,7 @@ const AccountAccord = ({policy,referesh}) => {
         </table>
 
           <div style={{display:'flex',justifyContent:'center',alignItems:'center',overflow:'auto'}}>
-               <PaymentAccord record ={policy.policyrecords} referesh = {referesh}/>
+               <PaymentAccord record ={policy.policyrecords} referesh = {referesh} regCom={policy.insurancescheme.registrationcommision} insCom={policy.insurancescheme.installmentcommision}/>
           </div>
 
         </div>

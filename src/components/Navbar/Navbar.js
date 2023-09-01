@@ -162,7 +162,7 @@ const Navbar = () => {
          <span className="tooltip">Employees</span>
        </li>
        <li>
-         <a href="/admin/messages">
+         <a href="/admin/dashboard/messages">
            <i className="bx bx-chat"></i>
            <span className="links_name">Messages</span>
          </a>
@@ -319,7 +319,7 @@ const Navbar = () => {
            </li>
            
            <li>
-             <a href="/employee/dashboard" >
+             <a href="/agent/dashboard" >
                <i className="bx bx-grid-alt"></i>
                <span id="db" className="links_name">Dashboard</span>
              </a>
@@ -366,7 +366,7 @@ const Navbar = () => {
            
           
            <li>
-             <a href="/profile">
+             <a href="/">
                <i className="bx bx-cog"></i>
                <span className="links_name">Setting</span>
              </a>
