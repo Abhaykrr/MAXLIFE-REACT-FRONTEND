@@ -14,7 +14,7 @@ import AddAgent from './AddAgent'
 import EditAgents from './EditAgent'
 const AdminDashboardRoutes = () => {
   return (
-    <div>
+    <div> 
         <Routes>
           <Route path='/admin/dashboard' element={<AdminDashboard/>}/>  
           <Route path='/admin/dashboard/addplan' element={<AddPlan/>}/>  

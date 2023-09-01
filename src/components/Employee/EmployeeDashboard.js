@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../Navbar/Navbar'
 import "../CSS/card.css"
 import { useNavigate } from 'react-router-dom'
-import { getAllPlansUtil, getAllSchemesUtil } from '../Util/CApis'
+import { getAllPlansUtil, getAllSchemesUtil, getallAgents, getallEmployes } from '../Util/CApis'
+import { Helmet } from 'react-helmet'
 
 
 const EmployeeDashboard = () => {
@@ -12,15 +13,19 @@ const EmployeeDashboard = () => {
 
   const [totalPlans,setTotalPlans] = useState()
   const [toatlSchemes,setTotalSchemes] = useState()
-
+  const [totalEmployes,setTotalEmployes]=useState();
+  const [totalAgents,setTotalAgents]=useState();
   const updateCards = async ()=>{
     try {
         
         let r1 = await getAllPlansUtil()
         let r2 = await getAllSchemesUtil()
-
+        let r3=  await getallEmployes();
+        let r4=  await getallAgents();
         setTotalPlans(r1.data.length)
         setTotalSchemes(r2.data.length)
+        setTotalEmployes(r3.data.length);
+        setTotalAgents(r4.data.length);
 
 
     } catch (error) {
@@ -34,6 +39,10 @@ const EmployeeDashboard = () => {
 
   return (
     <div>
+        <Helmet>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous" />
+
+      </Helmet>
         <Navbar/>
 
         <section className="home-section" id="userContent">
@@ -41,7 +50,7 @@ const EmployeeDashboard = () => {
         <div className="row ">
 
         <div className="col-xl-3 col-lg-6" onClick={()=>{
-          navigate('/admin/dashboard/addplan')
+          navigate('/employee/dashboard/addplan')
         }}>
           <div className="card l-bg-cherry">
                 <div className="card-statistic-3 p-4">
@@ -67,7 +76,7 @@ const EmployeeDashboard = () => {
         </div>
 
         <div className="col-xl-3 col-lg-6" onClick={()=>{
-           navigate('/admin/dashboard/addscheme')
+           navigate('/employee/dashboard/addscheme')
         }}>
             <div className="card l-bg-blue-dark">
                 <div className="card-statistic-3 p-4">
@@ -94,7 +103,7 @@ const EmployeeDashboard = () => {
 
         
         <div className="col-xl-3 col-lg-6" onClick={()=>{
-           navigate('/admin/dashboard/editplan')
+           navigate('/employee/dashboard/editplan')
         }}>
             <div className="card l-bg-green-dark">
                 <div className="card-statistic-3 p-4">
@@ -120,8 +129,8 @@ const EmployeeDashboard = () => {
         </div>
 
         <div className="col-xl-3 col-lg-6"onClick={()=>{
-           navigate('/admin/dashboard/editscheme')
-        }}>
+           navigate('/employee/dashboard/editscheme')
+         }}>
           <div class="card l-bg-orange-dark">
                   <div className="card-statistic-3 p-4">
                       <div className="card-icon card-icon-large"><i className="fas fa-ticket-alt"></i></div>
@@ -144,6 +153,119 @@ const EmployeeDashboard = () => {
                   </div>
               </div>
         </div>  
+        <div className="col-xl-3 col-lg-6"onClick={()=>{
+           navigate('/employee/dashboard/addemploye')
+         }}>
+          <div class="card l-bg-orange-dark">
+                  <div className="card-statistic-3 p-4">
+                      <div className="card-icon card-icon-large"><i className="fas fa-ticket-alt"></i></div>
+                      <div className="mb-4">
+                          <h5 className="card-title mb-0">Add Employee</h5>
+                      </div>
+                      <div className="row align-items-center mb-2 d-flex">
+                          <div className="col-8">
+                              <h5 className="d-flex align-items-center mb-0">
+                                {totalEmployes} Employes
+                              </h5>
+                          </div>
+                          <div className="col-4 text-right">
+                              {/* <span>10% <i className="fa fa-arrow-up"></i></span> */}
+                          </div>
+                      </div>
+                      <div className="progress mt-1 " data-height="8" style={{height: '8px'}}>
+                          <div className="progress-bar l-bg-orange" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style={{width: '25%'}}></div>
+                      </div>
+                  </div>
+              </div>
+        </div>  
+
+
+
+        <div className="col-xl-3 col-lg-6"onClick={()=>{
+           navigate('/employee/dashboard/editemploye')
+         }}>
+          <div class="card l-bg-green-dark">
+                  <div className="card-statistic-3 p-4">
+                      <div className="card-icon card-icon-large"><i className="fas fa-ticket-alt"></i></div>
+                      <div className="mb-4">
+                          <h5 className="card-title mb-0">Edit Employee</h5>
+                      </div>
+                      <div className="row align-items-center mb-2 d-flex">
+                          <div className="col-8">
+                              <h5 className="d-flex align-items-center mb-0">
+                                {totalEmployes} Employes
+                              </h5>
+                          </div>
+                          <div className="col-4 text-right">
+                              {/* <span>10% <i className="fa fa-arrow-up"></i></span> */}
+                          </div>
+                      </div>
+                      <div className="progress mt-1 " data-height="8" style={{height: '8px'}}>
+                          <div className="progress-bar l-bg-orange" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style={{width: '25%'}}></div>
+                      </div>
+                  </div>
+              </div>
+        </div>  
+
+
+        
+
+        <div className="col-xl-3 col-lg-6"onClick={()=>{
+           navigate('/employee/dashboard/addagent')
+         }}>
+          <div class="card l-bg-blue-dark">
+                  <div className="card-statistic-3 p-4">
+                      <div className="card-icon card-icon-large"><i className="fas fa-ticket-alt"></i></div>
+                      <div className="mb-4">
+                          <h5 className="card-title mb-0">Add Agent</h5>
+                      </div>
+                      <div className="row align-items-center mb-2 d-flex">
+                          <div className="col-8">
+                              <h5 className="d-flex align-items-center mb-0">
+                                {totalAgents} Agents
+                              </h5>
+                          </div>
+                          <div className="col-4 text-right">
+                              {/* <span>10% <i className="fa fa-arrow-up"></i></span> */}
+                          </div>
+                      </div>
+                      <div className="progress mt-1 " data-height="8" style={{height: '8px'}}>
+                          <div className="progress-bar l-bg-orange" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style={{width: '25%'}}></div>
+                      </div>
+                  </div>
+              </div>
+        </div>  
+
+
+
+        <div className="col-xl-3 col-lg-6"onClick={()=>{
+           navigate('/employee/dashboard/editagent')
+         }}>
+          <div class="card l-bg-cherry">
+                  <div className="card-statistic-3 p-4">
+                      <div className="card-icon card-icon-large"><i className="fas fa-ticket-alt"></i></div>
+                      <div className="mb-4">
+                          <h5 className="card-title mb-0">Edit Agent</h5>
+                      </div>
+                      <div className="row align-items-center mb-2 d-flex">
+                          <div className="col-8">
+                              <h5 className="d-flex align-items-center mb-0">
+                                {totalAgents} Agents
+                              </h5>
+                          </div>
+                          <div className="col-4 text-right">
+                              {/* <span>10% <i className="fa fa-arrow-up"></i></span> */}
+                          </div>
+                      </div>
+                      <div className="progress mt-1 " data-height="8" style={{height: '8px'}}>
+                          <div className="progress-bar l-bg-orange" role="progressbar" data-width="25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style={{width: '25%'}}></div>
+                      </div>
+                  </div>
+              </div>
+        </div>  
+
+
+
 
        
         </div>

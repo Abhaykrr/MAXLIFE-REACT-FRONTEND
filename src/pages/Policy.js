@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import "../components/CSS/accord.css"
 import AccordLine from '../components/accord/AccordLine'
-import { getAllPlansUtil } from '../components/Util/CApis'
+import { getAllPlansUtil, getallAgents } from '../components/Util/CApis'
 
 
 const Policy = () => {

@@ -1,11 +1,18 @@
-import React from 'react'
+// import React from 'react'
 import "../CSS/accord.css"
 import Swal from 'sweetalert2';
 import axios from 'axios';
+import React, { useState } from 'react' 
+import Inovice from "../../pages/Inovice";
+import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+
 
 
 const PaymentAccord = ({record,referesh}) => {
 
+  const roleId = localStorage.getItem('roleId')
+
+  console.log(record)
 
     const paymentModule = async (referenceId)=>{
       
@@ -62,13 +69,18 @@ const PaymentAccord = ({record,referesh}) => {
                     <td>{e.installmentamount}</td>
                     <td>{e.duedate}</td>
                    
+                   {roleId === '1' ?(
                     <td>{e.paiddate ? (e.paiddate) : (
-                            <button disabled='' type="button" className="btn btn-danger"
+                            <button  type="button" className="btn btn-danger"
                             onClick={()=>paymentModule(e.referenceid)}>Pay</button>
                         )}
-                    </td>
+                    </td>):(e.paiddate ? (e.paiddate) : (
+                            <button  type="button" className="btn btn-danger"
+                            >Ask to Pay</button>
+                        ))}
+
                     <td>{e.paymentstatus}</td>
-                    <td>{e.paiddate ? (<a href="">Download</a>) : (
+                    <td>{e.paiddate ? ( <Link to={{ pathname: '/invoice', state: 2 }}>Download</Link>) : (
                             <p/>
                         )}</td>
                      

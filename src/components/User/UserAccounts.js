@@ -5,14 +5,16 @@ import { getCustomerAllAccountsUtil } from '../Util/CApis'
 import Pagination from '../Page/Pagination'
 import axios from 'axios'
 
-const UserAccounts = () => {
+const UserAccounts = ({custId}) => {
 
 const [pages,setPages] = useState()
 const [currpage,setCurrpage] =useState(0)
-const pagesize = 2;
+const pagesize = 4;
 
   
   const customerId = localStorage.getItem('genericId')
+  if(customerId == null || customerId == undefined || customerId === null || customerId === undefined || customerId == '' || customerId === '')
+  customerId = custId
   const [accountData,setAccountData] = useState({})
 
   const getAccounts = async()=>{

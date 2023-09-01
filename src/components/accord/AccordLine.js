@@ -1,6 +1,7 @@
 import axios from 'axios'
-import React, { useState } from 'react' 
+import React, { useEffect, useState } from 'react' 
 import Swal from 'sweetalert2'
+import { getallAgents } from '../Util/CApis'
 
 const AccordLine = ({scheme}) => {
 
@@ -10,7 +11,41 @@ const AccordLine = ({scheme}) => {
   const [report,setReport] = useState()
 
 
+  const [allAgents,setAllAgents] = useState({})
+  const [agentId,setAgentId] = useState(69)
+
+  const getAgents = async ()=>{
+
+    try {
+
+      let response =  await getallAgents()
+      // setAgentId(99)
+      setAllAgents(response.data)
+      console.log(response.data)
+      
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  useEffect(()=>{
+      getAgents()
+  },[])
+
+
+  let agentsDropdown
+  if(allAgents.length>0){
+      agentsDropdown = allAgents.map((agent)=>{
+          if(agent.status === "Active")
+          return (
+              <option value={agent.agentid}>{agent.firstname}  {agent.agentid}</option>
+          )
+      })
+  }
+
+
   const paymentModule = async (totalNoOfInstallments,installmentAmount,intrestAmount)=>{
+    
     const roleName = localStorage.getItem('roleName')
     if(roleName==null || roleName == undefined || roleName ===null){
       alert("Please Login")
@@ -65,10 +100,11 @@ const AccordLine = ({scheme}) => {
     console.log('------')
     console.log(customerId)
     console.log(schemeId)
+    console.log(agentId,"AgentId")
 
     try {
 
-      let response = await axios.post(`http://localhost:8080/maxlife/addpolicy/${schemeId}/${customerId}`,{
+      let response = await axios.post(`http://localhost:8080/maxlife/addpolicy/${schemeId}/${customerId}/${agentId}`,{
           premeiumtype:month,
           noofinstallments:totalNoOfInstallments,
           amount:investmentAmount,
@@ -109,7 +145,7 @@ const AccordLine = ({scheme}) => {
         <td>{installmentAmount}</td>
         <td>{intrestAmount}</td>
         <td>{netAmount}</td>
-        <td>Agent</td>
+
         <td><button onClick={()=>paymentModule(totalNoOfInstallments,installmentAmount,intrestAmount)} style={{borderRadius:'0px',backgroundColor:'#3b5d50'}} type="button" class="btn btn-success">Buy</button></td>
       </tr>
     );
@@ -122,7 +158,7 @@ const AccordLine = ({scheme}) => {
   return (
     <div className="accordion-tab">
     <input id={scheme.schemeid} type="checkbox" className="accordion-toggle" name="toggle" />
-    <label for={scheme.schemeid}>{scheme.schemename}</label>
+    <label for={scheme.schemeid}>{scheme.schemename} </label>
     <div className="accordion-content">
 
         <p>{scheme.schemename}</p>
@@ -168,6 +204,7 @@ status
                     <th scope="col">No of Years</th>
                     <th scope="col">Total Investment Amount</th>
                     <th scope="col">Months</th>
+                    <th scope="col">Agent ?</th>
                     <th scope="col">Calculate</th>
                 </tr>
                 </thead>
@@ -181,6 +218,14 @@ status
                                     <option value="6">6 Month</option>
                                     <option value="12">12 Month</option>
                                 </select></td>
+
+                         <td> <select className="form-control text-center" id="planStatus" onChange={(e)=>{
+                          // console.log(e.target.value)
+                          setAgentId(e.target.value)}}>
+                                                    <option value="69">Self</option>
+                                                    {agentsDropdown}
+                              </select>
+                        </td>
                         <td className='text-center'><button type="button" style={{borderRadius:'0px',backgroundColor:'#3b5d50'}} class="btn btn-success" onClick={generateDetails}>Calculate</button></td>
                       </tr>
                     </tbody>
@@ -193,7 +238,6 @@ status
                     <th scope="col">Installment Amount</th>
                     <th scope="col">Interest Amtount</th>
                     <th scope="col">Total Amount</th>
-                    <th scope="col">Agent ?</th>
                     <th scope="col">Buy Policy</th>
                 </tr>
                 </thead>

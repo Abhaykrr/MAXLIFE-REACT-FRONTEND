@@ -5,6 +5,7 @@ import PaymentAccord from './PaymentAccord'
 
 const AccountAccord = ({policy,referesh}) => {
 
+  console.log(policy)
 
   return (
     <div className="accordion-tab" style={{margin:'10px'}}  >
@@ -41,7 +42,7 @@ const AccountAccord = ({policy,referesh}) => {
                         <td>Rs {policy.amount}</td>
                         <td>{policy.insurancescheme.profitratio} %</td>
                         <td>Rs {policy.amount+policy.interestamount}</td>
-                        <td>{policy.agent}</td>
+                        <td>{policy.agent ? policy.agent.firstname : "Self"}</td>
                        
                         </tr>
                     </tbody>

@@ -56,6 +56,10 @@ function Navbar() {
         if(roleId === "3")
         navigate("/employee/dashboard")
 
+        if(roleId === "4")
+        navigate("/agent/dashboard")
+
+
     
 
   }

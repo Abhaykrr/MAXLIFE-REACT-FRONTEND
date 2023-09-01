@@ -183,7 +183,7 @@ const AdminDashboard = () => {
         <div className="col-xl-3 col-lg-6"onClick={()=>{
            navigate('/admin/dashboard/editemploye')
          }}>
-          <div class="card l-bg-orange-dark">
+          <div class="card l-bg-green-dark">
                   <div className="card-statistic-3 p-4">
                       <div className="card-icon card-icon-large"><i className="fas fa-ticket-alt"></i></div>
                       <div className="mb-4">
@@ -212,7 +212,7 @@ const AdminDashboard = () => {
         <div className="col-xl-3 col-lg-6"onClick={()=>{
            navigate('/admin/dashboard/addagent')
          }}>
-          <div class="card l-bg-orange-dark">
+          <div class="card l-bg-blue-dark">
                   <div className="card-statistic-3 p-4">
                       <div className="card-icon card-icon-large"><i className="fas fa-ticket-alt"></i></div>
                       <div className="mb-4">
@@ -240,7 +240,7 @@ const AdminDashboard = () => {
         <div className="col-xl-3 col-lg-6"onClick={()=>{
            navigate('/admin/dashboard/editagent')
          }}>
-          <div class="card l-bg-orange-dark">
+          <div class="card l-bg-cherry">
                   <div className="card-statistic-3 p-4">
                       <div className="card-icon card-icon-large"><i className="fas fa-ticket-alt"></i></div>
                       <div className="mb-4">
