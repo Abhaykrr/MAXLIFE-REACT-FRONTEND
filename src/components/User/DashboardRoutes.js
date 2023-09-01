@@ -12,6 +12,7 @@ const DashboardRoutes = () => {
       <Route path="/user/profile" element={<UserProfile />} />
       <Route path="/user/messages" element={<Messages />} />
       <Route path="/user/accounts" element={<UserAccounts />} />
+     
     </Routes>
   )
 }

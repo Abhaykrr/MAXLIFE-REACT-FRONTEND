@@ -18,7 +18,7 @@ function EditAgents(){
     },[])
 
     let agentsdropdown
-    if(allagents.length>0){
+    if(allagents?.length>0){
         agentsdropdown = allagents.map((agent,index)=>{
           
             return(

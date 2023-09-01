@@ -1,12 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import AdminDashboard from './AdminDashboard'
-<<<<<<< HEAD
-
-import AdminMessages from './AdminMessages'
-
-
-=======
 import AddPlan from './AddPlan'
 import AddScheme from './AddScheme'
 import EditPlan from './EditPlan'
@@ -18,15 +12,12 @@ import Addemploye from './AddEmploye'
 import EditEmploye from './EditEmploye'
 import AddAgent from './AddAgent'
 import EditAgents from './EditAgent'
->>>>>>> 0cb85da7028e40351516addaa153d67205332acd
+import AdminMessage from './AdminMessages'
 const AdminDashboardRoutes = () => {
   return (
     <div> 
         <Routes>
           <Route path='/admin/dashboard' element={<AdminDashboard/>}/>  
-<<<<<<< HEAD
-          <Route path="/admin/messages" element={<AdminMessages />} />
-=======
           <Route path='/admin/dashboard/addplan' element={<AddPlan/>}/>  
           <Route path='/admin/dashboard/addscheme' element={<AddScheme/>}/> 
           <Route path='/admin/dashboard/editplan' element={<EditPlan/>}/> 
@@ -38,11 +29,11 @@ const AdminDashboardRoutes = () => {
           <Route path='/admin/dashboard/editemploye' element={<EditEmploye/>}/>  
           <Route path='/admin/dashboard/addagent' element={<AddAgent/>}/>  
           <Route path='/admin/dashboard/editagent' element={<EditAgents/>}/>  
->>>>>>> 0cb85da7028e40351516addaa153d67205332acd
+          <Route path='/admin/dashboard/messages' element={<AdminMessage/>}/>  
         </Routes>
       
     </div>
   )
 }
 
-export default AdminDashboardRoutes
+export default AdminDashboardRoutes;
