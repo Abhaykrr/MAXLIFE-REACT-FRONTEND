@@ -68,7 +68,7 @@ const Navbar = () => {
         <span className="tooltip">Accounts</span>
       </li>
       <li>
-        <a href="#">
+        <a href="/user/messages">
           <i className="bx bx-chat"></i>
           <span className="links_name">Messages</span>
         </a>
@@ -161,7 +161,7 @@ const Navbar = () => {
          <span className="tooltip">Employees</span>
        </li>
        <li>
-         <a href="#">
+         <a href="/admin/messages">
            <i className="bx bx-chat"></i>
            <span className="links_name">Messages</span>
          </a>
@@ -294,4 +294,4 @@ const Navbar = () => {
       )
 }
 
-export default Navbar
+export default Navbar;
