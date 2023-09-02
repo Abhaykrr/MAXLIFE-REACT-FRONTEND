@@ -16,12 +16,18 @@ const MessageAccord = ({ message }) => {
         className="l-bg-blue-dark"
         style={{ backgroundColor: '#11101D' }}
       >
-        Question: {message.question} 
+       <div className="message-content">
+      <label>
+        Question: {message.question}
       </label>
-
+        <span className="status" style={{ marginLeft: '10px', float: 'right' }}>
+        Status: {status}
+      </span>
+    </div>
+  </label>
       <div className="accordion-content">
         <p>Answer: {message.answer}</p>
-        <p>Status: {status}</p>
+        
       </div>
     </div>
   );

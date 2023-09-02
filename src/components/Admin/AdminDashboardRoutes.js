@@ -12,7 +12,7 @@ import Addemploye from './AddEmploye'
 import EditEmploye from './EditEmploye'
 import AddAgent from './AddAgent'
 import EditAgents from './EditAgent'
-import AdminMessage from './AdminMessages'
+import AdminMessages from './AdminMessages'
 const AdminDashboardRoutes = () => {
   return (
     <div> 
@@ -29,7 +29,7 @@ const AdminDashboardRoutes = () => {
           <Route path='/admin/dashboard/editemploye' element={<EditEmploye/>}/>  
           <Route path='/admin/dashboard/addagent' element={<AddAgent/>}/>  
           <Route path='/admin/dashboard/editagent' element={<EditAgents/>}/>  
-          <Route path='/admin/dashboard/messages' element={<AdminMessage/>}/>  
+          <Route path='/admin/dashboard/messages' element={<AdminMessages/>}/>  
         </Routes>
       
     </div>
