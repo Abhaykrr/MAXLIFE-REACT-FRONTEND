@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../Navbar/Navbar';
-import MessageAccord from '../accord/MessageAccord'; 
+import Navbar from "../Shared Components/Navbar/Navbar";
+import MessageAccord from '../Shared Components/accord/MessageAccord';
 import axios from 'axios';
-import Pagination from '../Page/Pagination'
+import Pagination from '../Shared Components/Page/Pagination'
 
 
 const Messages = () => {

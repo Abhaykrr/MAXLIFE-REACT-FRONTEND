@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../Navbar/Navbar'
+import Navbar from '../Shared Components/Navbar/Navbar'
 import "../CSS/card.css"
 import { Helmet } from 'react-helmet'
 import { useNavigate } from 'react-router-dom'

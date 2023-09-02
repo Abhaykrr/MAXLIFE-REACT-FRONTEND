@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import "../CSS/accord.css"
-import { getCustomerAllAccountsUtil } from '../Util/CApis'
+import "../../CSS/accord.css"
+import { getCustomerAllAccountsUtil } from '../../Util/CApis'
 import PaymentAccord from './PaymentAccord'
 
 const AccountAccord = ({policy,referesh}) => {

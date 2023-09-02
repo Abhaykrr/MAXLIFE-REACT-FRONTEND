@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import "../components/CSS/accord.css"
-import AccordLine from '../components/accord/AccordLine'
+import AccordLine from '../components/Shared Components/accord/AccordLine'
 import { getAllPlansUtil, getallAgents } from '../components/Util/CApis'
 
 

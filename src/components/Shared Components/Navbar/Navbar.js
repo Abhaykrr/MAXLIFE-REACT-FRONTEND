@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import "../CSS/navbar.css"
-import { useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
+import { useNavigate } from 'react-router-dom'
+import "../../CSS/navbar.css"
 
 const Navbar = () => {
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../Shared Components/Navbar/Navbar";
 import axios from "axios";
 import swal from "sweetalert";
 import { getallEmployes } from "../Util/CApis";

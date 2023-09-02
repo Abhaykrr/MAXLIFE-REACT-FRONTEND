@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../Navbar/Navbar'
+import Navbar from '../Shared Components/Navbar/Navbar'
 import axios from 'axios'
 import swal from 'sweetalert'
 
@@ -30,7 +30,7 @@ const AddScheme = () => {
             )
         })
     }
-
+    const regex = /^[a-zA-Z0-9\s]+$/;
     const [schemeFormData,setSchemeFormData] = useState({
         planid:"",
         schemename:"",
@@ -143,11 +143,12 @@ const AddScheme = () => {
                       <div className="form-group">
                         <label for="ciTy">Profit Ratio</label>
                         <input
-                          type="name"
+                          type="number"
                           className="form-control"
                           id="ciTy"
                           value={schemeFormData.profitratio}
                           placeholder="Enter Profit"
+                          min={0}
                           required
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,profitratio:e.target.value})}}
                         />
@@ -170,7 +171,9 @@ const AddScheme = () => {
                           placeholder="Enter Scheme Name"
                           required
                           value={schemeFormData.schemename}
-                          onChange={(e)=>{setSchemeFormData({...schemeFormData,schemename:e.target.value})}}
+                          onChange={(e)=>{
+                          (/^[a-zA-Z0-9\s]+$/).test(e.target.value)?setSchemeFormData({...schemeFormData,schemename:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
+                        }}
                         />
                       </div>
 
@@ -194,11 +197,12 @@ const AddScheme = () => {
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
                         <label for="eMail">Description</label>
-                        <input
+                        <textarea
                           type="text"
                           required
                           className="form-control"
                           id="eMail"
+                          rows={3}
                           placeholder="Enter Description"
                           value={schemeFormData.description}
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,description:e.target.value})}}
@@ -229,6 +233,7 @@ const AddScheme = () => {
                           type="number"
                           className="form-control"
                           id="Street"
+                          min={0}
                           required
                           value={schemeFormData.minamount}
                           placeholder="Enter Amount"
@@ -243,6 +248,7 @@ const AddScheme = () => {
                           type="number"
                           className="form-control"
                           id="ciTy"
+                          min={0}
                           required
                           value={schemeFormData.maxamount}
                           placeholder="Enter Amount"
@@ -260,6 +266,7 @@ const AddScheme = () => {
                           className="form-control"
                           id="sTate"
                           required
+                          min={0}
                           placeholder="Enter Year"
                           value={schemeFormData.mininvestmenttime}
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,mininvestmenttime:e.target.value})}}
@@ -274,6 +281,7 @@ const AddScheme = () => {
                           className="form-control"
                           id="zIp"
                           required
+                          min={0}
                           placeholder="Enter Year"
                           value={schemeFormData.maxinvestmenttime}
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,maxinvestmenttime:e.target.value})}}
@@ -289,6 +297,7 @@ const AddScheme = () => {
                           className="form-control"
                           required
                           id="zIp"
+                          min={0}
                           placeholder="Enter Age"
                           value={schemeFormData.minage}
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,minage:e.target.value})}}
@@ -305,6 +314,7 @@ const AddScheme = () => {
                           id="zIp"
                           placeholder="Enter Age"
                           required
+                          min={0}
                           value={schemeFormData.maxage}
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,maxage:e.target.value})}}
                         />
@@ -324,6 +334,7 @@ const AddScheme = () => {
                           className="form-control"
                           id="Street"
                           required
+                          min={0}
                           placeholder="Enter Commision"
                           value={schemeFormData.registrationcommision}
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,registrationcommision:e.target.value})}}
@@ -337,6 +348,7 @@ const AddScheme = () => {
                           type="number"
                           className="form-control"
                           id="ciTy"
+                          min={0}
                           required
                           placeholder="Enter Commision"
                           value={schemeFormData.installmentcommision}

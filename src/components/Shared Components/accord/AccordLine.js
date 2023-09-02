@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react' 
 import Swal from 'sweetalert2'
-import { getallAgents } from '../Util/CApis'
+import { getallAgents } from '../../Util/CApis'
 import swal from 'sweetalert'
 
 const AccordLine = ({scheme}) => {

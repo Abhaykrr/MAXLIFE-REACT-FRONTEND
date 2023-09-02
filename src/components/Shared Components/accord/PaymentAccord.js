@@ -1,9 +1,9 @@
 // import React from 'react'
-import "../CSS/accord.css"
+import "../../CSS/accord.css"
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import React, { useState } from 'react' 
-import Inovice from "../../pages/Inovice";
+import Inovice from "../../../pages/Inovice";
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { flushSync } from "react-dom";
 

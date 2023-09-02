@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react'
-import Login from '../common/login';
+// import Login from '../common/login';
 
 const Rough = () => {
     const [loginopen,setloginopen]=useState(false);
@@ -7,7 +7,7 @@ const Rough = () => {
     const target = useRef(null);
   return (
     <div>
-      <h1>Rough Work</h1>
+      {/* <h1>Rough Work</h1>
       <button class="btn"
         ref={target}
         onClick={()=>{
@@ -40,7 +40,7 @@ const Rough = () => {
                    <Login/>
               </div>
               </div>
-              </div>
+              </div> */}
     </div>
   )
 }

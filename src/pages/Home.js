@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "../components/common/navbar";
-import Footer from "../components/common/footer";
+import Navbar from "../components/Shared Components/common/navbar"
+import Footer from "../components/Shared Components/common/footer";
 import Hero from "../components/home/hero";
 import Explainone from "../components/home/explainone";
 import Team from "../components/home/team";

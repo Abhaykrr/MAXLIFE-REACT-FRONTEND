@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../Navbar/Navbar'
+import Navbar from '../Shared Components/Navbar/Navbar'
 import axios from 'axios'
 import swal from 'sweetalert'
 
@@ -147,7 +147,10 @@ const EditPlan = () => {
                           id="fullName"
                           placeholder="Enter Plan name"
                           value={formPlanData.planName}
-                          onChange={(e)=>{setFormPlanData({...formPlanData,planName:e.target.value})}}
+                          onChange={(e)=>{
+                            (/^[a-zA-Z0-9\s]+$/).test(e.target.value)? setFormPlanData({...formPlanData,planName:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
+                            
+                            }}
                         />
                       </div>
 

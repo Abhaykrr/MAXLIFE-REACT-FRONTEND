@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../Navbar/Navbar'
+import Navbar from '../Shared Components/Navbar/Navbar'
 
 import { Helmet } from 'react-helmet'
 import { useNavigate } from 'react-router-dom'
 import { getpageEmployee } from '../Util/CApis'
-import Pagination from '../Page/Pagination'
+import Pagination from '../Shared Components/Page/Pagination'
 
 
 function AdminEmployes(){

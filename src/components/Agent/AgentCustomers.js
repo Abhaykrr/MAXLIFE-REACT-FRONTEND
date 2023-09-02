@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../Navbar/Navbar'
-import AccountAccord from '../accord/AccountAccord'
+import Navbar from '../Shared Components/Navbar/Navbar'
+import AccountAccord from '../Shared Components/accord/AccountAccord'
 import axios from 'axios'
-import Pagination from '../Page/Pagination'
+import Pagination from '../Shared Components/Page/Pagination'
 
 const AgentCustomers = ({agId}) => {
 

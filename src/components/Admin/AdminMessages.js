@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import Navbar from '../Navbar/Navbar';
+import Navbar from '../Shared Components/Navbar/Navbar';
 import { saveAdminResponseUtil, fetchAllMessagesUtil, getAllMessagesPageUtil } from '../Util/CApis';
-import MessageAccordAdmin from '../accord/MessageAccordAdmin';
-import Pagination from '../Page/Pagination'
+import MessageAccordAdmin from '../Shared Components/accord/MessageAccordAdmin';
+import Pagination from '../Shared Components/Page/Pagination'
 
 const AdminMessages = () => {
   const [messages, setMessages] = useState([]);

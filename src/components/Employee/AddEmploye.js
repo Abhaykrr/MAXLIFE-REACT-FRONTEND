@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../Shared Components/Navbar/Navbar";
 
 import axios from "axios";
 import swal from "sweetalert";
@@ -54,9 +54,12 @@ function Addemploye(){
                           type="text"
                           className="form-control"
                           id="firstname"
+                          value={employe.firstname}
                           placeholder="Enter First name"
                           required
-                          onChange={(e)=>{setEmploye({...employe,firstname:e.target.value})}}
+                          onChange={(e)=>{
+                            (/^[a-zA-Z0-9\s]+$/).test(e.target.value)?setEmploye({...employe,firstname:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
+                            }}
 
                         />
                       </div>
@@ -72,7 +75,9 @@ function Addemploye(){
                           id="lastname"
                           placeholder="Enter last name"
                           required
-                          onChange={(e)=>{setEmploye({...employe,lastname:e.target.value})}}
+                          value={employe.lastname}
+                          onChange={(e)=>{
+                            (/^[a-zA-Z0-9\s]+$/).test(e.target.value)?setEmploye({...employe,lastname:e.target.value}):swal("Invalid Input","Special Character not allowed","error")}}
 
                         />
                             </div>
@@ -84,6 +89,7 @@ function Addemploye(){
                           type="number"
                           className="form-control"
                           id="salary"
+                          min={0}
                           placeholder="Enter Employe Salary"
                           required
                           onChange={(e)=>{setEmploye({...employe,salary:e.target.value})}}

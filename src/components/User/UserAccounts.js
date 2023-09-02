@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../Navbar/Navbar'
-import AccountAccord from '../accord/AccountAccord'
-import { getCustomerAllAccountsUtil } from '../Util/CApis'
-import Pagination from '../Page/Pagination'
+import Navbar from '../Shared Components/Navbar/Navbar'
+import AccountAccord from '../Shared Components/accord/AccountAccord'
+import { getCustomerAllAccountsUtil } from '../Util/CApis' 
+import Pagination from '../Shared Components/Page/Pagination'
 import axios from 'axios'
 
 const UserAccounts = ({custId}) => {

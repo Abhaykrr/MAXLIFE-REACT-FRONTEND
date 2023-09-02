@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Navbar from "../Navbar/Navbar";
+import Navbar from "../Shared Components/Navbar/Navbar";
 import axios from "axios";
 import swal from "sweetalert";
 import { getallAgents } from "../Util/CApis";
@@ -81,7 +81,9 @@ return(
                           placeholder="Enter First name"
                           required
                           value={agent.firstname}
-                          onChange={(e)=>{setAgent({...agent,firstname:e.target.value})}}
+                          onChange={(e)=>{
+                            (/^[a-zA-Z0-9\s]+$/).test(e.target.value)?setAgent({...agent,firstname:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
+                              }}
 
                         />
                       </div>
@@ -98,7 +100,10 @@ return(
                           placeholder="Enter last name"
                           required
                           value={agent.lastname}
-                          onChange={(e)=>{setAgent({...agent,lastname:e.target.value})}}
+                          onChange={(e)=>{
+                            (/^[a-zA-Z0-9\s]+$/).test(e.target.value)?setAgent({...agent,lastname:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
+
+                          }}
 
                         />
                             </div>

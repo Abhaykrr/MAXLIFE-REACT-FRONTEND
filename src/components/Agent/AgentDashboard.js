@@ -1,5 +1,5 @@
 import React from 'react'
-import Navbar from '../Navbar/Navbar'
+import Navbar from "../Shared Components/Navbar/Navbar";
 import { useNavigate } from 'react-router-dom'
 import { Helmet } from 'react-helmet'
 

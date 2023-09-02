@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import Navbar from '../Navbar/Navbar'
+import Navbar from '../Shared Components/Navbar/Navbar'
 import axios from 'axios'
 import swal from 'sweetalert'
 
@@ -77,7 +77,12 @@ const AddPlan = () => {
                           id="fullName"
                           required
                           placeholder="Enter Plan name"
-                          onChange={(e)=>{setPlanData({...planData,planName:e.target.value})}}
+                          value={planData.planName}
+                          onChange={(e)=>{
+                            
+                            (/^[a-zA-Z0-9\s]+$/).test(e.target.value)? setPlanData({...planData,planName:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
+                                                       
+                           }}
 
                         />
                       </div>
