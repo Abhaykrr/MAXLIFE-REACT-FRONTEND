@@ -48,7 +48,12 @@ export async function getCustomerMessagesUtil(customerId) {
   export async function getCustomerMessagesPageUtil(customerId, currentPage, pageSize) {
     try {
       const response = await axios.get(
-        `http://localhost:8080/maxlife/messages/customermessagespage/${customerId}/${currentPage}/${pageSize}`
+        `http://localhost:8080/maxlife/messages/customermessagespage/${customerId}/${currentPage}/${pageSize}`,{
+          params:{
+            currentPage,
+            pageSize
+          }
+        }
       );
       return response.data;
     } catch (error) {

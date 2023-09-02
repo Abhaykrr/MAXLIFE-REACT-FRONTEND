@@ -72,6 +72,9 @@ const AccordLine = ({scheme}) => {
         const cardNumber = document.getElementById('card-number').value;
         const expiry = document.getElementById('expiry').value;
         const cvv = document.getElementById('cvv').value;
+
+
+        
         
         await addPolicyBackend(totalNoOfInstallments,installmentAmount,intrestAmount)
         Swal.fire({
