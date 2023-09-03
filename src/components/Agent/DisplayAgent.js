@@ -4,27 +4,37 @@ import { Helmet } from "react-helmet";
 import Navbar from "../Shared Components/Navbar/Navbar";
 import Pagination from "../Shared Components/Page/Pagination";
 import AgentCustomers from "./AgentCustomers"
-
+import axios from "axios";
 function AdminAgent(){
     const [agents,setagents]=useState();
     const [pages,setPages] = useState()
     const [currpage,setCurrpage] =useState(0)
-    const pagesize = 8;
+    const [pagesize,setPageSize] = useState(5);
+    const [searchText,setSearchText]=useState("");
+const[status,setStatus] = useState('Active')
+    
 
   const [particularAgentId,setParticularAgentId] = useState()
 
 
     async function getagent(){
      
-      
-        let response=await getpageAgents(currpage);
+      const response = await axios.get('http://localhost:8080/maxlife/getagent', {
+          params: {
+            inputtext:searchText,
+            status:status,
+            currpage: currpage,
+            pagesize: pagesize
+          }
+        });
+        // let response=await getpageAgents(currpage);
         setPages(response.data.totalPages-1)
       setagents(response.data.content);
       
     }
     useEffect(()=>{
       getagent();
-    },[currpage])
+    },[currpage,status,pagesize,searchText])
     
 
 
@@ -37,13 +47,30 @@ return (
       <Navbar/>
       <section className="home-section" id="userContent">
         <h3>All Agents</h3>
-     
+        <h4>
+              <div style={{display:'inline-block',width:'100px',marginRight:"1rem",height:'50px',borderRadius:'10px'}}> <select onChange={(e)=>setPageSize(e.target.value)} className="form-control text-center"   id="planStatus" >
+                                    <option value="5">5 Items</option>
+                                    <option value="10">10 Items</option>
+                                    <option value="15">15 Items</option>
+              </select></div>
+
+              <div style={{display:'inline-block',width:'100px',marginRight:"1rem",height:'50px',borderRadius:'10px'}}> <select onChange={(e)=>setStatus(e.target.value)} className="form-control text-center"   id="planStatus" >
+                                    <option value="Active">Active</option>
+                                    <option value="InActive">In Active</option>
+              </select></div>
+              <div style={{display:'inline-block',width:'300px',marginRight:"1rem",height:'50px',borderRadius:'10px'}}>
+                 <input type='text' onChange={(e)=>{setSearchText(e.target.value)}} className="form-control"  placeholder='Enter email,phone,name etc.'/></div>
+                                
+                                </h4>
       <div className="col-md-12 ">
         <div className="row card card-cascade wider" style={{height:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
         
+        
+      {agents?.length>0?<>
         <table class="table  table-bordered  table-striped mt-4" style={{width:"70rem"}} >
     <thead>
       <tr>
+        <th>Agent id</th>
         <th>Firstname</th>
         <th>Lastname</th>
         <th>Qualtification</th>
@@ -52,10 +79,12 @@ return (
       </tr>
     </thead>
     <tbody>
-    {
+      
+        {
             agents?.map((agent,index)=>{
                 return(
                     <tr>
+                      <td>{agent.agentid}</td>
                       <td>{agent.firstname}</td>
                       <td>{agent.lastname}</td>
                       <td>{agent.qualification}</td>
@@ -65,17 +94,23 @@ return (
                 )
             })
         }
-    </tbody>
+          </tbody>
   </table>
+  <div style={{display:'flex',justifyContent:'center'}}>
+                  <h1><Pagination pages={pages} currpage={currpage} setCurrpage={setCurrpage}/></h1>
+                </div>
      
+      
+      
+      </>:<h2>No Record Found</h2>}
+   
+  
        
 
   
         
 
-     <div style={{display:'flex',justifyContent:'center'}}>
-                  <h1><Pagination pages={pages} currpage={currpage} setCurrpage={setCurrpage}/></h1>
-                </div>
+     
         </div>
         </div>
         

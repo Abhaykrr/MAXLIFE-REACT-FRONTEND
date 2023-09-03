@@ -172,7 +172,7 @@ const AddScheme = () => {
                           required
                           value={schemeFormData.schemename}
                           onChange={(e)=>{
-                          (/^[a-zA-Z0-9\s]+$/).test(e.target.value)?setSchemeFormData({...schemeFormData,schemename:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
+                          ((/^[a-zA-Z0-9\s]+$/).test(e.target.value)||(e.target.value==""))?setSchemeFormData({...schemeFormData,schemename:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
                         }}
                         />
                       </div>

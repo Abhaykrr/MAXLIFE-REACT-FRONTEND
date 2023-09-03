@@ -12,7 +12,8 @@ import Addemploye from '../Employee/AddEmploye'
 import EditEmploye from '../Employee/EditEmploye'
 import AddAgent from '../Agent/AddAgent'
 import EditAgents from '../Agent/EditAgent'
-import AdminMessages from '../Admin/AdminMessages'; 
+import AdminMessage from './AdminMessages'
+import AllAccounts from './AllAccounts'
 const AdminDashboardRoutes = () => {
   return (
     <div> 
@@ -29,8 +30,8 @@ const AdminDashboardRoutes = () => {
           <Route path='/admin/dashboard/editemploye' element={<EditEmploye/>}/>  
           <Route path='/admin/dashboard/addagent' element={<AddAgent/>}/>  
           <Route path='/admin/dashboard/editagent' element={<EditAgents/>}/>  
-          <Route path="/admin/dashboard/messages" element={<AdminMessages />} />
-
+          <Route path='/admin/dashboard/messages' element={<AdminMessage/>}/>  
+          <Route path='/admin/dashboard/allaccounts' element={<AllAccounts/>}/> 
         </Routes>
       
     </div>

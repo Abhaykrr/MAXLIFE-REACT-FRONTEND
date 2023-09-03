@@ -82,7 +82,7 @@ return(
                           required
                           value={agent.firstname}
                           onChange={(e)=>{
-                            (/^[a-zA-Z0-9\s]+$/).test(e.target.value)?setAgent({...agent,firstname:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
+                            ((/^[a-zA-Z0-9\s]+$/).test(e.target.value)||(e.target.value==""))?setAgent({...agent,firstname:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
                               }}
 
                         />
@@ -101,7 +101,7 @@ return(
                           required
                           value={agent.lastname}
                           onChange={(e)=>{
-                            (/^[a-zA-Z0-9\s]+$/).test(e.target.value)?setAgent({...agent,lastname:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
+                            ((/^[a-zA-Z0-9\s]+$/).test(e.target.value)||(e.target.value==""))?setAgent({...agent,lastname:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
 
                           }}
 

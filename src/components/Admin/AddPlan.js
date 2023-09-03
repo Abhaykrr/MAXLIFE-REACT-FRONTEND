@@ -80,7 +80,7 @@ const AddPlan = () => {
                           value={planData.planName}
                           onChange={(e)=>{
                             
-                            (/^[a-zA-Z0-9\s]+$/).test(e.target.value)? setPlanData({...planData,planName:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
+                            ((/^[a-zA-Z0-9\s]+$/).test(e.target.value)||(e.target.value==""))? setPlanData({...planData,planName:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
                                                        
                            }}
 

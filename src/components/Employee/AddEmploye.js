@@ -58,7 +58,7 @@ function Addemploye(){
                           placeholder="Enter First name"
                           required
                           onChange={(e)=>{
-                            (/^[a-zA-Z0-9\s]+$/).test(e.target.value)?setEmploye({...employe,firstname:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
+                            ((/^[a-zA-Z0-9\s]+$/).test(e.target.value)||(e.target.value==""))?setEmploye({...employe,firstname:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
                             }}
 
                         />
@@ -77,7 +77,7 @@ function Addemploye(){
                           required
                           value={employe.lastname}
                           onChange={(e)=>{
-                            (/^[a-zA-Z0-9\s]+$/).test(e.target.value)?setEmploye({...employe,lastname:e.target.value}):swal("Invalid Input","Special Character not allowed","error")}}
+                            ((/^[a-zA-Z0-9\s]+$/).test(e.target.value)||(e.target.value==""))?setEmploye({...employe,lastname:e.target.value}):swal("Invalid Input","Special Character not allowed","error")}}
 
                         />
                             </div>

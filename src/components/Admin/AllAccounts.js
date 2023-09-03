@@ -1,12 +1,11 @@
+import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-import Navbar from '../Shared Components/Navbar/Navbar'
-import AccountAccord from '../Shared Components/accord/AccountAccord'
-import { getCustomerAllAccountsUtil } from '../Util/CApis' 
-import Pagination from '../Shared Components/Page/Pagination'
-import axios from 'axios'
+import AccountAccord from '../Shared Components/accord/AccountAccord';
+import Navbar from '../Shared Components/Navbar/Navbar';
+import Pagination from '../Shared Components/Page/Pagination';
 
-const UserAccounts = ({custId}) => {
-
+const AllAccounts = ({custId}) => {
+ 
 const [pages,setPages] = useState()
 const [currpage,setCurrpage] =useState(0)
 const [pagesize,setPageSize] = useState(5);
@@ -29,9 +28,8 @@ const[policyprefix,setPolicyPrefix] = useState(0)
         customerId = custId
         // let response = await axios.get(`http://localhost:8080/maxlife/account/${customerId}/${currpage}/${pagesize}`)
 
-        const response = await axios.get('http://localhost:8080/maxlife/account', {
+        const response = await axios.get('http://localhost:8080/maxlife/allaccounts', {
           params: {
-            customerid: customerId,
             policynoprefix:policyprefix,
             status:status,
             currpage: currpage,
@@ -65,7 +63,6 @@ const[policyprefix,setPolicyPrefix] = useState(0)
   const generateData = ()=>{
     console.log("generating...")
     let personalAccount = []
-    console.log(accountData.length,"  ",status);
     if(accountData.length>0){
   
       for(let i = 0 ; i <accountData.length ;i++){
@@ -110,15 +107,11 @@ const[policyprefix,setPolicyPrefix] = useState(0)
             <div className="card" style={{ width: '100%' }}>
                 <div className="card-body">
                    {/* <AccountAccord/> */}
-                   {accountData.length>0?<>
                    {personalAccord}
-                   <div style={{display:'flex',justifyContent:'center'}}>
+                </div>
+                <div style={{display:'flex',justifyContent:'center'}}>
                   <h1><Pagination pages={pages} currpage={currpage} setCurrpage={setCurrpage}/></h1>
                 </div>
-                   </>
-                   :"No Record Found"}
-                </div>
-                
                 
             </div>
         </section>
@@ -127,4 +120,4 @@ const[policyprefix,setPolicyPrefix] = useState(0)
   )
 }
 
-export default UserAccounts
+export default AllAccounts
