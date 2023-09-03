@@ -81,7 +81,7 @@ return(
                       id="firstname"
                       value={employe.firstname}
                       placeholder="Enter First name"
-                      onChange={(e)=>{setEmploye({...employe,firstname:e.target.value})}}
+                      onChange={(e)=>{((/^[a-zA-Z0-9\s]+$/).test(e.target.value)||(e.target.value==""))? setEmploye({...employe,firstname:e.target.value}):swal("Invalid Input","Special Character not allowed","error")}}
 
                     />
                   </div>
@@ -98,7 +98,9 @@ return(
                       required
                       placeholder="Enter last name"
                       value={employe.lastname}
-                      onChange={(e)=>{setEmploye({...employe,lastname:e.target.value})}}
+                      onChange={(e)=>{
+                        ((/^[a-zA-Z0-9\s]+$/).test(e.target.value)||(e.target.value==""))? setEmploye({...employe,lastname:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
+                        }}
 
                     />
                         </div>

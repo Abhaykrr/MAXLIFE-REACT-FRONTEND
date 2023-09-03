@@ -62,6 +62,7 @@ const[status,setStatus] = useState('Active')
   const generateData = ()=>{
     console.log("generating...")
     let personalAccount = []
+    console.log(accountData.length,"  ",status);
     if(accountData.length>0){
   
       for(let i = 0 ; i <accountData.length ;i++){
@@ -78,8 +79,9 @@ const[status,setStatus] = useState('Active')
   return (
     <div>
         <Navbar/>
-      <section className="home-section" id="userContent" >
-            <h4>My Accounts &nbsp; {status}
+      <section className="home-section" id="userContent" style={{ width: '80%' }}>
+            <h4>My Accounts 
+              <br/>
               <div style={{display:'inline-block',width:'100px',height:'50px',borderRadius:'10px'}}> <select onChange={(e)=>setPageSize(e.target.value)} className="form-control text-center"   id="planStatus" >
                                     <option value="5">5 Items</option>
                                     <option value="10">10 Items</option>
@@ -96,11 +98,15 @@ const[status,setStatus] = useState('Active')
             <div className="card" style={{ width: '100%' }}>
                 <div className="card-body">
                    {/* <AccountAccord/> */}
+                   {accountData.length>0?<>
                    {personalAccord}
-                </div>
-                <div style={{display:'flex',justifyContent:'center'}}>
+                   <div style={{display:'flex',justifyContent:'center'}}>
                   <h1><Pagination pages={pages} currpage={currpage} setCurrpage={setCurrpage}/></h1>
                 </div>
+                   </>
+                   :"No Record Found"}
+                </div>
+                
                 
             </div>
         </section>
