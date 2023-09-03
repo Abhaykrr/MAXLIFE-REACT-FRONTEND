@@ -5,14 +5,14 @@ import AddPlan from './AddPlan'
 import AddScheme from './AddScheme'
 import EditPlan from './EditPlan'
 import EditScheme from './EditScheme'
-import Adminusers from './AdminUsers'
-import AdminEmployes from './AdminEmployes'
-import AdminAgent from './AdminAgent'
-import Addemploye from './AddEmploye'
-import EditEmploye from './EditEmploye'
-import AddAgent from './AddAgent'
-import EditAgents from './EditAgent'
-import AdminMessages from './AdminMessages'
+import Adminusers from '../User/DisplayUsers'
+import AdminEmployes from '../Employee/DisplayEmploye'
+import AdminAgent from '../Agent/DisplayAgent'
+import Addemploye from '../Employee/AddEmploye'
+import EditEmploye from '../Employee/EditEmploye'
+import AddAgent from '../Agent/AddAgent'
+import EditAgents from '../Agent/EditAgent'
+import AdminMessages from '../Admin/AdminMessages'; 
 const AdminDashboardRoutes = () => {
   return (
     <div> 
@@ -29,7 +29,8 @@ const AdminDashboardRoutes = () => {
           <Route path='/admin/dashboard/editemploye' element={<EditEmploye/>}/>  
           <Route path='/admin/dashboard/addagent' element={<AddAgent/>}/>  
           <Route path='/admin/dashboard/editagent' element={<EditAgents/>}/>  
-          <Route path='/admin/dashboard/messages' element={<AdminMessages/>}/>  
+          <Route path="/admin/dashboard/messages" element={<AdminMessages />} />
+
         </Routes>
       
     </div>

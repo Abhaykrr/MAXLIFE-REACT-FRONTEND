@@ -47,14 +47,13 @@ export async function getCustomerMessagesUtil(customerId) {
 
   export async function getCustomerMessagesByPageUtil(customerId,currpage,pagesize) {
     try {
-      const response = await axios.get(`http://localhost:8080/maxlife/messages/customermessagespage`, {
-        params: {
-          customerid: customerId,
-          currpage:currpage,
-          pagesize: pagesize
+      const response = await axios.get(
+        `http://localhost:8080/maxlife/messages/customermessagespage/${customerId}/${currpage}/${pagesize}`,{
+        
+          
         }
-      })
-      return response;
+      );
+      return response.data;
     } catch (error) {
       alert(error.message);
     }
@@ -85,19 +84,19 @@ export async function addMessageUtil(customerId, message) {
   }
 }
 
-export async function getAllMessagesPageUtil(currpage, pagesize) {
-  try {
-    const response = await axios.get(`http://localhost:8080/maxlife/messages/allmessagespage`,{
-      params:{
-        currpage:currpage,
-        pagesize: pagesize
-      }
-    })
-    return response;
-  } catch (error) {
-    alert(error.message);
-  }
-}
+// export async function getAllMessagesPageUtil(currpage, pagesize) {
+//   try {
+//     const response = await axios.get(`http://localhost:8080/maxlife/messages/allmessagespage`,{
+//       params:{
+//         currpage:currpage,
+//         pagesize: pagesize
+//       }
+//     })
+//     return response;
+//   } catch (error) {
+//     alert(error.message);
+//   }
+// }
     
 
 export async function saveAdminResponseUtil(messageId, adminResponse) {

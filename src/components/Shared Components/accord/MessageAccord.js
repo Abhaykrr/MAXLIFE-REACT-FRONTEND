@@ -1,8 +1,7 @@
 import React from 'react';
 
 const MessageAccord = ({ message }) => {
-  const status = message.status || 'NOT ANSWERED'; 
-
+  const status = message.status === null || message.status === undefined ? 'NOT ANSWERED' : message.status;
   return (
     <div className="accordion-tab">
       <input
@@ -14,20 +13,19 @@ const MessageAccord = ({ message }) => {
       <label
         htmlFor={`messageToggle-${message.id}`} 
         className="l-bg-blue-dark"
-        style={{ backgroundColor: '#11101D' }}
+        style={{
+          display: 'flex',
+          flexDirection: 'row', // Horizontal alignment
+          alignItems: 'center', // Vertical alignment
+          backgroundColor: '#11101D'
+        }}
       >
-       <div className="message-content">
-      <label>
         Question: {message.question}
+        <span style={{ marginLeft: 'auto' }}>Status: {status}</span>
       </label>
-        <span className="status" style={{ marginLeft: '10px', float: 'right' }}>
-        Status: {status}
-      </span>
-    </div>
-  </label>
+
       <div className="accordion-content">
         <p>Answer: {message.answer}</p>
-        
       </div>
     </div>
   );

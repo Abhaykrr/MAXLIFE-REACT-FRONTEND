@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../Navbar/Navbar'
+import Navbar from "../Shared Components/Navbar/Navbar";
 import "../CSS/userprofile.css"
 import axios from 'axios'
 import swal from 'sweetalert'
@@ -139,8 +139,11 @@ const UserProfile = () => {
                           id="fullName"
                           required
                           placeholder="Enter First name"
+
                           value={customerFormData.firstname}
-                          onChange={(e)=>{setCustomerFormData({...customerFormData,firstname:e.target.value})}}
+                          onChange={(e)=>{
+                            (/^[a-zA-Z0-9\s]+$/).test(e.target.value)?setCustomerFormData({...customerFormData,firstname:e.target.value}):swal("Invalid Input","Special Character not allowed","error")
+                            }}
                         />
                       </div>
 
@@ -156,7 +159,7 @@ const UserProfile = () => {
                           required
                           placeholder="Enter Last name"
                           value={customerFormData.lastname}
-                          onChange={(e)=>{setCustomerFormData({...customerFormData,lastname:e.target.value})}}
+                          onChange={(e)=>{(/^[a-zA-Z0-9\s]+$/).test(e.target.value)?setCustomerFormData({...customerFormData,lastname:e.target.value}):swal("Invalid Input","Special Character not allowed","error")}}
                         />
                       </div>
 
@@ -205,7 +208,7 @@ const UserProfile = () => {
                           required
                           placeholder="Enter Street"
                           value={customerFormData.street}
-                          onChange={(e)=>{setCustomerFormData({...customerFormData,street:e.target.value})}}
+                          onChange={(e)=>{(/^[a-zA-Z0-9\s]+$/).test(e.target.value)?setCustomerFormData({...customerFormData,street:e.target.value}):swal("Invalid Input","Special Character not allowed","error")}}
                         />
                       </div>
                     </div>
@@ -219,7 +222,7 @@ const UserProfile = () => {
                           required
                           placeholder="Enter City"
                           value={customerFormData.city}
-                          onChange={(e)=>{setCustomerFormData({...customerFormData,city:e.target.value})}}
+                          onChange={(e)=>{(/^[a-zA-Z0-9\s]+$/).test(e.target.value)?setCustomerFormData({...customerFormData,city:e.target.value}):swal("Invalid Input","Special Character not allowed","error")}}
                         />
                       </div>
                     </div>
@@ -233,7 +236,7 @@ const UserProfile = () => {
                           required
                           placeholder="Enter State"
                           value={customerFormData.state}
-                          onChange={(e)=>{setCustomerFormData({...customerFormData,state:e.target.value})}}
+                          onChange={(e)=>{(/^[a-zA-Z0-9\s]+$/).test(e.target.value)?setCustomerFormData({...customerFormData,state:e.target.value}):swal("Invalid Input","Special Character not allowed","error")}}
                         />
                       </div>
                     </div>
@@ -241,7 +244,7 @@ const UserProfile = () => {
                       <div className="form-group">
                         <label for="zIp">Zip Code</label>
                         <input
-                          type="text"
+                          type="number"
                           className="form-control"
                           id="zIp"
                           required
@@ -267,7 +270,7 @@ const UserProfile = () => {
                           required
                           placeholder="Enter Name"
                           value={customerFormData.nominee}
-                          onChange={(e)=>{setCustomerFormData({...customerFormData,nominee:e.target.value})}}
+                          onChange={(e)=>{(/^[a-zA-Z0-9\s]+$/).test(e.target.value)?setCustomerFormData({...customerFormData,nominee:e.target.value}):swal("Invalid Input","Special Character not allowed","error")}}
                         />
                       </div>
                     </div>
@@ -281,7 +284,7 @@ const UserProfile = () => {
                           required
                           placeholder="Enter Relation"
                           value={customerFormData.nomineerelation}
-                          onChange={(e)=>{setCustomerFormData({...customerFormData,nomineerelation:e.target.value})}}
+                          onChange={(e)=>{(/^[a-zA-Z0-9\s]+$/).test(e.target.value)?setCustomerFormData({...customerFormData,nomineerelation:e.target.value}):swal("Invalid Input","Special Character not allowed","error")}}
                         />
                       </div>
                     </div>

@@ -1,16 +1,19 @@
 // import React from 'react'
-import "../CSS/accord.css"
+import "../../CSS/accord.css"
 import Swal from 'sweetalert2';
 import axios from 'axios';
 import React, { useState } from 'react' 
-import Inovice from "../../pages/Inovice";
+import Inovice from "../../../pages/Inovice";
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
+import { flushSync } from "react-dom";
 
 
 
-const PaymentAccord = ({record,referesh}) => {
+const PaymentAccord = ({record,referesh,regCom,insCom}) => {
 
   const roleId = localStorage.getItem('roleId')
+  let totalCommisionAmount = 0
+  const [comm,setComm] = useState()
 
   console.log(record)
 
@@ -66,7 +69,7 @@ const PaymentAccord = ({record,referesh}) => {
             return (
                 <tr>
                     <td>{e.installmentno}</td>
-                    <td>{e.installmentamount}</td>
+                    <td>Rs. {e.installmentamount}</td>
                     <td>{e.duedate}</td>
                    
                    {roleId === '1' ?(
@@ -83,6 +86,13 @@ const PaymentAccord = ({record,referesh}) => {
                     <td>{e.paiddate ? ( <Link to={{ pathname: '/invoice', state: 2 }}>Download</Link>) : (
                             <p/>
                         )}</td>
+
+                      {roleId === '4' && e.paiddate !==null ?( 
+                        e.installmentno == '1'? 
+                        ( totalCommisionAmount+=parseFloat(e.installmentamount * regCom * 0.01) , <td>Rs. {e.installmentamount*regCom*0.01}  | ({regCom})%</td> )
+                        :(totalCommisionAmount+=parseFloat(e.installmentamount * insCom * 0.01), <td>Rs. {e.installmentamount*insCom*0.01} | ({insCom})% </td>)
+                        
+                      ):null}  
                      
                 </tr>
             )
@@ -90,6 +100,7 @@ const PaymentAccord = ({record,referesh}) => {
     }
 
   return (
+    
     <div className="accordion-tab"  >
     <input id={record[0].referenceid} type="checkbox" className="accordion-toggle" name="toggle" />
     <label for={record[0].referenceid} className='l-bg-blue-dark' style={{backgroundColor:'#11101D'}} >Payment Details</label>
@@ -105,14 +116,21 @@ const PaymentAccord = ({record,referesh}) => {
                     <th scope="col">Paid Date</th>
                     <th scope="col">Payment Status</th>
                     <th scope="col">Receipt</th>
+                    {roleId === '4' ? <th scope="col">Commision</th> : null}
                     
 
                 </tr>
                 </thead>
                 <tbody>
                     {payData}
+                  
                     </tbody>
         </table>
+        <div style={{display:"flex",justifyContent:"center",alignItems:"center"}}>
+        {roleId === '4' ?  <button  type="button" className="btn btn-danger"
+                            >Claim Your Commision Rs. {totalCommisionAmount}</button>:null}
+        </div>
+        
 
           
 

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react' 
 import Swal from 'sweetalert2'
-import { getallAgents } from '../Util/CApis'
+import { getallAgents } from '../../Util/CApis'
 import swal from 'sweetalert'
 
 const AccordLine = ({scheme}) => {
@@ -72,6 +72,9 @@ const AccordLine = ({scheme}) => {
         const cardNumber = document.getElementById('card-number').value;
         const expiry = document.getElementById('expiry').value;
         const cvv = document.getElementById('cvv').value;
+
+
+        
         
         await addPolicyBackend(totalNoOfInstallments,installmentAmount,intrestAmount)
         Swal.fire({

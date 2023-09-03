@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
-import Navbar from '../Navbar/Navbar'
+import Navbar from '../Shared Components/Navbar/Navbar'
 
 import { Helmet } from 'react-helmet'
 import { useNavigate } from 'react-router-dom'
 import { getPageCustomer } from '../Util/CApis'
-import Pagination from '../Page/Pagination'
+import Pagination from '../Shared Components/Page/Pagination'
+
+import UserAccounts from './UserAccounts'
 
 
 function Adminusers(){
@@ -12,6 +14,22 @@ function Adminusers(){
     const [pages,setPages] = useState()
     const [currpage,setCurrpage] =useState(0)
     const pagesize = 8;
+
+    const [particularCustomerId,setParticularCustomerId] = useState(0)
+    const [particularCustomerName,setParticularCustomerName] = useState()
+    const [data,setData] = useState()
+
+   
+    const userAccount = ()=>{
+      console.log("I was called ")
+       setData(<UserAccounts custId={particularCustomerId}/>)
+       console.log(data)
+    }
+
+    useEffect(()=>{
+      userAccount()
+    },[particularCustomerId])
+
     const allusers = async()=>{
         try {
          
@@ -39,7 +57,8 @@ return (
 
       </Helmet>
       <Navbar/>
-      <section className="home-section" id="userContent">
+      <section style={{backgroundColor:'white',display:'inline-block',overflow:'auto',height:'auto',maxWidth:'100%'}} className="home-section" id="userContent">
+      <p>CID {particularCustomerId} {particularCustomerName}</p>
       <div className="col-md-12 ">
         <div className="row ">
      
@@ -48,7 +67,7 @@ return (
                 return(
 <div class="col">
 <div style={{width:"16rem"}}>
-<div class="card card-cascade wider">
+<div class="card card-cascade wider" onClick={()=>{ setParticularCustomerId(customer.customerid); setParticularCustomerName(customer.firstname)}}>
 
   {/* <!-- Card image --> */}
   <div class="view view-cascade overlay text-center">
@@ -93,7 +112,17 @@ return (
         <div style={{display:'flex',justifyContent:'center'}}>
                   <h1><Pagination pages={pages} currpage={currpage} setCurrpage={setCurrpage}/></h1>
                 </div>
+
+                {/* {data} */}
+                {/* {useEffect(()=>{
+                  <UserAccounts custId={particularCustomerId}/>
+                },[particularCustomerId])} */}
+                
       </section>
+                    <div style={{display:'flex',alignItems:'center',justifyContent:'center' }} >
+                      {/* {particularCustomerName} Accounts */}
+                    {particularCustomerId && <UserAccounts custId={particularCustomerId}/>}
+                  </div>
 
       
     </div>

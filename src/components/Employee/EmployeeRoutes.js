@@ -5,13 +5,14 @@ import AddPlan from '../Admin/AddPlan'
 import AddScheme from '../Admin/AddScheme'
 import EditPlan from '../Admin/EditPlan'
 import EditScheme from '../Admin/EditScheme'
-import Adminusers from '../Admin/AdminUsers'
-import AdminEmployes from '../Admin/AdminEmployes'
-import AdminAgent from '../Admin/AdminAgent'
-import Addemploye from '../Admin/AddEmploye'
-import EditEmploye from '../Admin/EditEmploye'
-import AddAgent from '../Admin/AddAgent'
-import EditAgents from '../Admin/EditAgent'
+import Adminusers from '../User/DisplayUsers'
+import AdminEmployes from './DisplayEmploye'
+import AdminAgent from '../Agent/DisplayAgent'
+import Addemploye from './AddEmploye'
+import EditEmploye from './EditEmploye'
+import AddAgent from '../Agent/AddAgent'
+import EditAgents from '../Agent/EditAgent'
+import AdminMessages from '../Admin/AdminMessages';
 
 
 
@@ -32,6 +33,7 @@ const EmployeeRoutes = () => {
           <Route path='/employee/dashboard/editemploye' element={<EditEmploye/>}/>  
           <Route path='/employee/dashboard/addagent' element={<AddAgent/>}/>  
           <Route path='/employee/dashboard/editagent' element={<EditAgents/>}/>  
+          <Route path='/employee/dashboard//messages' element={<AdminMessages/>}/> 
 
 
         </Routes>

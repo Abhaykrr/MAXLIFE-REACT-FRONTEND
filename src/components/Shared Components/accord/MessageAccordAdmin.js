@@ -35,16 +35,16 @@ const MessageAccordAdmin = ({ message, onSaveAdminResponse }) => {
         className="accordion-toggle"
         name="toggle"
       />
-      <label
-        htmlFor={`messageToggle-${message.id}`}
-        className="l-bg-blue-dark"
-        style={{ backgroundColor: '#11101D' }}
-      >
-        <div className="message-content">
+     <label
+    htmlFor={`messageToggle-${message.id}`}
+    className="l-bg-blue-dark"
+    style={{ backgroundColor: '#11101D' }}
+  >
+    <div className="message-content">
       <label>
         Question: {message.question}
       </label>
-        <span className="status" style={{ marginLeft: '10px', float: 'right' }}>
+      <span className="status" style={{ marginLeft: '10px', float: 'right' }}>
         Status: {status}
       </span>
     </div>
@@ -52,7 +52,6 @@ const MessageAccordAdmin = ({ message, onSaveAdminResponse }) => {
 
       <div className="accordion-content">
       <p>Answer: {message.answer}</p>
-       
         <form class="needs-validation" novalidate
                onSubmit={(e)=>handleSendResponse(e)}
                >
@@ -80,6 +79,3 @@ const MessageAccordAdmin = ({ message, onSaveAdminResponse }) => {
 };
 
 export default MessageAccordAdmin;
-
-
-

@@ -1,76 +1,82 @@
 import React, { useEffect, useState } from 'react';
-import Navbar from '../Navbar/Navbar';
-import MessageAccord from '../accord/MessageAccord'; 
+import Navbar from "../Shared Components/Navbar/Navbar";
+import MessageAccord from '../Shared Components/accord/MessageAccord';
 import axios from 'axios';
-import Pagination from '../Page/Pagination'
-import {fetchCustomerMessages,getCustomerMessagesByPageUtil, // Import the util function
-} from '../Util/CApis';
-
+import Pagination from '../Shared Components/Page/Pagination';
 
 const Messages = () => {
   const customerId = localStorage.getItem('genericId');
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState('');
   const [messageComponents, setMessageComponents] = useState([]);
-  const [error, setError] = useState(null);
+
   const [pages, setPages] = useState();
-  const [currpage, setcurrpage] = useState(0);
-  const [filter, setFilter] = useState('All');
-  const [pageSize, setPageSize] = useState(5);
+  const [currpage, setCurrpage] = useState(0);
+  const [pagesize, setPageSize] = useState(5);
 
-  
+  const [status, setStatus] = useState('All'); // Default value
 
-  const fetchCustomerMessages = async (customerId) => {
+  const fetchCustomerMessages = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:8080/maxlife/messages/messages/${customerId}`
-      );
-      console.log(response.data)
-      setMessages(response.data);
+      // let response;
+
+      // if (status === 'All') {
+      //   // Fetch all messages (both answered and not answered)
+      //   response = await axios.get(
+      //     `http://localhost:8080/maxlife/messages/customermessagespage`,
+      //     {
+      //       params: {
+      //         customerid: customerId,
+      //         status: status,
+      //         currpage: pageNo,
+      //         pagesize: pageSize
+      //       }
+      //     }
+      //   );
+      // } else {
+        // Fetch messages based on selected status (Answered or Not Answered)
+        const response = await axios.get(
+          `http://localhost:8080/maxlife/messages/customermessagespage`,
+          {
+            params: {
+              customerid: customerId,
+              status: status,
+              currpage: currpage,
+              pagesize: pagesize
+            }
+          }
+        );
+      
+
+      console.log(response.data);
+      setMessages(response.data.content);
+      setPages(response.data.totalPages - 1);
       generateMessageComponents();
     } catch (error) {
       console.error(error.message);
     }
   };
 
-  const fetchCustomerMessagesByPage = async () => {
-    try {
-      const response = await getCustomerMessagesByPageUtil(customerId,currpage,pageSize);
-      console.log(response.data);
-      setMessages(response.data.content);
-      setPages(response.data.totalPages - 1);
-    } catch (error) {
-      console.error(error.message);
-      setError(error.message);
-    }
+  const handleStatusChange = (e) => {
+    setStatus(e.target.value);
   };
 
   useEffect(() => {
     fetchCustomerMessages();
-  }, []);
-
-  
+  }, [ currpage, pagesize, status]);
 
   useEffect(() => {
-    fetchCustomerMessagesByPage(); 
-  }, [currpage, pageSize, filter]);
-
-  useEffect(() => {
-    generateMessageComponents(); 
+    generateMessageComponents();
   }, [messages]);
-
- 
 
   const generateMessageComponents = () => {
     let messageAccord = [];
     if (messages.length > 0) {
       for (let i = 0; i < messages.length; i++) {
         messageAccord.push(<MessageAccord message={messages[i]} />);
-      
+      }
+      setMessageComponents(messageAccord);
     }
-    console.log(messageAccord)
-    setMessageComponents(messageAccord);
-  }
   };
 
   const handleSendMessage = async (e) => {
@@ -81,44 +87,26 @@ const Messages = () => {
         { question: message }
       );
       alert("Question Sent Successfully");
-      fetchCustomerMessages(customerId, currpage);
+      fetchCustomerMessages(customerId, currpage, pagesize, status);
       setMessage('');
-      fetchCustomerMessagesByPage()
     } catch (error) {
       alert(error.message);
     }
   };
 
-  const filteredMessages = messages.filter((message) => {
-    if (filter === 'All') {
-      return true; 
-    } else if (filter === 'Answered') {
-      return message.status === 'ANSWERED'; 
-    } else if (filter === 'NotAnswered') {
-      return message.status !== 'ANSWERED'; 
-    }
-  });
-
-
-  const filteredMessageComponents = filteredMessages.map((message) => (
-    <MessageAccord key={message.id} message={message} />
-  ));
-
   return (
     <div>
       <Navbar />
       <section className="home-section" id="userContent">
-      <h4>Messages &nbsp;
-          <div
-            style={{
-              display: 'inline-block',
-              width: '100px',
-              height: '50px',
-              borderRadius: '10px',
-            }}
-          >
+        <h4>
+          Messages &nbsp; {status}
+          <div style={{ display: 'inline-block', width: '100px', height: '50px', borderRadius: '10px' }}>
             <select
-              onChange={(e) => setPageSize(e.target.value)}
+              onChange={(e) => {
+                setPageSize(e.target.value);
+                setCurrpage(0); // Reset to the first page when pagesize changes
+              }}
+              value={pagesize} // Controlled component
               className="form-control text-center"
               id="planStatus"
             >
@@ -127,62 +115,55 @@ const Messages = () => {
               <option value="15">15 Items</option>
             </select>
           </div>
-        </h4>
-        <div className="form-group">
-        <label htmlFor="messageFilter">Filter by Status:</label>
-        <select
-          className="form-control"
-          id="messageFilter"
-          value={filter}
-          onChange={(e) => setFilter(e.target.value)}
-        >
-          <option value="All">All</option>
-          <option value="Answered">Answered</option>
-          <option value="NotAnswered">Not Answered</option>
-        </select>
-      </div>
-      <div className="card h-100" style={{ width: '100%', height: '100%' }}>
-        <div className="card-body">
-          {filteredMessageComponents.length > 0 ? (
-            filteredMessageComponents
-          ) : (
-            <p>No messages to display.</p>
-          )}
 
-          <form
-            className="needs-validation"
-            noValidate
-            onSubmit={(e) => handleSendMessage(e)}
-          >
-            <div className="message-box">
-              <textarea
-                className="form-control"
-                rows="4"
-                value={message}
-                required
-                onChange={(e) => setMessage(e.target.value)}
-                placeholder="Type your Query here..."
-              ></textarea>
-              <div className="text-center">
-                <button
-                  type="submit"
-                  className="btn btn-primary mt-2"
-                  onClick={handleSendMessage}
-                  disabled={message.trim() === ''}
-                >
-                  Send
-                </button>
+          <div style={{ display: 'inline-block', width: '100px', height: '50px', borderRadius: '10px' }}>
+            <select
+              onChange={(e) => setStatus(e.target.value)}
+              value={status} // Controlled component
+              className="form-control text-center"
+              id="planStatus"
+            >
+              <option value="All">All</option>
+              <option value="Answered">Answered</option>
+              <option value="Not Answered">Not Answered</option>
+            </select>
+          </div>
+        </h4>
+        <div className="card h-100" style={{ width: '100%', height: '100%' }}>
+          <div className="card-body">
+            {messageComponents}
+            <form
+              className="needs-validation"
+              noValidate
+              onSubmit={(e) => handleSendMessage(e)}
+            >
+              <div className="message-box">
+                <textarea
+                  className="form-control"
+                  rows="4"
+                  value={message}
+                  required
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Type your Query here..."
+                ></textarea>
+                <div className="text-center">
+                  <button
+                    type="submit"
+                    className="btn btn-primary mt-2"
+                  >
+                    Send
+                  </button>
+                </div>
               </div>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'center' }}>
-              <h1>
-                <Pagination
-                  pages={pages}
-                  currpage={currpage}
-                  setCurrpage={setcurrpage}
-                />
-                 </h1>
-        </div>
+              <div style={{ display: 'flex', justifyContent: 'center' }}>
+                <h1>
+                  <Pagination
+                    pages={pages}
+                    currpage={currpage}
+                    setCurrpage={setCurrpage}
+                  />
+                </h1>
+              </div>
             </form>
           </div>
         </div>
