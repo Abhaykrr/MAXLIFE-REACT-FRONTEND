@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react'
 import "../components/CSS/accord.css"
 import AccordLine from '../components/Shared Components/accord/AccordLine'
 import { getAllPlansUtil, getallAgents } from '../components/Util/CApis'
-
-
+import Navbar from '../components/Shared Components/common/navbar'
+import Footer from '../components/Shared Components/common/footer'
 const Policy = () => {
     
     const [planDataDb,setPlanDataDb] = useState({})
@@ -79,7 +79,7 @@ const Policy = () => {
   return (
 
     <div style={{backgroundColor:'white'}}>
-
+<Navbar/>
          <div id="carouselExampleControls" className="carousel carousel-dark slide" data-bs-ride="carousel">
     <div className="carousel-inner">
 
@@ -165,7 +165,7 @@ const Policy = () => {
                 
                 </div>
         {/* Drop Down */}
-
+<Footer/>
     </div>
   )
 }

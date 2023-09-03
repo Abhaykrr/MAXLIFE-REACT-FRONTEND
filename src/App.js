@@ -5,7 +5,8 @@ import { Route, Routes } from 'react-router-dom';
 import Dashboard from './components/User/Dashboard';
 import Login from './components/login/Login.js';
 import Home from './pages/Home'
-import Polices from './pages/Polices';
+// import Polices from './pages/Polices';
+import Policy from './pages/Policy';
 import Adminusers from './components/User/DisplayUsers';
 import Rough from './components/rough/Rough';
 import Inovice from './pages/Inovice';
@@ -15,7 +16,7 @@ function App() {
       <Routes>   
         <Route path='/login' element={<Login/>}/>
         <Route path='/' element={<Home/>}/>
-        <Route path='/policies' element={<Polices/>}/>
+        <Route path='/policies' element={<Policy/>}/>
 
 
         <Route path='/rough' element={<Rough/>}/>
