@@ -46,7 +46,7 @@ return (
       </Helmet>
       <Navbar/>
       <section className="home-section" id="userContent">
-        <h3>All Agents</h3>
+        <h3>All Agents AgentId {particularAgentId}</h3>
         <h4>
               <div style={{display:'inline-block',width:'100px',marginRight:"1rem",height:'50px',borderRadius:'10px'}}> <select onChange={(e)=>setPageSize(e.target.value)} className="form-control text-center"   id="planStatus" >
                                     <option value="5">5 Items</option>
@@ -89,7 +89,7 @@ return (
                       <td>{agent.lastname}</td>
                       <td>{agent.qualification}</td>
                       <td>{agent.status}</td>
-                      <td><a class="btn">More Info</a></td>
+                      <td><a class="btn" onClick={()=>{setParticularAgentId(agent.agentid)}} >More Info</a></td>
                     </tr>
                 )
             })
