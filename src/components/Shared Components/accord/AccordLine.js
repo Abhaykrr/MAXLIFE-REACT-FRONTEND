@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import Swal from 'sweetalert2'
 import { getallAgents } from '../../Util/CApis'
 import swal from 'sweetalert'
+import ReactDOMServer from 'react-dom/server';
+import Paymentcard from '../Payment/PaymentCard'
 
 const AccordLine = ({scheme}) => {
 
@@ -56,34 +58,75 @@ const AccordLine = ({scheme}) => {
       alert("You should be a customer to buy policy")
       return
     }
-
-    Swal.fire({
-      title: 'Enter Payment Details',
-      html:
-        ` 
-        <input type="text" id="card-number" placeholder="Card Number" required>
-        <input type="text" id="expiry" placeholder="Expiry Date (MM/YY)" required>
-        <input type="text" id="cvv" placeholder="CVV" required>`,
-      showCancelButton: true,
-      confirmButtonText: 'Submit',
-      cancelButtonText: 'Cancel',
-      focusConfirm: false,
-      preConfirm: async () => {
-        const cardNumber = document.getElementById('card-number').value;
-        const expiry = document.getElementById('expiry').value;
-        const cvv = document.getElementById('cvv').value;
-
-
+    const pageRendererHtml2 = ReactDOMServer.renderToString(
+      <Paymentcard />
+    );
+      Swal.fire({
+        title: 'Enter Payment Details',
+        html:
+        pageRendererHtml2,
+        showCancelButton: true,
+        confirmButtonText: 'Submit',
+        cancelButtonText: 'Cancel',
+        focusConfirm: false,
+        width:"40%",
         
-        
-        await addPolicyBackend(totalNoOfInstallments,installmentAmount,intrestAmount)
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+          console.log(result,"swal results")
+             const cardNumber = document.getElementById('card-number').value;
+          const expiry = document.getElementById('expiry').value;
+          const cvv = document.getElementById('cvv').value;
+          // const form = document.getElementById('myForm');
+          // form.addEventListener('submit', (e)=>{ console.log(e,"on form submit")});
+          // form.submit();
+          // console.log(cardNumber,expiry,cvv);
+          if(expiry.length!=5||cardNumber.length!=12||cvv.length!=3){
+            Swal.fire('Invalid Input', 'Enter Valid Field.', 'error').then((result)=>{
+              if (result.isConfirmed)
+              paymentModule(totalNoOfInstallments,installmentAmount,intrestAmount);
+            })
+ 
+          }else{
+            await addPolicyBackend(totalNoOfInstallments,installmentAmount,intrestAmount)
         Swal.fire({
           title: 'Payment Successful!',
           text: 'Your payment has been processed.',
           icon: 'success'
         });
-      }
-    });
+          }
+         } else if (result.dismiss === Swal.DismissReason.cancel) {
+          
+          Swal.fire('Cancelled', 'Your action was cancelled.', 'error');
+        }
+      });
+    // Swal.fire({
+    //   title: 'Enter Payment Details',
+    //   html:
+    //     ` 
+    //     <input type="text" id="card-number" placeholder="Card Number" required>
+    //     <input type="text" id="expiry" placeholder="Expiry Date (MM/YY)" required>
+    //     <input type="text" id="cvv" placeholder="CVV" required>`,
+    //   showCancelButton: true,
+    //   confirmButtonText: 'Submit',
+    //   cancelButtonText: 'Cancel',
+    //   focusConfirm: false,
+    //   preConfirm: async () => {
+    //     const cardNumber = document.getElementById('card-number').value;
+    //     const expiry = document.getElementById('expiry').value;
+    //     const cvv = document.getElementById('cvv').value;
+
+
+        
+        
+    //     await addPolicyBackend(totalNoOfInstallments,installmentAmount,intrestAmount)
+    //     Swal.fire({
+    //       title: 'Payment Successful!',
+    //       text: 'Your payment has been processed.',
+    //       icon: 'success'
+    //     });
+    //   }
+    // });
   }
 
 

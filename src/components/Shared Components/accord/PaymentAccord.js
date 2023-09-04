@@ -1,13 +1,14 @@
 // import React from 'react'
 import "../../CSS/accord.css"
 import Swal from 'sweetalert2';
+import ReactDOMServer from 'react-dom/server';
 import axios from 'axios';
 import React, { useState } from 'react' 
 import Inovice from "../../../pages/Inovice";
 import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { flushSync } from "react-dom";
-
-
+import Paymentcard from "../Payment/PaymentCard";
+import { jsPDF } from "jspdf";
 
 const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimstatus}) => {
 
@@ -23,37 +24,77 @@ const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimst
 
     const paymentModule = async (referenceId)=>{
       
-    
+      // const paymentui=React.
+      const pageRendererHtml2 = ReactDOMServer.renderToString(
+        <Paymentcard />
+      );
         Swal.fire({
           title: 'Enter Payment Details',
           html:
-            ` 
-            <input type="text" id="card-number" placeholder="Card Number" required>
-            <input type="text" id="expiry" placeholder="Expiry Date (MM/YY)" required>
-            <input type="text" id="cvv" placeholder="CVV" required>`,
+          pageRendererHtml2,
           showCancelButton: true,
           confirmButtonText: 'Submit',
           cancelButtonText: 'Cancel',
           focusConfirm: false,
-          preConfirm: async () => {
-            const cardNumber = document.getElementById('card-number').value;
+          width:"40%",
+          
+        }).then(async (result) => {
+          if (result.isConfirmed) {
+            console.log(result,"swal results")
+               const cardNumber = document.getElementById('card-number').value;
             const expiry = document.getElementById('expiry').value;
             const cvv = document.getElementById('cvv').value;
-
-             await updateRecordBackend(referenceId)
+            // const form = document.getElementById('myForm');
+            // form.addEventListener('submit', (e)=>{ console.log(e,"on form submit")});
+            // form.submit();
+            // console.log(cardNumber,expiry,cvv);
+            if(expiry.length!=5||cardNumber.length!=12||cvv.length!=3){
+              Swal.fire('Invalid Input', 'Enter Valid Field.', 'error').then((result)=>{
+                if (result.isConfirmed)
+                paymentModule(referenceId);
+              })
+   
+            }else{
+              Swal.fire('Confirmed!', 'Your action was successful.', 'success');
+              await updateRecordBackend(referenceId)
+            }
+           } else if (result.dismiss === Swal.DismissReason.cancel) {
             
-            
+            Swal.fire('Cancelled', 'Your action was cancelled.', 'error');
           }
-        });
+        });;
       }
-      const downloadpopup=()=>{
+      
+      const downloadpopup=(e)=>{
+        const pageRendererHtml = ReactDOMServer.renderToString(
+          <Inovice data={e} />
+        );
         Swal.fire({
           title:'Recipt',
-          html:<Inovice/>,
+          html:pageRendererHtml,
           showCancelButton: true,
-          confirmButtonText: 'Submit',
+          confirmButtonText: 'Download',
           cancelButtonText: 'Cancel',
           focusConfirm: false,
+          width:"60%"
+        }).then(async (result)=>{
+          if (result.isConfirmed){
+            const doc = new jsPDF();
+            var elementHTML = pageRendererHtml.trim();
+            await doc.html(elementHTML, {
+              callback: function(doc) {
+                  // Save the PDF
+                  doc.save(`Installment_recipt.pdf`);
+              },
+              x: 4,
+              y: 4,
+              width: 205, //target width in the PDF document
+              windowWidth: 650, //window width in CSS pixels
+              // autoPaging:'text'
+          });
+          Swal.fire('Confirmed!', 'Your Recipt Downloaded.', 'success');
+
+          }
         })
       }
       const updateRecordBackend = async (referenceId)=>{
@@ -78,7 +119,7 @@ const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimst
 
     let payData
     if(record.length>0){
-        payData = record.map((e)=>{
+        payData = record.map((e,index)=>{
           actual++
           if(e.paiddate){
             count++
@@ -102,7 +143,7 @@ const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimst
                         ))}
 
                     <td>{e.paymentstatus}</td>
-                    <td>{e.paiddate ? ( <button onClick={()=>{downloadpopup()}}>Download</button>) : (
+                    <td>{e.paiddate ? ( <button onClick={()=>{downloadpopup(record[index]);console.log(e,"payment details")}}>Download</button>) : (
                             <p/>
                         )}</td>
 

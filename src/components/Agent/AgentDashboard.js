@@ -71,7 +71,7 @@ const AgentDashboard = () => {
 
       
       <div className="col-xl-3 col-lg-6" onClick={()=>{
-         navigate('/admin/dashboard/editplan')
+         navigate('/agent/dashboard/viewclaim')
       }}>
           <div className="card l-bg-green-dark">
               <div className="card-statistic-3 p-4">

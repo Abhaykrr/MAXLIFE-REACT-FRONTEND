@@ -2,7 +2,7 @@ import React, { useState,useEffect } from 'react'
 import Navbar from '../Shared Components/Navbar/Navbar'
 import axios from 'axios';
 import Pagination from '../Shared Components/Page/Pagination';
-const AllClaims = () => {
+const SelfClaims = () => {
   const [claims,setClaims]=useState();
   const [pages,setPages] = useState()
   const [currpage,setCurrpage] =useState(0)
@@ -12,13 +12,15 @@ const[status,setStatus] = useState('Active')
 
 async function getclaims(){
   try{
-    const response = await axios.get('http://localhost:8080/maxlife/allclaims', {
+    let agentid=localStorage.getItem("genricId");
+    console.log(agentid);
+    const response = await axios.get('http://localhost:8080/maxlife/getselfclaim', {
           params: {
             inputtext:searchText,
             status:status,
             currpage: currpage,
-            pagesize: pagesize
-          }
+            pagesize: pagesize,
+            custid:localStorage.getItem("genericId")          }
         });
         // let response=await getpageAgents(currpage);
         console.log(response.data,"from all cliams");
@@ -41,9 +43,10 @@ useEffect(()=>{
     <div>
          <Navbar />
             <section className="home-section" id="adminContent">
-              <h4>All Claims</h4>
+              <h4>My Payments</h4>
             <h4>
               <div style={{display:'inline-block',width:'100px',marginRight:"1rem",height:'50px',borderRadius:'10px'}}> <select onChange={(e)=>setPageSize(e.target.value)} className="form-control text-center"   id="planStatus" >
+              {/* <option value="1">1 Items</option> */}
                                     <option value="5">5 Items</option>
                                     <option value="10">10 Items</option>
                                     <option value="15">15 Items</option>
@@ -67,10 +70,10 @@ useEffect(()=>{
     <thead>
       <tr>
       <th>Claim id</th>
-        <th>Agent id/Customer id</th>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Qualtification</th>
+        {/* <th>Agent id/Customer id</th> */}
+        <th>Account NO</th>
+        <th>IFSC</th>
+        <th>Claim Amount</th>
         <th>Date</th>
         <th>Status</th>
         {/* <th>View</th> */}
@@ -83,10 +86,10 @@ useEffect(()=>{
                 return(
                     <tr>
                       <td>{claim.claimid}</td>
-                      <td>{claim.agent?claim.agent?.agentid+"( Agent )":claim.customer?.customerid+" (Self) "}</td>
-                      <td>{claim.agent?claim.agent?.firstname:claim.customer?.firstname}</td>
-                      <td>{claim.agent?claim.agent?.lastname:claim.customer?.lastname}</td>
-                      <td>{claim.agent?claim.agent?.qualification:claim.customer?.qualification}</td>
+                      {/* <td>{claim.agent?claim.agent?.agentid+"( Agent )":claim.customer?.customerid+" (Self) "}</td> */}
+                      <td>{claim.bankaccountnumber}</td>
+                      <td>{claim.bankifsccode}</td>
+                      <td>{claim.claimamount}</td>
                       <td>{claim.date}</td>
                       <td>{claim.status}</td>
                       {/* <td><a class="btn" onClick={()=>{setParticularAgentId(agent.agentid)}} >More Info</a></td> */}
@@ -113,11 +116,15 @@ useEffect(()=>{
      
         </div>
         </div>
-        
+        {/* <div className="col-md-12 ">
+        <div className="row card card-cascade wider" style={{height:'100%',display:'flex',justifyContent:'center',alignItems:'center'}}>
+          hello
+          </div>
+        </div> */}
             </section>
       
     </div>
   )
 }
 
-export default AllClaims
+export default SelfClaims;
