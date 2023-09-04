@@ -10,7 +10,7 @@ const UserAccounts = ({custId}) => {
 const [pages,setPages] = useState()
 const [currpage,setCurrpage] =useState(0)
 const [pagesize,setPageSize] = useState(5);
-
+const [searchText,setSearchText]=useState("");
 const[status,setStatus] = useState('All')
 const[policyprefix,setPolicyPrefix] = useState(0)
 
@@ -29,10 +29,17 @@ const[policyprefix,setPolicyPrefix] = useState(0)
         customerId = custId
         // let response = await axios.get(`http://localhost:8080/maxlife/account/${customerId}/${currpage}/${pagesize}`)
 
-        const response = await axios.get('http://localhost:8080/maxlife/account', {
+        console.log({
+          customerid: customerId,
+          policynoprefix:searchText,
+          status:status,
+          currpage: currpage,
+          pagesize: pagesize
+        });
+        const response = await axios.get('http://localhost:8080/maxlife/getaccounts', {
           params: {
             customerid: customerId,
-            policynoprefix:policyprefix,
+            inputtext:searchText,
             status:status,
             currpage: currpage,
             pagesize: pagesize
@@ -53,7 +60,7 @@ const[policyprefix,setPolicyPrefix] = useState(0)
 
   useEffect(()=>{
     getAccounts()
-  },[currpage,pagesize,status,policyprefix])
+  },[currpage,pagesize,status,searchText])
 
   useEffect(()=>{
     generateData()
@@ -85,7 +92,7 @@ const[policyprefix,setPolicyPrefix] = useState(0)
       <section className="home-section" id="userContent" >
       <h4 style={{ display: 'flex', alignItems: 'center' }}>
   My Accounts &nbsp; {policyprefix}
-  <div style={{ display: 'inline-block', width: '100px', height: '50px', borderRadius: '10px' }}>
+  <div style={{ display: 'inline-block', width: '100px',marginRight:"1rem", height: '50px', borderRadius: '10px' }}>
     <select onChange={(e) => setPageSize(e.target.value)} className="form-control text-center" id="planStatus">
       <option value="5">5 Items</option>
       <option value="10">10 Items</option>
@@ -93,7 +100,7 @@ const[policyprefix,setPolicyPrefix] = useState(0)
     </select>
   </div>
 
-  <div style={{ display: 'inline-block', width: '100px', height: '50px', borderRadius: '10px' }}>
+  <div style={{ display: 'inline-block', width: '100px',marginRight:"1rem", height: '50px', borderRadius: '10px' }}>
     <select onChange={(e) => setStatus(e.target.value)} className="form-control text-center" id="planStatus">
       <option value="All">All</option>
       <option value="Active">Active</option>
@@ -101,9 +108,11 @@ const[policyprefix,setPolicyPrefix] = useState(0)
     </select>
   </div>
 
-  <div className="form-group" style={{ display: 'inline-block', width: '240px', height: '50px', border:'none',fontSize:'25px' }}>
+  {/* <div className="form-group" style={{ display: 'inline-block', width: '240px', height: '50px', border:'none',fontSize:'25px' }}>
     <input type="number" placeholder='Search by policyNo' onChange={(e) => { setPolicyPrefix(e.target.value || 0) }} style={{ width: '100%' }} />
-  </div>
+  </div> */}
+  <div style={{display:'inline-block',width:'300px',marginRight:"1rem",height:'50px',borderRadius:'10px'}}>
+                 <input type='text' onChange={(e)=>{setSearchText(e.target.value)}} className="form-control"  placeholder='Enter email,phone,name etc.'/></div>
 </h4>
 
            

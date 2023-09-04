@@ -42,7 +42,16 @@ const PaymentAccord = ({record,referesh,regCom,insCom}) => {
           }
         });
       }
-
+      const downloadpopup=()=>{
+        Swal.fire({
+          title:'Recipt',
+          html:<Inovice/>,
+          showCancelButton: true,
+          confirmButtonText: 'Submit',
+          cancelButtonText: 'Cancel',
+          focusConfirm: false,
+        })
+      }
       const updateRecordBackend = async (referenceId)=>{
             try {
 
@@ -83,7 +92,7 @@ const PaymentAccord = ({record,referesh,regCom,insCom}) => {
                         ))}
 
                     <td>{e.paymentstatus}</td>
-                    <td>{e.paiddate ? ( <Link to={{ pathname: '/invoice', state: 2 }}>Download</Link>) : (
+                    <td>{e.paiddate ? ( <button onClick={()=>{downloadpopup()}}>Download</button>) : (
                             <p/>
                         )}</td>
 
