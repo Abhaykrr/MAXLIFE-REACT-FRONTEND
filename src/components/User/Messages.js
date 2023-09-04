@@ -63,7 +63,7 @@ const Messages = () => {
 
   useEffect(() => {
     fetchCustomerMessages();
-  }, [ currpage, pagesize, status]);
+  }, [customerId, currpage, pagesize, status]);
 
   useEffect(() => {
     generateMessageComponents();

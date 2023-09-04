@@ -10,17 +10,22 @@ import { flushSync } from "react-dom";
 import Paymentcard from "../Payment/PaymentCard";
 import { jsPDF } from "jspdf";
 
-const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimstatus}) => {
+const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimstatus,customermail}) => {
 
   const roleId = localStorage.getItem('roleId')
   let totalCommisionAmount = 0
   const [comm,setComm] = useState()
 
+
+  const [mailData,setMailData] = useState({policyno:"",duedate:"",installmentamount:""})
+
   const agentid = localStorage.getItem('genericId')
   let count = 0;
   let actual = 0;
+  let prev = 1
 
-  console.log(record)
+  // console.log(record)
+  console.log(customermail)
 
     const paymentModule = async (referenceId)=>{
       
@@ -135,10 +140,21 @@ const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimst
                    {roleId === '1' ?(
                     <td>{e.paiddate ? (e.paiddate) : (
                             <button  type="button" className="btn btn-danger"
-                            onClick={()=>paymentModule(e.referenceid)}>Pay</button>
+                            onClick={()=>paymentModule(e.referenceid)}>
+                              Pay</button>
                         )}
                     </td>):(e.paiddate ? (<td>{e.paiddate}</td>) : (
-                            <td><button  type="button" className="btn btn-danger"
+                            <td><button  type="button" className="btn btn-danger" onClick={(d) => {
+                              sendMail(e.referenceid,e.installmentamount,e.duedate);
+                              setMailData({
+                                ...mailData,
+                                policyno: e.referenceid,
+                                installmentamount: e.installmentamount,
+                                duedate: e.duedate
+                              });
+                              console.log(e.installmentno,'me')
+                              
+                            }}
                             >Ask to Pay</button></td>
                         ))}
 
@@ -167,9 +183,11 @@ const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimst
                       ):null}  
 
                     
-                     
+            
                 </tr>
+                
             )
+           
         })
     }
 
@@ -229,14 +247,55 @@ const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimst
       }
     }
 
+    const sendMail = async(policyno,duedate,installmentamount)=>{
+        console.log(mailData,'TOp')
+      if(customermail == null || customermail == '' || customermail == undefined)
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Customer has not set up his mail',
+      })
+
+     await Swal.fire({
+        title: 'Are you sure?',
+        text: `You mail will be sent to ${customermail}`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, Send it!'
+      }).then(async (result) => {
+        if (result.isConfirmed) {
+            console.log(mailData)
+          try {
+            let response = await axios.post(`http://localhost:8080/maxlife/mail/${customermail}/Please Pay Your Policy/Your Policy With Reference No ${policyno} is pending with due date ${duedate} with installment amount of RS ${installmentamount} Kindly Pay on time`)
+            // alert(response.data)
+            Swal.fire(
+              'Sent',
+              response.data,
+              'success'
+            )
+            
+          } catch (error) {
+              alert(error.message)
+          }
+          
+        }
+      })
+      // console.log(mailData)
+     
+    }
+
   return (
     
     <div className="accordion-tab"  >
+      
     <input id={record[0].referenceid} type="checkbox" className="accordion-toggle" name="toggle" />
     <label for={record[0].referenceid} className='l-bg-blue-dark' style={{backgroundColor:'#11101D'}} >Payment Details</label>
 
         <div className="accordion-content">
         <table className="table  table-bordered  table-striped text-center">
+        {mailData.policyno}
                 <thead>
                 <tr style={{fontSize:'14px'}}>
                     <th scope="col">Installment No</th>

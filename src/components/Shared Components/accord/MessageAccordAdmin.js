@@ -25,6 +25,7 @@ const MessageAccordAdmin = ({ message, onSaveAdminResponse }) => {
       alert('An error occurred while sending the response');
     }
   };
+  
 
   return (
     <div className="accordion-tab">
@@ -66,8 +67,8 @@ const MessageAccordAdmin = ({ message, onSaveAdminResponse }) => {
         <button
           type="submit"
           className="btn btn-primary mt-2"
-          // onClick={handleSendResponse}
-          // disabled={!response.trim()}
+          onClick={handleSendResponse}
+          disabled={!response.trim()}
         >
           Send
         </button>
