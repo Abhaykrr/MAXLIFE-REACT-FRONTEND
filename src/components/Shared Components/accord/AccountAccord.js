@@ -56,6 +56,7 @@ const AccountAccord = ({policy,referesh}) => {
                               policyno = {policy.policyno}
                               netamount = {policy.amount+policy.interestamount}
                               claimstatus = {policy.claimstatus}
+                              customermail = {policy?.customer?.email}
                               />
           </div>
 
