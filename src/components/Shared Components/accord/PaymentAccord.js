@@ -210,7 +210,7 @@ const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimst
       console.log(referenceid,amount,agentid)
       try {
 
-        let response = await axios.post(`http://localhost:8080/maxlife/withdraw/${referenceid}/${amount}/${agentid}`)
+        let response = await axios.post(`http://localhost:8080/maxlife/withdraw/${referenceid}/${amount}/${agentid}`,{})
         // alert(response.data)
         
         Swal.fire('Visit your portfolio..!', response.data, 'success')

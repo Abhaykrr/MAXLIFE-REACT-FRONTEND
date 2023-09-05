@@ -243,8 +243,8 @@ status
                         <td>{scheme.maxamount}</td>
                         <td>{scheme.mininvestmenttime}</td>
                         <td>{scheme.maxinvestmenttime}</td>
-                        <td>{scheme.maxage}</td>
                         <td>{scheme.minage}</td>
+                        <td>{scheme.maxage}</td>
                         <td>{scheme.profitratio}</td>
                         <td>{scheme.registrationcommision}</td>
                         <td>{scheme.installmentcommision}</td>

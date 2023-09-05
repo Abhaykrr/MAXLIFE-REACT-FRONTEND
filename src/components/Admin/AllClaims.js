@@ -2,6 +2,7 @@ import React, { useState,useEffect } from 'react'
 import Navbar from '../Shared Components/Navbar/Navbar'
 import axios from 'axios';
 import Pagination from '../Shared Components/Page/Pagination';
+import Swal from 'sweetalert2';
 const AllClaims = () => {
   const [claims,setClaims]=useState();
   const [pages,setPages] = useState()
@@ -31,6 +32,39 @@ async function getclaims(){
 useEffect(()=>{
   getclaims();
 },[currpage,status,pagesize,searchText])
+
+const approve = async(claimid)=>{
+
+  await Swal.fire({
+    title: 'Are you sure?',
+    text: "Do you want to approve payment ?",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, Approve'
+  }).then(async(result) => {
+    if (result.isConfirmed) {
+
+      try {
+        let response = await axios.post(`http://localhost:8080/maxlife/approveclaim/${claimid}`)
+        // alert(response.data)
+        Swal.fire(
+          'Payment Approved!',
+          response.data,
+          'success'
+        )
+        
+      } catch (error) {
+        alert(error.message)
+      }
+     
+    }
+  })
+
+  getclaims()
+   
+}
 
 
 
@@ -88,7 +122,9 @@ useEffect(()=>{
                       <td>{claim.agent?claim.agent?.lastname:claim.customer?.lastname}</td>
                       <td>{claim.agent?claim.agent?.qualification:claim.customer?.qualification}</td>
                       <td>{claim.date}</td>
-                      <td>{claim.status}</td>
+                      <td>{claim.status == 'Pending' ? (<button type="button" className="btn btn-danger" onClick={()=>approve(claim.claimid)}>
+                           Approve
+                         </button>): (claim.status)}</td>
                       {/* <td><a class="btn" onClick={()=>{setParticularAgentId(agent.agentid)}} >More Info</a></td> */}
                     </tr>
                 )
