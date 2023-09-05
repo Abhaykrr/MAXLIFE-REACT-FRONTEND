@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route, Link, Switch } from 'react-router-dom';
 import { flushSync } from "react-dom";
 import Paymentcard from "../Payment/PaymentCard";
 import { jsPDF } from "jspdf";
+import swal from "sweetalert";
 
 const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimstatus,customermail}) => {
 
@@ -18,7 +19,7 @@ const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimst
 
 
   const [mailData,setMailData] = useState({policyno:"",duedate:"",installmentamount:""})
-
+  const [accountdetails,setaccountdetails]=useState({acco:"",ifsc:""});
   const agentid = localStorage.getItem('genericId')
   let count = 0;
   let actual = 0;
@@ -85,6 +86,7 @@ const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimst
         }).then(async (result)=>{
           if (result.isConfirmed){
             const doc = new jsPDF();
+            // doc.setPageSize({ width: 210, height: 297 });
             var elementHTML = pageRendererHtml.trim();
             await doc.html(elementHTML, {
               callback: function(doc) {
@@ -195,12 +197,73 @@ const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimst
 
       await Swal.fire({
         title: `Do you want to withdraw Rs ${amount}?`,
-        showDenyButton: true,
+    //     html:`<div>
+    //     <form>
+    //     <label>Account no</label>
+    //         <br/>
+    //         <input id="accountno" required/>
+    //         <br/>
+    //         <label>IFSC Code</label>
+    //         <br/>
+    //         <input id="ifsccode" required/>
+    //     </form>
+
+
+
+    // </div>`,
+        
         showCancelButton: true,
         confirmButtonText: 'Withdraw',
-      }).then((result) => {
+      }).then(async (result) => {
         if (result.isConfirmed) {
-         
+         Swal.fire({
+          title:`Enter Account details`,
+          html:`<div>
+          <form>
+          <label>Account no</label>
+              <br/>
+              <input id="accountno" required/>
+              <br/>
+              <label>IFSC Code</label>
+              <br/>
+              <input id="ifsccode" required/>
+          </form>
+  
+  
+  
+      </div>`,
+      showCancelButton: true,
+        confirmButtonText: 'Submit',
+         }).then(async (result)=>{
+
+          if(result.isConfirmed){
+            const accno=document.getElementById("accountno").value;
+            const ifsc=document.getElementById("ifsccode").value;
+            if(accno.length==0||ifsc.length==0){
+              await swal("Invalid Input","Enter valid Acc no and IFSC Code","error").then((result)=>{
+                withdrawBackend(referenceid,amount);
+              })
+            }else{
+              setaccountdetails({...accountdetails,acco:accno});
+              setaccountdetails({...accountdetails,ifsc:ifsc});
+              try {
+
+                let response = await axios.post(`http://localhost:8080/maxlife/withdraw/${referenceid}/${amount}/${agentid}`)
+                // alert(response.data)
+                
+                Swal.fire('Visit your portfolio..!', response.data, 'success')
+                console.log(response.data,'see me bittu')
+                referesh()
+              } catch (error) {
+                alert(error.message)
+              }
+
+              swal("Succesful","Widthdraw Done","sucess");
+            }
+          }
+         })
+
+
         } else if (result.isDenied) {
           return
         }
@@ -208,17 +271,7 @@ const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimst
       })
 
       console.log(referenceid,amount,agentid)
-      try {
-
-        let response = await axios.post(`http://localhost:8080/maxlife/withdraw/${referenceid}/${amount}/${agentid}`)
-        // alert(response.data)
-        
-        Swal.fire('Visit your portfolio..!', response.data, 'success')
-        console.log(response.data,'see me bittu')
-        referesh()
-      } catch (error) {
-        alert(error.message)
-      }
+     
     }
 
     const claimBackend = async ()=>{
@@ -228,23 +281,59 @@ const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimst
         showDenyButton: true,
         showCancelButton: true,
         confirmButtonText: 'Withdraw',
-      }).then((result) => {
+      }).then(async (result) => {
         if (result.isConfirmed) {
-         
+         Swal.fire({
+          title:`Enter Account details`,
+          html:`<div>
+          <form>
+          <label>Account no</label>
+              <br/>
+              <input id="accountno" required/>
+              <br/>
+              <label>IFSC Code</label>
+              <br/>
+              <input id="ifsccode" required/>
+          </form>
+  
+  
+  
+      </div>`,
+      showCancelButton: true,
+        confirmButtonText: 'Submit',
+         }).then(async (result)=>{
+
+          if(result.isConfirmed){
+            const accno=document.getElementById("accountno").value;
+            const ifsc=document.getElementById("ifsccode").value;
+            if(accno.length==0||ifsc.length==0){
+              await swal("Invalid Input","Enter valid Acc no and IFSC Code","error").then((result)=>{
+                // withdrawBackend(referenceid,amount);
+              })
+            }else{
+              setaccountdetails({...accountdetails,acco:accno});
+              setaccountdetails({...accountdetails,ifsc:ifsc});
+              try {
+                let customerid = localStorage.getItem('genericId')
+                let response = await axios.post(`http://localhost:8080/maxlife/claim/${policyno}/${netamount}/${customerid}`)
+                Swal.fire('Visit your portfolio..!', response.data, 'success')
+                referesh()
+              } catch (error) {
+                alert(error.message)
+              }
+              swal("Succesful","Widthdraw Done","sucess");
+            }
+          }
+         })
+
+
         } else if (result.isDenied) {
           return
         }
         
       })
 
-      try {
-        let customerid = localStorage.getItem('genericId')
-        let response = await axios.post(`http://localhost:8080/maxlife/claim/${policyno}/${netamount}/${customerid}`)
-        Swal.fire('Visit your portfolio..!', response.data, 'success')
-        referesh()
-      } catch (error) {
-        alert(error.message)
-      }
+      
     }
 
     const sendMail = async(policyno,duedate,installmentamount)=>{

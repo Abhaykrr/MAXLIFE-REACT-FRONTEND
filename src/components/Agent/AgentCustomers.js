@@ -83,8 +83,10 @@ const generateData = ()=>{
         <Navbar/>
         <section className="home-section" id="userContent">
         <h4 style={{ display: 'flex', alignItems: 'center' }}>
-  My Customers Accounts &nbsp;{status} {policyprefix}
-  <div style={{ display: 'inline-block', width: '100px', height: '50px', borderRadius: '10px' }}>
+  My Customers Accounts
+  </h4>
+  <br/>
+  <div style={{ display: 'inline-block',marginRight:"1rem", width: '100px', height: '50px', borderRadius: '10px' }}>
     <select onChange={(e) => setPageSize(e.target.value)} className="form-control text-center" id="planStatus">
       <option value="5">5 Items</option>
       <option value="10">10 Items</option>
@@ -92,7 +94,7 @@ const generateData = ()=>{
     </select>
   </div>
 
-  <div style={{ display: 'inline-block', width: '100px', height: '50px', borderRadius: '10px' }}>
+  <div style={{ display: 'inline-block', width: '100px',marginRight:"1rem", height: '50px', borderRadius: '10px' }}>
     <select onChange={(e) => setStatus(e.target.value)} className="form-control text-center" id="planStatus">
       <option value="All">All</option>
       <option value="Active">Active</option>
@@ -100,10 +102,10 @@ const generateData = ()=>{
     </select>
   </div>
 
-  <div className="form-group" style={{ display: 'inline-block', width: '240px', height: '50px', border:'none',fontSize:'25px' }}>
-    <input type="number" placeholder='Search by policyNo' onChange={(e) => { setPolicyPrefix(e.target.value || 0) }} style={{ width: '100%' }} />
+  <div className="form-group" style={{ display: 'inline-block', width: '240px',marginRight:"1rem", height: '50px', border:'none',fontSize:'25px' }}>
+    <input type="number" placeholder='Search by policyNo' className='form-control' onChange={(e) => { setPolicyPrefix(e.target.value || 0) }} style={{ width: '100%' }} />
   </div>
-</h4>
+
 
          <div className="card" style={{ width: '100%' }}>
                 <div className="card-body">
