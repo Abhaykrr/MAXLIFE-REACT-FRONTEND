@@ -5,6 +5,26 @@ import swal from 'sweetalert'
 
 const EditScheme = () => {
 
+  const [selectedImage, setSelectedImage] = useState(null); // State to store the selected image
+  const [formData, setFormData] = useState(new FormData()); // State to store FormData
+
+  // Function to handle image selection
+  const handleImageChange = (e) => {
+    const selectedFile = e.target.files[0];
+
+    if (selectedFile) {
+      setSelectedImage(URL.createObjectURL(selectedFile));
+
+      // Create a new FormData object and append the selected file to it
+      const newFormData = new FormData();
+      newFormData.append('image', selectedFile);
+
+      // Set the new FormData object in the state
+      setFormData(newFormData);
+    }
+  };
+
+
     const [schemeId,setSchemeId] = useState()
     const [schemeFormData,setSchemeFormData] = useState({
         // planid:"",
@@ -107,6 +127,23 @@ const EditScheme = () => {
         } catch (error) {
           alert(error.message)
         }
+
+        console.log(formData,'see mE')
+        // Adding Respective Image
+        if(formData!=null)
+        try {
+          const response = await axios.post(`http://localhost:8080/maxlife/addimage/${schemeId}/401`, formData, {
+            headers: {
+              'Content-Type': 'multipart/form-data', // Required for file upload
+            },
+          });
+    
+          console.log('Image upload response:', response.data);
+        } catch (error) {
+          console.error('Error uploading image:', error);
+        }
+
+        setFormData(new FormData());
   
       }
 
@@ -132,7 +169,7 @@ const EditScheme = () => {
                           alt="Maxwell Admin"
                         />
                       </div>
-                      <h5 className="user-name">Abhay Kumar</h5>
+                      <h5 className="user-name">Abbhay Kumar</h5>
                       <h6 className="user-email">
                         <a href="">abhay80413@gmail.com</a>
                       </h6>
@@ -213,7 +250,12 @@ const EditScheme = () => {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="fullName">Image Url</label>
+                        <div class="mb-3">
+                          <label for="formFile" class="form-label">Choose Image</label>
+                          <input class="form-control" type="file" id="formFile" onChange={handleImageChange}/>
+                        </div>
+                      
+                        {/* <label for="fullName">Image Url</label>
                         <input
                           type="text"
                           className="form-control"
@@ -221,7 +263,7 @@ const EditScheme = () => {
                           placeholder="Enter Url"
                           value={schemeFormData.schemeimageurl}
                           onChange={(e)=>{setSchemeFormData({...schemeFormData,schemeimageurl:e.target.value})}}
-                        />
+                        /> */}
                       </div>
 
                     </div>

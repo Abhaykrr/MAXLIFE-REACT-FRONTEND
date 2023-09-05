@@ -8,6 +8,9 @@ import Paymentcard from '../Payment/PaymentCard'
 
 const AccordLine = ({scheme}) => {
 
+  const defaultUrl = `https://images.pexels.com/photos/339620/pexels-photo-339620.jpeg?auto=compress&cs=tinysrgb&w=1600`
+  const actualUrl = ''
+
   const [noOfYear,setNoOfYear] = useState()
   const [investmentAmount,setInvestmentAmount] = useState()
   const [month,setMonth] = useState()
@@ -215,9 +218,27 @@ const AccordLine = ({scheme}) => {
     <form class="needs-validation" novalidate
                onSubmit={(e)=>generateDetails(e)}
                >
+      <br/>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <p>{scheme.schemename}</p>
+                    <p>{scheme.description}</p>
+                </div>
+                <div class="col-md-6">
+                  
+                <img style={{
+                    width: '500px',
+                    height: '250px',
+                    borderRadius: '10px',
+                    boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.3)' // Change the values as needed
+                  }} src={`http://localhost:8080/maxlife/image/${scheme.schemeid}/401`!=='401' ? (`http://localhost:8080/maxlife/image/${scheme.schemeid}/401`):(defaultUrl)} alt="" class="img-fluid" />
 
-        <p>{scheme.schemename}</p>
-        <p>{scheme.description}</p>
+                </div>
+            </div>
+        </div><br />
+
+
         <table className="table  table-bordered  table-striped text-center">
                 <thead>
                 <tr style={{fontSize:'14px'}}>
