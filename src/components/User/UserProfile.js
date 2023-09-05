@@ -6,6 +6,28 @@ import swal from 'sweetalert'
 
 const UserProfile = () => {
 
+  
+  const [selectedImage, setSelectedImage] = useState(null); // State to store the selected image
+  const [formData, setFormData] = useState(new FormData()); // State to store FormData
+  const customerId = localStorage.getItem('genericId')
+  
+  // Function to handle image selection
+  const handleImageChange = (e) => {
+    const selectedFile = e.target.files[0];
+
+    if (selectedFile) {
+      setSelectedImage(URL.createObjectURL(selectedFile));
+
+      // Create a new FormData object and append the selected file to it
+      const newFormData = new FormData();
+      newFormData.append('image', selectedFile);
+
+      // Set the new FormData object in the state
+      setFormData(newFormData);
+    }
+  };
+
+
   const [customerData,setCustomerData] = useState({})
     
   const [customerFormData,setCustomerFormData] = useState({
@@ -45,6 +67,21 @@ const UserProfile = () => {
       })
 
       swal("Good job!", response.data, "success")
+
+      if(formData!=null)
+      try {
+        const response = await axios.post(`http://localhost:8080/maxlife/addimage/401/${customerId}`, formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data', // Required for file upload
+          },
+        });
+  
+        console.log('Image upload response:', response.data);
+      } catch (error) {
+        console.error('Error uploading image:', error);
+      }
+
+      setFormData(new FormData());
       
     } catch (error) {
       alert(error.message)
@@ -118,6 +155,12 @@ const UserProfile = () => {
                       We may collect personal information that you provide voluntarily when you interact with our website. This may include your name, email address, and any other information you choose to provide.
 
                       </p>
+                      <img style={{
+                    width: '500px',
+                    height: '250px',
+                    borderRadius: '10px',
+                    boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.3)' // Change the values as needed
+                  }} src={`http://localhost:8080/maxlife/image/401/${customerId}`} alt="" class="img-fluid" />
                     </div>
                   </div>
                 </div>
@@ -194,6 +237,22 @@ const UserProfile = () => {
                     </div>
                    
                   </div>
+                            <br />
+                  <div className="row gutters">
+                    <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                      <h6 className="mb-2 text-primary">Documents</h6>
+                    </div>
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label for="fullName">Photo Id</label>
+                        <div class="mb-3">
+                          <input class="form-control" type="file" id="formFile" onChange={handleImageChange}/>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
                   <div className="row gutters">
                     <div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                       <h6 className="mt-3 mb-2 text-primary">Address</h6>
