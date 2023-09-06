@@ -248,7 +248,10 @@ const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimst
               setaccountdetails({...accountdetails,ifsc:ifsc});
               try {
 
-                let response = await axios.post(`http://localhost:8080/maxlife/withdraw/${referenceid}/${amount}/${agentid}`)
+                console.log(accno,'here')
+                console.log(ifsc)
+
+                let response = await axios.post(`http://localhost:8080/maxlife/withdraw/${referenceid}/${amount}/${agentid}/${accno}/${ifsc}`)
                 // alert(response.data)
                 
                 Swal.fire('Visit your portfolio..!', response.data, 'success')
@@ -315,7 +318,7 @@ const PaymentAccord = ({record,referesh,regCom,insCom,policyno,netamount,claimst
               setaccountdetails({...accountdetails,ifsc:ifsc});
               try {
                 let customerid = localStorage.getItem('genericId')
-                let response = await axios.post(`http://localhost:8080/maxlife/claim/${policyno}/${netamount}/${customerid}`)
+                let response = await axios.post(`http://localhost:8080/maxlife/claim/${policyno}/${netamount}/${customerid}/${accno}/${ifsc}`)
                 Swal.fire('Visit your portfolio..!', response.data, 'success')
                 referesh()
               } catch (error) {

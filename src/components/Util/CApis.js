@@ -192,3 +192,24 @@ export async function getPageCustomer(pageno){
         alert(error.message)
     }
 }
+
+export const getAllCust = async(customerId)=>{
+
+  try {
+    let response = await axios.get('http://localhost:8080/maxlife/getaccounts', {
+  params: {
+    customerid: customerId,
+    inputtext:"",
+    status:'All',
+    currpage: 0,
+    pagesize: 2
+  }
+});
+
+return response
+  } catch (error) {
+    alert(error.message)
+  }
+
+}
+
