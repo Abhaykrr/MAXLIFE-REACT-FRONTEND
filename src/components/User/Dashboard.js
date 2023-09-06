@@ -5,7 +5,7 @@ import React, { useEffect, useState } from 'react'
 
 import { useNavigate} from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { getCustomerMessagesUtil } from '../Util/CApis'
+import { getAllCust, getCustomerMessagesUtil } from '../Util/CApis'
 
     const Dashboard = () => {
 
@@ -14,14 +14,18 @@ import { getCustomerMessagesUtil } from '../Util/CApis'
         const navigate = useNavigate()
 
         const [totalMessages, setTotalMessages] = useState();
+        const [totalAccounts,setTotalAccounts] = useState();
 
         const updateCards = async ()=>{
             try {
                 
                
                 let r1=  await getCustomerMessagesUtil(customerId);
+                let r2 = await getAllCust(customerId)
+                console.log(r2,'hey')
                 
                 setTotalMessages(r1?.data?.length)
+                setTotalAccounts(r2?.data?.totalElements)
         
         
             } catch (error) {
@@ -58,7 +62,7 @@ import { getCustomerMessagesUtil } from '../Util/CApis'
                     <div className="row align-items-center mb-2 d-flex">
                         <div className="col-8">
                             <h5 className="d-flex align-items-center mb-0">
-                                3 Accounts
+                                {totalAccounts} Accounts
                             </h5>
                         </div>
                         <div className="col-4 text-right">
