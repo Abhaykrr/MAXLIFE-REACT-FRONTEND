@@ -90,8 +90,10 @@ const[policyprefix,setPolicyPrefix] = useState(0)
     <div>
         <Navbar/>
       <section className="home-section" id="userContent" >
-      <h4 style={{ display: 'flex', alignItems: 'center' }}>
-  My Accounts &nbsp; {policyprefix}
+      <h4>My Accounts</h4>
+      <div style={{ display: 'flex', alignItems: 'center' }}>
+ 
+  <br/>
   <div style={{ display: 'inline-block', width: '100px',marginRight:"1rem", height: '50px', borderRadius: '10px' }}>
     <select onChange={(e) => setPageSize(e.target.value)} className="form-control text-center" id="planStatus">
       <option value="5">5 Items</option>
@@ -113,7 +115,7 @@ const[policyprefix,setPolicyPrefix] = useState(0)
   </div> */}
   <div style={{display:'inline-block',width:'300px',marginRight:"1rem",height:'50px',borderRadius:'10px'}}>
                  <input type='text' onChange={(e)=>{setSearchText(e.target.value)}} className="form-control"  placeholder='Enter email,phone,name etc.'/></div>
-</h4>
+</div>
 
            
             <div className="card" style={{ width: '100%' }}>

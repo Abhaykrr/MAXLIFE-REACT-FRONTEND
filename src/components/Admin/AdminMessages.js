@@ -105,8 +105,10 @@ const AdminMessages = () => {
     <div>
     <Navbar />
     <section className="home-section" id="adminContent">
-      <h4>Customer Queries&nbsp; {status}
-              <div style={{display:'inline-block',width:'100px',height:'50px',borderRadius:'10px'}}> <select onChange={(e)=>setPageSize(e.target.value)} className="form-control text-center"   id="planStatus" >
+      <h4>Customer Queries</h4>
+      <br/>
+      <h4>
+              <div style={{display:'inline-block',width:'100px',marginRight:'2rem',height:'50px',borderRadius:'10px'}}> <select onChange={(e)=>setPageSize(e.target.value)} className="form-control text-center"   id="planStatus" >
                                     <option value="5">5 Items</option>
                                     <option value="10">10 Items</option>
                                     <option value="15">15 Items</option>

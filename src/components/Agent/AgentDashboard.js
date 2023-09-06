@@ -50,12 +50,12 @@ const AgentDashboard = () => {
               <div className="card-statistic-3 p-4">
                   <div className="card-icon card-icon-large"><i className="fas fa-users"></i></div>
                   <div className="mb-4">
-                      <h5 className="card-title mb-0">Commissions</h5>
+                      <h5 className="card-title mb-0">Scheme</h5>
                   </div>
                   <div className="row align-items-center mb-2 d-flex">
                       <div className="col-8">
                           <h5 className="d-flex align-items-center mb-0">
-                            Commissions
+                             Scheme
                           </h5>
                       </div>
                       <div className="col-4 text-right">

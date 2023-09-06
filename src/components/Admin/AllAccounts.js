@@ -80,9 +80,11 @@ const[policyprefix,setPolicyPrefix] = useState(0)
     <div>
         <Navbar/>
       <section className="home-section" id="userContent" >
+  <h4>My Accounts</h4>
+      <br/>
       <h4 style={{ display: 'flex', alignItems: 'center' }}>
-  My Accounts &nbsp; {policyprefix}
-  <div style={{ display: 'inline-block', width: '100px', height: '50px', borderRadius: '10px' }}>
+  
+  <div style={{ display: 'inline-block',marginRight:'2rem', width: '100px', height: '50px', borderRadius: '10px' }}>
     <select onChange={(e) => setPageSize(e.target.value)} className="form-control text-center" id="planStatus">
       <option value="5">5 Items</option>
       <option value="10">10 Items</option>
@@ -90,7 +92,7 @@ const[policyprefix,setPolicyPrefix] = useState(0)
     </select>
   </div>
 
-  <div style={{ display: 'inline-block', width: '100px', height: '50px', borderRadius: '10px' }}>
+  <div style={{ display: 'inline-block', width: '100px', marginRight:'2rem',height: '50px', borderRadius: '10px' }}>
     <select onChange={(e) => setStatus(e.target.value)} className="form-control text-center" id="planStatus">
       <option value="All">All</option>
       <option value="Active">Active</option>
@@ -99,7 +101,7 @@ const[policyprefix,setPolicyPrefix] = useState(0)
   </div>
 
   <div className="form-group" style={{ display: 'inline-block', width: '240px', height: '50px', border:'none',fontSize:'25px' }}>
-    <input type="number" placeholder='Search by policyNo' onChange={(e) => { setPolicyPrefix(e.target.value || 0) }} style={{ width: '100%' }} />
+    <input type="number" placeholder='Search by policyNo' className='form-control' onChange={(e) => { setPolicyPrefix(e.target.value || 0) }} style={{ width: '100%' }} />
   </div>
 </h4>
 

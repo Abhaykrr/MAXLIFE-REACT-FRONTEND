@@ -60,7 +60,7 @@ const Signup = () => {
    
 
     {/* <!-- Sign in button --> */}
-    <button class="btn btn-info btn-block my-2" onClick={handlesubmit}>Sign in</button>
+    <button class="btn btn-info btn-block my-2" onClick={handlesubmit}>Sign Up</button>
 
    
 

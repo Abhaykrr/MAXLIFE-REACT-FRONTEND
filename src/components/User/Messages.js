@@ -98,9 +98,11 @@ const Messages = () => {
     <div>
       <Navbar />
       <section className="home-section" id="userContent">
+        <h4>Messages</h4>
+        <br/>
         <h4>
-          Messages &nbsp; {status}
-          <div style={{ display: 'inline-block', width: '100px', height: '50px', borderRadius: '10px' }}>
+          
+          <div style={{ display: 'inline-block',marginRight:'2rem' , width: '100px', height: '50px', borderRadius: '10px' }}>
             <select
               onChange={(e) => {
                 setPageSize(e.target.value);

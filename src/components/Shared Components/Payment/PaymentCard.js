@@ -12,7 +12,7 @@ function Paymentcard(){
         <div>
             <form id="myForm"  onSubmit={(e)=>handlesubmission(e)}>
 
-        <label>Enter Card Number</label>
+        {/* <label>Enter Card Number</label>
         <br/>
         <input 
         required
@@ -41,7 +41,25 @@ function Paymentcard(){
         onChange={(e)=>{setcarddetails({...carddetails,cvv:e.target.value})}}
         value={carddetails.cvv}
 
-        />
+        /> */}
+        <div class="row" style={{width:"80%",marginLeft:'3rem'}}>
+            <div>
+                <label>Card Number</label>
+                <input type="text" class="form-control" id="card-number" placeholder="Enter 12 digit card number"/>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+
+    <div class="col">
+    <label>Expiry Date</label>
+      <input type="text"  id="expiry" class="form-control" placeholder="MM-YY"/>
+    </div>
+    <div class="col">
+    <label>Enter Cvv no.</label>
+      <input type="text" id="cvv" class="form-control" placeholder="Cvv"/>
+    </div>
+  </div>
         {/* <button type="button" onClick={()=>handleSubmission()}>Proceed To Pay</button> */}
         </form>
 

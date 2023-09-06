@@ -41,7 +41,7 @@ const Policy = () => {
                                 className="card"
                                 style={{ width: '10rem', height: '10rem', margin: '20px' }}
                             >
-                                <div className="card-body" onClick={()=>{
+                                <div className="card-body shadow p-3 bg-body rounded" onClick={()=>{
                                     setCurrPlanId(plan.planid)
                                     setHeadLine(plan.planname)
                                     console.log(plan.planid)
