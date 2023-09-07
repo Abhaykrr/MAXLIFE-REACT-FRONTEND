@@ -4,6 +4,7 @@ import Login from "./login";
 import Signup from "./signup";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import Swal from "sweetalert2";
 function Navbar() {
 
   const navigate = useNavigate()
@@ -41,11 +42,16 @@ function Navbar() {
   })
 
 
-  const divertToPortfolio = ()=>{
+  const divertToPortfolio = async ()=>{
     const roleId = localStorage.getItem('roleId')
     
     if(roleId === undefined || roleId === null)
       alert("Please Login")
+    //  await Swal.fire({
+    //     icon: 'error',
+    //     title: 'Oops...',
+    //     text: 'Please Login!',
+    //   })
 
         if(roleId === "1")
         navigate("/user/dashboard")

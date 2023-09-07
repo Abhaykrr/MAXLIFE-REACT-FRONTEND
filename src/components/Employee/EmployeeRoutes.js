@@ -13,13 +13,18 @@ import EditEmploye from './EditEmploye'
 import AddAgent from '../Agent/AddAgent'
 import EditAgents from '../Agent/EditAgent'
 import AdminMessages from '../Admin/AdminMessages';
+import NotFoundPage from '../Shared Components/NotFound/NotFoundPage'
 
 
 
 const EmployeeRoutes = () => {
+  const roleId = localStorage.getItem('roleId')
+
   return (
     <div> 
         <Routes>
+        {roleId === '3' && (
+      <>
           <Route path='/employee/dashboard' element={<EmployeeDashboard/>}/>  
 
           <Route path='/employee/dashboard/addplan' element={<AddPlan/>}/>  
@@ -34,7 +39,11 @@ const EmployeeRoutes = () => {
           <Route path='/employee/dashboard/addagent' element={<AddAgent/>}/>  
           <Route path='/employee/dashboard/editagent' element={<EditAgents/>}/>  
           <Route path='/employee/dashboard//messages' element={<AdminMessages/>}/> 
-
+      </>    
+        )}
+         {/* <Route path="/employee/*" element={<NotFoundPage/>} />
+         <Route path="/*" element={<NotFoundPage/>} /> */}
+         
 
         </Routes>
       

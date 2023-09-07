@@ -24,6 +24,7 @@ const Login = () => {
           localStorage.setItem('genericId',response.data.genericId)
           localStorage.setItem('username',response.data.username)
           localStorage.setItem('roleName',response.data.roleName)
+          localStorage.setItem('age',response.data.age)
           console.log(response)
 
           swal("Good job!", "Login Successfull...!", "success")

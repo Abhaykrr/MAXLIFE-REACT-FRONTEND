@@ -16,10 +16,17 @@ import AdminMessage from './AdminMessages'
 import AllAccounts from './AllAccounts'
 import AllClaims from './AllClaims'
 import AllWithdraws from './AllWithdraws'
+import NotFoundPage from '../Shared Components/NotFound/NotFoundPage'
 const AdminDashboardRoutes = () => {
+
+  const roleId = localStorage.getItem('roleId')
+
+
   return (
     <div> 
         <Routes>
+        {roleId === '2' && (
+      <>
           <Route path='/admin/dashboard' element={<AdminDashboard/>}/>  
           <Route path='/admin/dashboard/addplan' element={<AddPlan/>}/>  
           <Route path='/admin/dashboard/addscheme' element={<AddScheme/>}/> 
@@ -36,7 +43,10 @@ const AdminDashboardRoutes = () => {
           <Route path='/admin/dashboard/allaccounts' element={<AllAccounts/>}/> 
           <Route path='/admin/dashboard/allclaims' element={<AllClaims/>}/> 
           <Route path='/admin/dashboard/allwithdrawls' element={<AllWithdraws/>}/> 
-
+      </>    
+        )}
+        {/* <Route path="/admin/*" element={<NotFoundPage/>} />
+        <Route path="/*" element={<NotFoundPage/>} /> */}
 
         </Routes>
       
