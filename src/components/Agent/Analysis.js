@@ -12,9 +12,17 @@ import {
   PointElement,
   LineElement,
   Title,
+
+  BarElement,
+  
+ 
+  RadialLinearScale,
+ 
+  Filler,
+  
   
 } from 'chart.js';
-import { Line } from 'react-chartjs-2';
+import { Line,Radar,Bar,Doughnut } from 'react-chartjs-2';
 function Agentanalysis(){
     ChartJS.register(ArcElement, Tooltip, Legend);
     ChartJS.register(
@@ -26,6 +34,22 @@ function Agentanalysis(){
       Tooltip,
       Legend
     );
+    ChartJS.register(
+        RadialLinearScale,
+        PointElement,
+        LineElement,
+        Filler,
+        Tooltip,
+        Legend
+      );
+      ChartJS.register(
+        CategoryScale,
+        LinearScale,
+        BarElement,
+        Title,
+        Tooltip,
+        Legend
+      );
     const options = {
       responsive: true,
       plugins: {
@@ -46,9 +70,15 @@ function Agentanalysis(){
     const [totalMessages, setTotalMessages] = useState({answer:0,unamswer:0});
     const [claimedamount,setclaimedamount]=useState();
     const [claims,setClaims]=useState({approved:0,pending:0})
-    const [plandata,setplandata]=useState({active:0,inactive:0})
-    const [schemedata,setscheme]=useState({active:0,inactive:0})
-
+    const [schemename,setschemename]=useState()
+    const [noofusers,setnoofusers]=useState()
+    const [randomcolors,setrandomcolors]=useState();
+    const randomRgbColor = () => {
+        let r = Math.floor(Math.random() * 256); // Random between 0-255
+        let g = Math.floor(Math.random() * 256); // Random between 0-255
+        let b = Math.floor(Math.random() * 256); // Random between 0-255
+        return 'rgb(' + r + ',' + g + ',' + b + ')';
+      };
     async function getclaims(){
         try{
           
@@ -94,14 +124,34 @@ function Agentanalysis(){
                 }
               });
         let active=0;
+        let pairing=new Map();
           response2?.data?.content?.map((data)=>{
               if(data.claimstatus=="Claimed"){
                 active++;
               
               }
+         
+              if(pairing.get(data.insurancescheme.schemename)==undefined){
+                pairing.set(data.insurancescheme.schemename,1);
+              }else{
+                pairing.set(data.insurancescheme.schemename,pairing.get(data.insurancescheme.schemename)+1);
+              }
               totalpay.push(data.amount);
               datesdata.push(data.issuedate);
+
             })
+            let keys=[];
+            let values=[];
+            let colorcode=[];
+            pairing.forEach((value, key) => {
+                keys.push(key);
+                values.push(value);
+                let temp=randomRgbColor();
+                colorcode.push(temp);
+            })
+            setrandomcolors(colorcode);
+            setschemename(keys);
+            setnoofusers(values);
             settotalpayamount(totalpay);
             setTotalDates(datesdata);
           console.log(response2,"claimed policy")
@@ -174,26 +224,9 @@ function Agentanalysis(){
           },
         ],
       };
-      const Message_data = {
-        labels: ['Answered Messages', 'Unanswered Messages'],
-        datasets: [
-          {
-            label: '',
-            data: [totalMessages.answer,totalMessages.unamswer],
-            backgroundColor: [
-              
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-            ],
-            borderColor: [
-              
-              'rgba(153, 102, 255, 1)',
-              'rgba(255, 159, 64, 1)',
-            ],
-            borderWidth: 1,
-          },
-        ],
-      };
+      
+
+
       const Line_data = {
   labels:totalDates,
   datasets: [
@@ -212,6 +245,26 @@ function Agentanalysis(){
     // },
   ],
 };
+
+
+const Schemes_data = {
+    labels:schemename,
+    datasets: [
+      {
+        label: 'No of Byers',
+        data: noofusers,
+        borderColor: randomcolors,
+        backgroundColor: randomcolors,
+      }
+      // },
+      // {
+      //   label: 'Approved',
+      //   data:[null,3209,32,54,65,76],
+      //   borderColor: 'rgb(53, 162, 235)',
+      //   backgroundColor: 'rgba(53, 162, 235, 0.5)',
+      // },
+    ],
+  };
     return(
        <div>
         <Navbar/>
@@ -255,7 +308,7 @@ function Agentanalysis(){
     </div>
     <div class="col-sm" style={{width:"20%"}}>
        <div className="card h-100">
-<Pie options={{
+<Doughnut options={{
       responsive: true,
       plugins: {
         legend: {
@@ -263,10 +316,10 @@ function Agentanalysis(){
         },
         title: {
           display: true,
-          text: 'Query Asked',
+          text: 'Schemes Buyed',
         },
       },
-    }} data={Message_data} />
+    }} data={Schemes_data} />
 </div>
     </div>
 
