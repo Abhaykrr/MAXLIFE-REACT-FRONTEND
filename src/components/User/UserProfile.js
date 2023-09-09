@@ -6,6 +6,31 @@ import swal from 'sweetalert'
 
 const UserProfile = () => {
 
+  const [bgv,setBgv] = useState("Pending")
+
+  const getCustomerDocx = async()=>{
+
+    const customerId = localStorage.getItem('genericId')
+    try {
+
+      const response = await axios.get('http://localhost:8080/maxlife/getdocx',{
+        params: {
+         customerid:customerId
+        }
+      });
+      console.log(response.data)
+      
+      setBgv(response.data.status)
+      
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  useEffect(()=>{
+    getCustomerDocx()
+  },[])
+
   
   const [selectedImage, setSelectedImage] = useState(null); // State to store the selected image
   const [formData, setFormData] = useState(new FormData()); // State to store FormData
@@ -162,7 +187,8 @@ const UserProfile = () => {
                     height: '250px',
                     borderRadius: '10px',
                     boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.3)' // Change the values as needed
-                  }} src={`http://localhost:8080/maxlife/image/401/${customerId}`} alt="" class="img-fluid" />
+                  }} src={`http://localhost:8080/maxlife/image/401/${customerId}`} alt="Your Photo Id Is Pending Please Upload" class="img-fluid" />
+                   Document Verification : {bgv?bgv:"Upload Pending"}
                     </div>
                   </div>
                 </div>

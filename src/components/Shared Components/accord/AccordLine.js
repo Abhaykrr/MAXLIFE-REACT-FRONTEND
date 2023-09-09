@@ -15,6 +15,7 @@ const AccordLine = ({scheme}) => {
   const [investmentAmount,setInvestmentAmount] = useState()
   const [month,setMonth] = useState()
   const [report,setReport] = useState()
+  const [bgv,setBgv] = useState("Pending")
 
 
   const [allAgents,setAllAgents] = useState({})
@@ -49,6 +50,28 @@ const AccordLine = ({scheme}) => {
       })
   }
 
+  const getCustomerDocx = async()=>{
+
+    const customerId = localStorage.getItem('genericId')
+    try {
+
+      const response = await axios.get('http://localhost:8080/maxlife/getdocx',{
+        params: {
+         customerid:customerId
+        }
+      });
+      
+      setBgv(response.data.status)
+      
+    } catch (error) {
+      alert(error.message)
+    }
+  }
+
+  useEffect(()=>{
+    getCustomerDocx()
+  })
+
 
   const paymentModule = async (totalNoOfInstallments,installmentAmount,intrestAmount)=>{
     
@@ -64,7 +87,7 @@ const AccordLine = ({scheme}) => {
     }
     if(roleName!='ROLE_CUSTOMER'){
       // alert("You should be a customer to buy policy")
-      Swal.fire({
+     await Swal.fire({
         icon: 'error',
         title: 'Oops...',
         text: 'You should be a customer to buy policy!',
@@ -75,10 +98,19 @@ const AccordLine = ({scheme}) => {
     if(age>=scheme.minage && age<=scheme.maxage){
 
     }else{
-      Swal.fire({
+    await  Swal.fire({
         icon: 'error',
         title: 'Oops...',
-        text: 'You are not eligible!',
+        text: 'You are not eligible! Your age : '+age,
+      })
+      return
+    }
+
+    if(bgv!='Verified'){
+     await Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Your Documents are Pending / Not Uploaded',
       })
       return
     }
@@ -248,13 +280,18 @@ const AccordLine = ({scheme}) => {
                     <p>{scheme.description}</p>
                 </div>
                 <div class="col-md-6">
+
+                  {/* {useEffect(async()=>{
+                    let response = await axios.get(`http://localhost:8080/maxlife/image/${scheme.schemeid}/401`)
+                    console.log(response,'see')
+                  },[])} */}
                   
                 <img style={{
                     width: '500px',
                     height: '250px',
                     borderRadius: '10px',
                     boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.3)' // Change the values as needed
-                  }} src={`http://localhost:8080/maxlife/image/${scheme.schemeid}/401`!=='401' ? (`http://localhost:8080/maxlife/image/${scheme.schemeid}/401`):(defaultUrl)} alt="" class="img-fluid" />
+                  }} src={`http://localhost:8080/maxlife/image/${scheme.schemeid}/401`!=='401' ? (`http://localhost:8080/maxlife/image/${scheme.schemeid}/401`):(defaultUrl)} alt="No Scheme Image Available" class="img-fluid" />
 
                 </div>
             </div>
