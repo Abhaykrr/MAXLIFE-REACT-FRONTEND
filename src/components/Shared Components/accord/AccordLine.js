@@ -54,13 +54,35 @@ const AccordLine = ({scheme}) => {
     
     const roleName = localStorage.getItem('roleName')
     if(roleName==null || roleName == undefined || roleName ===null){
-      alert("Please Login")
+      // alert("Please Login")
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'Please login!',
+      })
       return
     }
     if(roleName!='ROLE_CUSTOMER'){
-      alert("You should be a customer to buy policy")
+      // alert("You should be a customer to buy policy")
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You should be a customer to buy policy!',
+      })
       return
     }
+    let age = localStorage.getItem('age')
+    if(age>=scheme.minage && age<=scheme.maxage){
+
+    }else{
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'You are not eligible!',
+      })
+      return
+    }
+
     const pageRendererHtml2 = ReactDOMServer.renderToString(
       <Paymentcard />
     );

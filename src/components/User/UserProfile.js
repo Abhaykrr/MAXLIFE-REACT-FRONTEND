@@ -68,7 +68,7 @@ const UserProfile = () => {
 
       swal("Good job!", response.data, "success")
 
-      if(formData!=null)
+      if(formData!=new FormData()) //changed 
       try {
         const response = await axios.post(`http://localhost:8080/maxlife/addimage/401/${customerId}`, formData, {
           headers: {
@@ -86,6 +86,8 @@ const UserProfile = () => {
     } catch (error) {
       alert(error.message)
     }
+
+    // window.location.reload()
   }
 
 
@@ -232,6 +234,20 @@ const UserProfile = () => {
                           placeholder="Enter Phone number"
                           value={customerFormData.mobile}
                           onChange={(e)=>{setCustomerFormData({...customerFormData,mobile:e.target.value})}}
+                        />
+                      </div>
+                    </div>
+                    <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                      <div className="form-group">
+                        <label for="phone">Age</label>
+                        <input
+                          type="number"
+                          className="form-control"
+                          id="phone"
+                          required
+                          placeholder="Enter Age"
+                          value={customerFormData.age}
+                          onChange={(e)=>{setCustomerFormData({...customerFormData,age:e.target.value})}}
                         />
                       </div>
                     </div>

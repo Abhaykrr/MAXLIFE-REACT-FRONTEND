@@ -10,6 +10,7 @@ import Policy from './pages/Policy';
 import Adminusers from './components/User/DisplayUsers';
 import Rough from './components/rough/Rough';
 import Inovice from './pages/Inovice';
+import NotFoundPage from './components/Shared Components/NotFound/NotFoundPage';
 function App() {
   return (
    <>
@@ -17,10 +18,9 @@ function App() {
         <Route path='/login' element={<Login/>}/>
         <Route path='/' element={<Home/>}/>
         <Route path='/policies' element={<Policy/>}/>
-
-
         <Route path='/rough' element={<Rough/>}/>
         <Route path='/invoice' element={<Inovice/>}/>
+        {/* <Route path="/*" element={<NotFoundPage/>} /> */}
 
       </Routes>
    </>
