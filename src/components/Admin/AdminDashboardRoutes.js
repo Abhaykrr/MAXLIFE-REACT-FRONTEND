@@ -18,6 +18,7 @@ import AllClaims from './AllClaims'
 import AllWithdraws from './AllWithdraws'
 import Adminanalysis from './AdminAnalysis'
 import NotFoundPage from '../Shared Components/NotFound/NotFoundPage'
+import BackGroundVerification from './BackGroundVerification'
 const AdminDashboardRoutes = () => {
 
   const roleId = localStorage.getItem('roleId')
@@ -45,6 +46,7 @@ const AdminDashboardRoutes = () => {
           <Route path='/admin/dashboard/allclaims' element={<AllClaims/>}/> 
           <Route path='/admin/dashboard/allwithdrawls' element={<AllWithdraws/>}/> 
           <Route path='/admin/dashboard/analysis' element={<Adminanalysis/>}/>  
+          <Route path='/admin/dashboard/bgv' element={<BackGroundVerification/>}/> 
       </>    
         )}
         {/* <Route path="/admin/*" element={<NotFoundPage/>} />
