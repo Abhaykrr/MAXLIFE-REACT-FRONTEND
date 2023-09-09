@@ -13,7 +13,7 @@ import EditEmploye from './EditEmploye'
 import AddAgent from '../Agent/AddAgent'
 import EditAgents from '../Agent/EditAgent'
 import AdminMessages from '../Admin/AdminMessages';
-
+import Employeanalysis from './Analysis'
 
 
 const EmployeeRoutes = () => {
@@ -33,8 +33,8 @@ const EmployeeRoutes = () => {
           <Route path='/employee/dashboard/editemploye' element={<EditEmploye/>}/>  
           <Route path='/employee/dashboard/addagent' element={<AddAgent/>}/>  
           <Route path='/employee/dashboard/editagent' element={<EditAgents/>}/>  
-          <Route path='/employee/dashboard//messages' element={<AdminMessages/>}/> 
-
+          <Route path='/employee/dashboard/messages' element={<AdminMessages/>}/> 
+          <Route path='/employee/dashboard/analysis' element={<Employeanalysis/>}/>
 
         </Routes>
       

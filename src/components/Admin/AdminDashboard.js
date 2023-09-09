@@ -3,7 +3,7 @@ import Navbar from '../Shared Components/Navbar/Navbar'
 import "../CSS/card.css"
 import { Helmet } from 'react-helmet'
 import { useNavigate } from 'react-router-dom'
-import { getAllPlansUtil, getAllSchemesUtil, getallAgents, getallEmployes, fetchAllMessagesUtil } from '../Util/CApis'
+import { getAllPlansUtil, getAllSchemesUtil, getallAgents, getallEmployes, fetchAllMessagesUtil, getAllCust, getAllUsers } from '../Util/CApis'
 
 const AdminDashboard = () => {
 
@@ -14,6 +14,7 @@ const AdminDashboard = () => {
   const [totalEmployes,setTotalEmployes]=useState();
   const [totalAgents,setTotalAgents]=useState();
   const [totalMessages, setTotalMessages] = useState();
+  const [totalusers,settotalusers]=useState();
   const updateCards = async ()=>{
     try {
         
@@ -22,11 +23,15 @@ const AdminDashboard = () => {
         let r3=  await getallEmployes();
         let r4=  await getallAgents();
         let r5=  await fetchAllMessagesUtil();
+        let r6= await getAllUsers();
         setTotalPlans(r1.data?.length)
         setTotalSchemes(r2.data?.length)
         setTotalEmployes(r3.data?.length);
         setTotalAgents(r4.data?.length);
         setTotalMessages(r5.data.length)
+        settotalusers(r6.data.totalElements);
+        console.log(r6);
+        
 
 
     } catch (error) {
@@ -315,7 +320,7 @@ const AdminDashboard = () => {
                       <div className="row align-items-center mb-2 d-flex">
                           <div className="col-8">
                               <h5 className="d-flex align-items-center mb-0">
-                                Users
+                               {totalusers} Users
                               </h5>
                           </div>
                           <div className="col-4 text-right">
@@ -415,7 +420,7 @@ const AdminDashboard = () => {
                 <div className="card-statistic-3 p-4">
                     <div className="card-icon card-icon-large"><i className="fas fa-ticket-alt"></i></div>
                     <div className="mb-4">
-                        <h5 className="card-title mb-0">Policy Claims</h5>
+                        <h5 className="card-title mb-0">Claims / Withdrawls</h5>
                     </div>
                     <div className="row align-items-center mb-2 d-flex">
                         <div className="col-8">
@@ -435,22 +440,22 @@ const AdminDashboard = () => {
         </div>
 
         <div className="col-xl-3 col-lg-6" onClick={()=>{
-           navigate('/admin/dashboard/allwithdrawls')
+           navigate('/admin/dashboard/analysis')
         }}>
             <div className="card l-bg-blue-dark">
                 <div className="card-statistic-3 p-4">
                     <div className="card-icon card-icon-large"><i className="fas fa-ticket-alt"></i></div>
                     <div className="mb-4">
-                        <h5 className="card-title mb-0">Agent Withdrawls</h5>
+                        <h5 className="card-title mb-0">Analysis</h5>
                     </div>
                     <div className="row align-items-center mb-2 d-flex">
                         <div className="col-8">
                             <h5 className="d-flex align-items-center mb-0">
-                             Withdrawls
+                             Stats
                             </h5>
                         </div>
                         <div className="col-4 text-right">
-                            {/* <span>10% <i className="fa fa-arrow-up"></i></span> */}
+                         
                         </div>
                     </div>
                     <div className="progress mt-1 " data-height="8" style={{height: '8px'}}>

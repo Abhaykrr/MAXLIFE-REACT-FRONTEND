@@ -88,7 +88,7 @@ const approve = async(claimid)=>{
                                     <option value="InActive">In Active</option>
               </select></div> */}
               <div style={{display:'inline-block',width:'300px',marginRight:"1rem",height:'50px',borderRadius:'10px'}}>
-                 <input type='text' onChange={(e)=>{setSearchText(e.target.value)}} className="form-control"  placeholder='Enter claimis,claim amout,Date,status'/></div>
+                 <input type='text' onChange={(e)=>{setSearchText(e.target.value)}} className="form-control"  placeholder='Enter claim id,claim amount,Date,status'/></div>
                                 
                                 </h4>
             
@@ -104,7 +104,9 @@ const approve = async(claimid)=>{
         <th>Agent id/Customer id</th>
         <th>Firstname</th>
         <th>Lastname</th>
-        <th>Qualtification</th>
+        <th>Account No</th>
+        <th>IFSC Code</th>
+        <th>Amount</th>
         <th>Date</th>
         <th>Status</th>
         {/* <th>View</th> */}
@@ -120,7 +122,9 @@ const approve = async(claimid)=>{
                       <td>{claim.agent?claim.agent?.agentid+"( Agent )":claim.customer?.customerid+" (Self) "}</td>
                       <td>{claim.agent?claim.agent?.firstname:claim.customer?.firstname}</td>
                       <td>{claim.agent?claim.agent?.lastname:claim.customer?.lastname}</td>
-                      <td>{claim.agent?claim.agent?.qualification:claim.customer?.qualification}</td>
+                      <td>{claim.bankaccountnumber}</td>
+                      <td>{claim.bankifsccode}</td>
+                      <td>{claim.claimamount}</td>
                       <td>{claim.date}</td>
                       <td>{claim.status == 'Pending' ? (<button type="button" className="btn btn-danger" onClick={()=>approve(claim.claimid)}>
                            Approve

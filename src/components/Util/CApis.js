@@ -206,6 +206,67 @@ export const getAllCust = async(customerId)=>{
   }
 });
 
+
+return response
+  } catch (error) {
+    alert(error.message)
+  }
+
+}
+
+export const getAllAccounts = async(customerId)=>{
+
+  try {
+    const response = await axios.get('http://localhost:8080/maxlife/allaccounts', {
+  params: {
+    policynoprefix:"",
+    status:"All",
+    currpage: 0,
+    pagesize: 400
+  }
+
+});
+
+
+return response
+  } catch (error) {
+    alert(error.message)
+  }
+
+}
+export const getAllUsers = async(customerId)=>{
+
+  try {
+    const response = await axios.get('http://localhost:8080/maxlife/getpagecustomer', {
+  params: {
+   
+    currpage: 0,
+    pagesize: 400
+  }
+
+});
+
+
+return response
+  } catch (error) {
+    alert(error.message)
+  }
+
+}
+
+export const getAllClaims = async(customerId)=>{
+
+  try {
+    const response = await axios.get('http://localhost:8080/maxlife/allclaims', {
+          params: {
+            inputtext:"",
+            status:"All",
+            currpage: 0,
+            pagesize: 500
+          }
+        });
+
+
 return response
   } catch (error) {
     alert(error.message)

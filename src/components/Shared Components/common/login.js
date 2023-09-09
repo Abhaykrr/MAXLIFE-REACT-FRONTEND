@@ -50,7 +50,7 @@ const Login = () => {
     <p class="h4 mb-4">Sign in</p>
 
     {/* <!-- Email --> */}
-    <input type="text" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail"
+    <input type="text" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Username"
     onChange={(e)=>{setuserdata({...userdata,email:e.target.value})}}
     />
 

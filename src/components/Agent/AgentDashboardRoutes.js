@@ -4,6 +4,7 @@ import AgentDashboard from './AgentDashboard'
 import AgentCustomers from './AgentCustomers'
 import AgentClaims from './DisplayClaims'
 import AgentMarketing from './AgentMarketing'
+import Agentanalysis from './Analysis'
 const AgentDashboardRoutes = () => {
   return (
     <div>
@@ -12,6 +13,8 @@ const AgentDashboardRoutes = () => {
       <Route path='/agent/dashboard/mycustomers' element={<AgentCustomers/>}/>  
       <Route path='/agent/dashboard/viewclaim' element={<AgentClaims/>} />
       <Route path='/agent/dashboard/marketing' element={<AgentMarketing/>} />
+      <Route path='/agent/dashboard/analysis' element={<Agentanalysis/>} />
+
     </Routes>
   
 </div>

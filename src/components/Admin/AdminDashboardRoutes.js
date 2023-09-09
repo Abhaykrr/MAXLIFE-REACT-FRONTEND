@@ -16,6 +16,7 @@ import AdminMessage from './AdminMessages'
 import AllAccounts from './AllAccounts'
 import AllClaims from './AllClaims'
 import AllWithdraws from './AllWithdraws'
+import Adminanalysis from './AdminAnalysis'
 const AdminDashboardRoutes = () => {
   return (
     <div> 
@@ -36,7 +37,7 @@ const AdminDashboardRoutes = () => {
           <Route path='/admin/dashboard/allaccounts' element={<AllAccounts/>}/> 
           <Route path='/admin/dashboard/allclaims' element={<AllClaims/>}/> 
           <Route path='/admin/dashboard/allwithdrawls' element={<AllWithdraws/>}/> 
-
+          <Route path='/admin/dashboard/analysis' element={<Adminanalysis/>}/>  
 
         </Routes>
       

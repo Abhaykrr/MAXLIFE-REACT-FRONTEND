@@ -232,7 +232,17 @@ const AccordLine = ({scheme}) => {
                     height: '250px',
                     borderRadius: '10px',
                     boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.3)' // Change the values as needed
-                  }} src={`http://localhost:8080/maxlife/image/${scheme.schemeid}/401`!=='401' ? (`http://localhost:8080/maxlife/image/${scheme.schemeid}/401`):(defaultUrl)} alt="" class="img-fluid" />
+                    
+                  }}
+                  
+                  id={scheme.schemeid+"img"}
+                  onError={()=>{
+                    // document.getElementById(`${scheme.schemeid}+img`)?.src=defaultUrl;
+
+                  }}
+                  
+                  
+                  src={`http://localhost:8080/maxlife/image/${scheme.schemeid}/401`} alt="" class="img-fluid" />
 
                 </div>
             </div>

@@ -29,13 +29,13 @@ const[policyprefix,setPolicyPrefix] = useState(0)
         customerId = custId
         // let response = await axios.get(`http://localhost:8080/maxlife/account/${customerId}/${currpage}/${pagesize}`)
 
-        console.log({
-          customerid: customerId,
-          policynoprefix:searchText,
-          status:status,
-          currpage: currpage,
-          pagesize: pagesize
-        });
+        // console.log({
+        //   customerid: customerId,
+        //   policynoprefix:searchText,
+        //   status:status,
+        //   currpage: currpage,
+        //   pagesize: pagesize
+        // });
         const response = await axios.get('http://localhost:8080/maxlife/getaccounts', {
           params: {
             customerid: customerId,
@@ -48,7 +48,7 @@ const[policyprefix,setPolicyPrefix] = useState(0)
 
       // let response = await getCustomerAllAccountsUtil(customerId,currpage,pagesize)
       setAccountData()
-      console.log(response.data)
+      console.log(response.data,"All data")
       setPages(response.data.totalPages-1)
       setAccountData(response.data.content)
       generateData()

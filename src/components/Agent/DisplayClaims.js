@@ -57,7 +57,7 @@ useEffect(()=>{
                                     <option value="InActive">In Active</option>
               </select></div> */}
               <div style={{display:'inline-block',width:'300px',marginRight:"1rem",height:'50px',borderRadius:'10px'}}>
-                 <input type='text' onChange={(e)=>{setSearchText(e.target.value)}} className="form-control"  placeholder='Enter claimis,claim amout,Date,status'/></div>
+                 <input type='text' onChange={(e)=>{setSearchText(e.target.value)}} className="form-control"  placeholder='Enter claim id,claim amount,Date,status'/></div>
                                 
                                 </h4>
             
