@@ -56,7 +56,7 @@ const Policy = () => {
                     </div>
                 </div>
             );
-            if(status === 'Active')
+            // if(status === 'Active')
             sliderData.push(carouselItem);
         }
     }
