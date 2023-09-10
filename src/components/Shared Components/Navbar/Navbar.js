@@ -76,7 +76,15 @@ const Navbar = () => {
         <span className="tooltip">Messages</span>
       </li>
       <li>
-        <a href="#">
+             <a href="/user/claims" >
+             <i className='bx bxs-group'></i>
+    
+               <span className="links_name">Claims</span>
+             </a>
+             <span className="tooltip">Claims</span>
+           </li>
+      <li>
+        <a href="/user/analysis">
           <i className="bx bx-pie-chart-alt-2"></i>
           <span className="links_name">Analytics</span>
         </a>
@@ -169,7 +177,7 @@ const Navbar = () => {
          <span className="tooltip">Messages</span>
        </li>
        <li>
-         <a href="#">
+         <a href="/admin/dashboard/analysis">
            <i className="bx bx-pie-chart-alt-2"></i>
            <span className="links_name">Analytics</span>
          </a>
@@ -263,7 +271,7 @@ const Navbar = () => {
            <span className="tooltip">Messages</span>
          </li>
          <li>
-           <a href="#">
+           <a href="/employee/dashboard/analysis">
              <i className="bx bx-pie-chart-alt-2"></i>
              <span className="links_name">Analytics</span>
            </a>
@@ -333,16 +341,9 @@ const Navbar = () => {
              <span className="tooltip">Customers</span>
            </li>
     
+           
            <li>
-             <a href="#" >
-             <i class='bx bx-run'></i>  
-               <span className="links_name">Commisions</span>
-             </a>
-             <span className="tooltip">Commisions</span>
-           </li>
-    
-           <li>
-             <a href="#" >
+             <a href="/agent/dashboard/viewclaim" >
              <i className='bx bxs-group'></i>
     
                <span className="links_name">Withdrwal</span>
@@ -350,14 +351,14 @@ const Navbar = () => {
              <span className="tooltip">Withdrwal</span>
            </li>
            <li>
-             <a href="#">
+             <a href="/agent/dashboard/marketing">
                <i className="bx bx-chat"></i>
-               <span className="links_name">Messages</span>
+               <span className="links_name">Marketing</span>
              </a>
-             <span className="tooltip">Messages</span>
+             <span className="tooltip">Marketing</span>
            </li>
            <li>
-             <a href="#">
+             <a href="/agent/dashboard/analysis">
                <i className="bx bx-pie-chart-alt-2"></i>
                <span className="links_name">Analytics</span>
              </a>

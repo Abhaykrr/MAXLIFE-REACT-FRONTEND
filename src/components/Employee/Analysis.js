@@ -34,7 +34,7 @@ function Employeanalysis(){
         },
         title: {
           display: true,
-          text: 'Policy Requests',
+          text: 'Policy Buyed and Amount',
         },
       },
     };
@@ -290,7 +290,7 @@ function Employeanalysis(){
         },
         title: {
           display: true,
-          text: 'All Claim Amount',
+          text: 'All Claim / Withdrawn Amount',
         },
       },
     }} data={Claim_data} />
@@ -306,7 +306,7 @@ function Employeanalysis(){
         },
         title: {
           display: true,
-          text: 'Plans Activity Status',
+          text: 'Scheme Activity Status',
         },
       },
     }} data={Plan_data} />
