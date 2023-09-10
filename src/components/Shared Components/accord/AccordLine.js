@@ -64,7 +64,7 @@ const AccordLine = ({scheme}) => {
       setBgv(response.data.status)
       
     } catch (error) {
-      alert(error.message)
+      // alert(error.message)
     }
   }
 
@@ -267,7 +267,7 @@ const AccordLine = ({scheme}) => {
     <div className="accordion-tab">
 
     <input id={scheme.schemeid} type="checkbox" className="accordion-toggle" name="toggle" />
-    <label for={scheme.schemeid}>{scheme.schemename} </label>
+    <label for={scheme.schemeid}>{scheme.schemename}  BGV :{bgv} </label>
     <div className="accordion-content">
     <form class="needs-validation" novalidate
                onSubmit={(e)=>generateDetails(e)}
@@ -285,8 +285,15 @@ const AccordLine = ({scheme}) => {
                     let response = await axios.get(`http://localhost:8080/maxlife/image/${scheme.schemeid}/401`)
                     console.log(response,'see')
                   },[])} */}
+
+                  <img style={{
+                    width: '500px',
+                    height: '250px',
+                    borderRadius: '10px',
+                    boxShadow: '5px 5px 10px rgba(0, 0, 0, 0.3)' // Change the values as needed
+                  }} src={`http://localhost:8080/maxlife/image/${scheme.schemeid}/401`}alt="No Scheme Image Available" class="img-fluid" />
                   
-                <img style={{
+                {/* <img style={{
                     width: '500px',
                     height: '250px',
                     borderRadius: '10px',
@@ -301,7 +308,7 @@ const AccordLine = ({scheme}) => {
                   }}
                   
                   
-                  src={`http://localhost:8080/maxlife/image/${scheme.schemeid}/401`} alt="" class="img-fluid" />
+                  src={`http://localhost:8080/maxlife/image/${scheme.schemeid}/401`} alt="No Scheme Image " class="img-fluid" /> */}
 
                 </div>
             </div>
