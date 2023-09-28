@@ -203,7 +203,7 @@ const UserProfile = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="fullName">First Name</label>
+                        <label for="fullName">First Name<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="text"
                           className="form-control"
@@ -222,7 +222,7 @@ const UserProfile = () => {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="fullName">Last Name</label>
+                        <label for="fullName">Last Name <span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="text"
                           className="form-control"
@@ -237,7 +237,7 @@ const UserProfile = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="eMail">Email</label>
+                        <label for="eMail">Email<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="email"
                           className="form-control"
@@ -251,12 +251,13 @@ const UserProfile = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="phone">Phone</label>
+                        <label for="phone">Phone<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="number"
                           className="form-control"
                           id="phone"
                           required
+                          
                           placeholder="Enter Phone number"
                           value={customerFormData.mobile}
                           onChange={(e)=>{setCustomerFormData({...customerFormData,mobile:e.target.value})}}
@@ -265,7 +266,7 @@ const UserProfile = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="phone">Age</label>
+                        <label for="phone">Age<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="number"
                           className="form-control"
@@ -286,7 +287,7 @@ const UserProfile = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="fullName">Photo Id</label>
+                        <label for="fullName">Photo Id<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <div class="mb-3">
                           <input class="form-control" type="file" id="formFile" onChange={handleImageChange}/>
                         </div>
@@ -301,7 +302,7 @@ const UserProfile = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="Street">Street</label>
+                        <label for="Street">Street<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="name"
                           className="form-control"
@@ -315,7 +316,7 @@ const UserProfile = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="ciTy">City</label>
+                        <label for="ciTy">City<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="name"
                           className="form-control"
@@ -329,7 +330,7 @@ const UserProfile = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="sTate">State</label>
+                        <label for="sTate">State<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="text"
                           className="form-control"
@@ -343,7 +344,7 @@ const UserProfile = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="zIp">Zip Code</label>
+                        <label for="zIp">Zip Code<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="number"
                           className="form-control"
@@ -363,7 +364,7 @@ const UserProfile = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="Street">Name</label>
+                        <label for="Street">Name<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="name"
                           className="form-control"
@@ -377,7 +378,7 @@ const UserProfile = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="ciTy">Relation</label>
+                        <label for="ciTy">Relation<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="name"
                           className="form-control"

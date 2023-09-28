@@ -49,7 +49,7 @@ function Addemploye(){
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="firstname">First Name</label>
+                        <label for="firstname">First Name<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="text"
                           className="form-control"
@@ -68,7 +68,7 @@ function Addemploye(){
 
                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div className="form-group">
-                                <label for="lastname">Last Name</label>
+                                <label for="lastname">Last Name<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                                 <input
                           type="text"
                           className="form-control"
@@ -84,7 +84,7 @@ function Addemploye(){
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div className="form-group">
-                                <label for="salary">Employe Salary</label>
+                                <label for="salary">Employe Salary<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                                 <input
                           type="number"
                           className="form-control"
@@ -99,7 +99,7 @@ function Addemploye(){
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div className="form-group">
-                                <label for="fullName">Employe Status</label>
+                                <label for="fullName">Employe Status<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                                 <select className="form-control" id="planStatus"
                                 required
                                 onChange={(e)=>{setEmploye({...employe,status:e.target.value})}}
@@ -116,7 +116,7 @@ function Addemploye(){
                   
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div className="form-group">
-                                <label for="username">Username</label>
+                                <label for="username">Username<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                                 <input
                           type="text"
                           className="form-control"
@@ -130,7 +130,7 @@ function Addemploye(){
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div className="form-group">
-                                <label for="password">Password</label>
+                                <label for="password">Password<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                                 <input
                                 required
                           type="text"

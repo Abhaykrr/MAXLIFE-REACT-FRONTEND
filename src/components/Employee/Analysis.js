@@ -191,7 +191,7 @@ function Employeanalysis(){
         ],
       };
       const Plan_data = {
-        labels: ['Active Plans', 'Inactive Plans'],
+        labels: ['Active Schemes', 'Inactive Schemes'],
         datasets: [
           {
             label: '',

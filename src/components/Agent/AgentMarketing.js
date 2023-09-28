@@ -44,7 +44,7 @@ function AgentMarketing(){
         <h2 class="text-center">Greet Remind & Market Your Customers</h2>
         <form>
             <div class="form-row mb-1">
-                <label for="to" class="col-2 col-sm-1 col-form-label">To:</label>
+                <label for="to" class="col-2 col-sm-1 col-form-label">To:<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                 <div class="col-10 col-sm-11">
                     <input type="email" class="form-control" id="to"
                     value={email.to}
@@ -53,7 +53,7 @@ function AgentMarketing(){
                 </div>
             </div>
             <div class="form-row mb-1">
-                <label for="cc" class="col-2 col-sm-1 col-form-label">Subject :</label>
+                <label for="cc" class="col-2 col-sm-1 col-form-label">Subject :<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                 <div class="col-10 col-sm-11">
                     <input type="text" class="form-control"
                     value={email.subject}
@@ -67,7 +67,7 @@ function AgentMarketing(){
             <div class="col-sm-11 ml-auto">
                 <br/>
                 <div class="form-group mt">
-                <label for="message" class="col-2 col-sm-1 col-form-label">Message :</label>
+                <label for="message" class="col-2 col-sm-1 col-form-label">Message :<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                     <textarea class="form-control" id="message" 
                     value={email.body}
                     onChange={(e)=>setemail({...email,body:e.target.value})}

@@ -5,9 +5,14 @@ import swal from 'sweetalert';
 
 const Login = () => {
     const [userdata,setuserdata]=useState({email:"",password:""})
-
+    const [passwordsec,setpasswordsec]=useState({type:"password",clas:""})
     const navigate = useNavigate()
-
+    function viewpassword(e){
+      // e.preventDefault();
+      if(passwordsec.type=="password")setpasswordsec({...passwordsec,type:"text"})
+      if(passwordsec.type=="text")setpasswordsec({...passwordsec,type:"password"})
+      
+    }
     async function handlesubmit (e){
         e.preventDefault()
         console.log(userdata.email);
@@ -54,12 +59,18 @@ const Login = () => {
     <input type="text" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="Username"
     onChange={(e)=>{setuserdata({...userdata,email:e.target.value})}}
     />
+    
 
     {/* <!-- Password --> */}
-    <input type="password" id="defaultLoginFormPassword" class="form-control mb-4" placeholder="Password"
+    <div>
+    <input type={passwordsec.type} id="defaultLoginFormPassword" class="form-control  w-1/2" placeholder="Password"
     onChange={(e)=>{setuserdata({...userdata,password:e.target.value})}}
     />
+    {/* <button onClick={(e)=>viewpassword(e)}>toog</button> */}
+    <input type="checkbox" onClick={(e)=>viewpassword(e)}/>Show Password
 
+    </div>
+    
    
 
     {/* <!-- Sign in button --> */}

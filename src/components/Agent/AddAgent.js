@@ -52,7 +52,7 @@ function AddAgent(){
                  
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="firstname">First Name</label>
+                        <label for="firstname">First Name<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="text"
                           className="form-control"
@@ -74,7 +74,7 @@ function AddAgent(){
 
                      <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div className="form-group">
-                                <label for="lastname">Last Name</label>
+                                <label for="lastname">Last Name<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                                 <input
                           type="text"
                           className="form-control"
@@ -91,7 +91,7 @@ function AddAgent(){
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div className="form-group">
-                                <label for="qualification">Qualification</label>
+                                <label for="qualification">Qualification<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                                 <input
                           type="text"
                           className="form-control"
@@ -105,7 +105,7 @@ function AddAgent(){
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div className="form-group">
-                                <label for="fullName">Agent Status</label>
+                                <label for="fullName">Agent Status<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                                 <select className="form-control" id="planStatus"
                                 required
                                 onChange={(e)=>{setAgent({...agent,status:e.target.value})}}
@@ -118,7 +118,7 @@ function AddAgent(){
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div className="form-group">
-                                <label for="username">Username</label>
+                                <label for="username">Username<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                                 <input
                           type="text"
                           className="form-control"
@@ -132,7 +132,7 @@ function AddAgent(){
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div className="form-group">
-                                <label for="password">Password</label>
+                                <label for="password">Password<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                                 <input
                           type="text"
                           className="form-control"

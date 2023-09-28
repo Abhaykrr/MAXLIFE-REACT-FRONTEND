@@ -130,7 +130,7 @@ const AddScheme = () => {
                    
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="phone">Choose Plan</label>
+                        <label for="phone">Choose Plan<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <select className="form-control" id="planStatus"
                         required
                         onChange={(e)=>{setSchemeFormData({...schemeFormData,planid:e.target.value})}}>
@@ -141,7 +141,7 @@ const AddScheme = () => {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="ciTy">Profit Ratio</label>
+                        <label for="ciTy">Profit Ratio<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="number"
                           className="form-control"
@@ -163,7 +163,7 @@ const AddScheme = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="fullName">Scheme Name</label>
+                        <label for="fullName">Scheme Name<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="text"
                           className="form-control"
@@ -181,7 +181,7 @@ const AddScheme = () => {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="fullName">Image Url</label>
+                        <label for="fullName">Image Url<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="text"
                           className="form-control"
@@ -196,7 +196,7 @@ const AddScheme = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="eMail">Description</label>
+                        <label for="eMail">Description<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <textarea
                           type="text"
                           required
@@ -211,7 +211,7 @@ const AddScheme = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="phone">Status</label>
+                        <label for="phone">Status<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <select className="form-control" id="planStatus" 
                         required
                          onChange={(e)=>{setSchemeFormData({...schemeFormData,status:e.target.value})}}>
@@ -228,7 +228,7 @@ const AddScheme = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="Street">Min Amount</label>
+                        <label for="Street">Min Amount<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="number"
                           className="form-control"
@@ -243,7 +243,7 @@ const AddScheme = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="ciTy">Max Amount</label>
+                        <label for="ciTy">Max Amount<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="number"
                           className="form-control"
@@ -260,7 +260,7 @@ const AddScheme = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="sTate">Min Invest Time</label>
+                        <label for="sTate">Min Invest Time<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="number"
                           className="form-control"
@@ -275,7 +275,7 @@ const AddScheme = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="zIp">Max Invest Time</label>
+                        <label for="zIp">Max Invest Time<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="number"
                           className="form-control"
@@ -291,7 +291,7 @@ const AddScheme = () => {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="zIp">Min Age</label>
+                        <label for="zIp">Min Age<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="number"
                           className="form-control"
@@ -307,7 +307,7 @@ const AddScheme = () => {
 
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="zIp">Max Age</label>
+                        <label for="zIp">Max Age<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="number"
                           className="form-control"
@@ -328,7 +328,7 @@ const AddScheme = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="Street">Registration Commision</label>
+                        <label for="Street">Registration Commision<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="number"
                           className="form-control"
@@ -343,7 +343,7 @@ const AddScheme = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="ciTy">Installment Commision</label>
+                        <label for="ciTy">Installment Commision<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="number"
                           className="form-control"

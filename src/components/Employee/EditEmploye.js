@@ -58,7 +58,7 @@ return(
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label for="salary">Select Employe</label>
+                            <label for="salary">Select Employe<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                             <select className="form-control" id="planStatus"
                             required
                         onChange={(e)=>{
@@ -73,7 +73,7 @@ return(
                 <br/>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                   <div className="form-group">
-                    <label for="firstname">First Name</label>
+                    <label for="firstname">First Name<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                     <input
                       type="text"
                       className="form-control"
@@ -90,7 +90,7 @@ return(
 
                  <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label for="lastname">Last Name</label>
+                            <label for="lastname">Last Name<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                             <input
                       type="text"
                       className="form-control"
@@ -107,7 +107,7 @@ return(
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label for="salary">Employe Salary</label>
+                            <label for="salary">Employe Salary<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                             <input
                       type="number"
                       className="form-control"
@@ -122,7 +122,7 @@ return(
                 </div>
                 <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                         <div className="form-group">
-                            <label for="fullName">Employe Status</label>
+                            <label for="fullName">Employe Status<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                             <select className="form-control" id="planStatus"
                             required
                             onChange={(e)=>{setEmploye({...employe,status:e.target.value})}}

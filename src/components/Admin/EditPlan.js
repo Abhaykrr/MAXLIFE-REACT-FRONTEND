@@ -116,7 +116,7 @@ const EditPlan = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="fullName">Select Plan *</label>
+                        <label for="fullName">Select Plan <span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <select className="form-control" id="planStatus"
                         required
                         onChange={(e)=>{
@@ -139,7 +139,7 @@ const EditPlan = () => {
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                       <div className="form-group">
-                        <label for="fullName">Plan Name</label>
+                        <label for="fullName">Plan Name<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                         <input
                           type="text"
                           required
@@ -158,7 +158,7 @@ const EditPlan = () => {
 
                         <div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
                             <div className="form-group">
-                                <label for="fullName">Plan Status</label>
+                                <label for="fullName">Plan Status<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
                                 <select className="form-control" id="planStatus"
                                  value={formPlanData.planStatus}
                                  required

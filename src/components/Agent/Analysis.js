@@ -299,7 +299,7 @@ const Schemes_data = {
         },
         title: {
           display: true,
-          text: 'Policy Amount Withdrawn',
+          text: 'Policy commissions Withdrawn',
         },
       },
     }} data={Claim_data} />

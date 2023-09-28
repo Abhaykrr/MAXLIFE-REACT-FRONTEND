@@ -15,7 +15,7 @@ function Card(props){
   <input type="number" class="form-control" id="floatingInput" placeholder="Enter Card Number "
   onChange={(e)=>{setcarddetails({...carddetails,cardnumber:e.target.value})}}
   />
-  <label for="floatingInput">Card Number</label>
+  <label for="floatingInput">Card Number<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
 </div>
 
 
@@ -23,12 +23,12 @@ function Card(props){
   <input  class="form-control" id="floatingInput" placeholder="Enter Full Name "
   onChange={(e)=>{setcarddetails({...carddetails,fullname:e.target.value})}}
   />
-  <label for="floatingInput">Cardholder Name</label>
+  <label for="floatingInput">Cardholder Name<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
 </div>
 <div class="container">
   <div class="row">
     <div class="col-6">
-    {/* <label for="floatingInput">Expiry Date</label> */}
+    {/* <label for="floatingInput">Expiry Date<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label> */}
     <div class="container">
   <div class="row">
     <div class="col-6">
@@ -37,7 +37,7 @@ function Card(props){
   <input type="number" class="form-control" id="floatingInput" placeholder="MM "
   onChange={(e)=>{setcarddetails({...carddetails,expirymonth:e.target.value})}}
   />
-  <label for="floatingInput">MM</label>
+  <label for="floatingInput">MM<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
 </div>
 </div>
 <div class="col-6">
@@ -45,7 +45,7 @@ function Card(props){
   <input type="number" class="form-control" id="floatingInput" placeholder="YY "
   onChange={(e)=>{setcarddetails({...carddetails,expyear:e.target.value})}}
   />
-  <label for="floatingInput">YY</label>
+  <label for="floatingInput">YY<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
 </div>
         
         </div>
@@ -58,7 +58,7 @@ function Card(props){
   <input type="number" class="form-control" id="floatingInput" placeholder="Enter cvv Number "
   onChange={(e)=>{setcarddetails({...carddetails,cvv:e.target.value})}}
   />
-  <label for="floatingInput">CVV</label>
+  <label for="floatingInput">CVV<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
 </div>
     </div>
   </div>
@@ -67,7 +67,7 @@ function Card(props){
   <input type="number" class="form-control" id="floatingInput" placeholder="Amount "
   onChange={(e)=>{setcarddetails({...carddetails,amount:e.target.value})}}
   />
-  <label for="floatingInput">Amount</label>
+  <label for="floatingInput">Amount<span style={{ color: 'red', marginLeft: '4px' }}>*</span> </label>
 </div>
 
 
